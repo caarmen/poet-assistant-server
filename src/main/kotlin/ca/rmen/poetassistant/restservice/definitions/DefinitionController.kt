@@ -15,5 +15,11 @@ class DefinitionController {
     @GetMapping("/definition")
     fun definition(@RequestParam("word") word: String): List<DefinitionModel> =
         repository.findAllByWord(word)
-            .map { DefinitionModel(it.word, it.partOfSpeech, it.definition) }
+            .map {
+                DefinitionModel(
+                    word = it.word,
+                    partOfSpeech = it.partOfSpeech,
+                    definition = it.definition
+                )
+            }
 }

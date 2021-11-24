@@ -7,7 +7,6 @@ import com.fasterxml.jackson.databind.annotation.JsonNaming
 @JsonNaming(PropertyNamingStrategies.SnakeCaseStrategy::class)
 @JsonInclude(JsonInclude.Include.NON_NULL)
 data class WordRhymesModel(
-    val word: String,
     val variantNumber: Int,
     val stressRhymes: SyllableRhymesModel? = null,
     val lastThreeSyllableRhymes: SyllableRhymesModel? = null,

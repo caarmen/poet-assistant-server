@@ -14,21 +14,17 @@ class RhymerController {
     private lateinit var repository: RhymerRepository
 
     @GetMapping("/rhymes")
-    fun definition(@RequestParam("word") word: String): List<WordRhymesModel> {
-        val wordVariants = repository.findAllByWord(word)
-        return wordVariants.map { wordVariant ->
-            val wordVariantsMatchingStressSyllables = repository.findAllByStressSyllables(wordVariant.stressSyllables)
+    fun definition(@RequestParam("word") word: String): List<WordRhymesModel> =
+        repository.findAllByWord(word).map { wordVariant ->
             WordRhymesModel(
-                word = word,
                 variantNumber = wordVariant.variantNumber,
                 stressRhymes = SyllableRhymesModel(
                     syllables = wordVariant.stressSyllables,
-                    rhymes = wordVariantsMatchingStressSyllables
-                        .filter { it.word != word }
+                    rhymes = repository.findAllByStressSyllablesAndWordNotOrderByWord(wordVariant.stressSyllables, word)
                         .map { it.word }
-                        .sorted()
                 )
             )
         }
-    }
+    // TODO for now we only return words which match stress syllables
+    // We should also return words which match the last one, two, or three syllables
 }

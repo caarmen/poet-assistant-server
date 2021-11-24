@@ -1,4 +1,4 @@
-package ca.rmen.poetassistant.restservice.model
+package ca.rmen.poetassistant.restservice.definitions.model
 
 import com.fasterxml.jackson.databind.PropertyNamingStrategies
 import com.fasterxml.jackson.databind.annotation.JsonNaming

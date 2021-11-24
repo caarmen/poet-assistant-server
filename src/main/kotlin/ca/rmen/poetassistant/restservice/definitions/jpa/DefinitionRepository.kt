@@ -1,4 +1,4 @@
-package ca.rmen.poetassistant.jpa
+package ca.rmen.poetassistant.restservice.definitions.jpa
 
 import org.springframework.data.repository.CrudRepository
 

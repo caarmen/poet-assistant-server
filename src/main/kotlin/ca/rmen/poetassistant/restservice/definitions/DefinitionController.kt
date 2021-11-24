@@ -1,7 +1,7 @@
-package ca.rmen.poetassistant.restservice
+package ca.rmen.poetassistant.restservice.definitions
 
-import ca.rmen.poetassistant.jpa.DefinitionRepository
-import ca.rmen.poetassistant.restservice.model.DefinitionModel
+import ca.rmen.poetassistant.restservice.definitions.jpa.DefinitionRepository
+import ca.rmen.poetassistant.restservice.definitions.model.DefinitionModel
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.RequestParam

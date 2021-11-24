@@ -1,4 +1,4 @@
-package ca.rmen.poetassistant.jpa
+package ca.rmen.poetassistant.restservice.definitions.jpa
 
 import java.io.Serializable
 import javax.persistence.*

@@ -14,7 +14,7 @@ class RhymerController {
     private lateinit var repository: RhymerRepository
 
     @GetMapping("/rhymes")
-    fun definition(@RequestParam("word") word: String): List<WordRhymesModel> =
+    fun rhymes(@RequestParam("word") word: String): List<WordRhymesModel> =
         repository.findAllByWord(word).map { wordVariant ->
             WordRhymesModel(
                 variantNumber = wordVariant.variantNumber,

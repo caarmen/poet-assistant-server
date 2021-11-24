@@ -5,6 +5,11 @@ import javax.persistence.EmbeddedId
 import javax.persistence.Entity
 import javax.persistence.Table
 
+/**
+ * Our embedded database doesn't have an id column.
+ * A word may have multiple definition entries for a given part_of_speech value.
+ * So, we have to use all three attributes as the primary key
+ */
 @Entity
 @Table(name = "dictionary")
 data class DefinitionEntity(

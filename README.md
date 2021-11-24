@@ -4,15 +4,11 @@ This server contains a read-only embedded database with dictionaries for rhymes,
 
 It provides REST endpoints to look up the dictionary entries for a word.
 
-So far, only the definition dictionary is provided.
-
 ## How to use it
 Start the application:
 ```shell
 ./gradlew bootRun
 ```
-
-Use the application:
 
 ### Rhymes
 ```shell

@@ -19,14 +19,17 @@
 
 package ca.rmen.poetassistant.restservice.rhymer.model
 
-import com.fasterxml.jackson.databind.PropertyNamingStrategies
-import com.fasterxml.jackson.databind.annotation.JsonNaming
+import com.fasterxml.jackson.annotation.JsonProperty
 
-@JsonNaming(PropertyNamingStrategies.SnakeCaseStrategy::class)
 data class WordRhymesModel(
+    @JsonProperty("variant_number")
     val variantNumber: Int,
+    @JsonProperty("stress_rhymes")
     val stressRhymes: SyllableRhymesModel? = null,
+    @JsonProperty("last_three_syllable_rhymes")
     val lastThreeSyllableRhymes: SyllableRhymesModel? = null,
+    @JsonProperty("last_two_syllable_rhymes")
     val lastTwoSyllableRhymes: SyllableRhymesModel? = null,
+    @JsonProperty("last_syllable_rhymes")
     val lastSyllableRhymes: SyllableRhymesModel? = null
 )

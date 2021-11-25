@@ -19,12 +19,13 @@
 
 package ca.rmen.poetassistant.restservice.thesaurus.model
 
-import com.fasterxml.jackson.databind.PropertyNamingStrategies
-import com.fasterxml.jackson.databind.annotation.JsonNaming
+import com.fasterxml.jackson.annotation.JsonProperty
 
-@JsonNaming(PropertyNamingStrategies.SnakeCaseStrategy::class)
 data class ThesaurusEntryModel(
+    @JsonProperty("part_of_speech")
     val partOfSpeech: String,
+    @JsonProperty("synonyms")
     val synonyms: List<String>,
+    @JsonProperty("antonyms")
     val antonyms: List<String>
 )

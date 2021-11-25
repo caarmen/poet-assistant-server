@@ -19,11 +19,11 @@
 
 package ca.rmen.poetassistant.restservice.rhymer.model
 
-import com.fasterxml.jackson.databind.PropertyNamingStrategies
-import com.fasterxml.jackson.databind.annotation.JsonNaming
+import com.fasterxml.jackson.annotation.JsonProperty
 
-@JsonNaming(PropertyNamingStrategies.SnakeCaseStrategy::class)
 data class SyllableRhymesModel(
+    @JsonProperty("syllables")
     val syllables: String,
+    @JsonProperty("rhymes")
     val rhymes: List<String>
 )

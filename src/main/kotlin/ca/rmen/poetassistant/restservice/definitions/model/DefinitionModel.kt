@@ -19,12 +19,13 @@
 
 package ca.rmen.poetassistant.restservice.definitions.model
 
-import com.fasterxml.jackson.databind.PropertyNamingStrategies
-import com.fasterxml.jackson.databind.annotation.JsonNaming
+import com.fasterxml.jackson.annotation.JsonProperty
 
-@JsonNaming(PropertyNamingStrategies.SnakeCaseStrategy::class)
 data class DefinitionModel(
+    @JsonProperty("word")
     val word: String,
+    @JsonProperty("part_of_speech")
     val partOfSpeech: String,
+    @JsonProperty("definition")
     val definition: String
 )

@@ -23,6 +23,9 @@ import org.springframework.data.repository.CrudRepository
 
 interface RhymerRepository : CrudRepository<RhymerEntity, RhymerEntityPK> {
     fun findAllByWord(word: String): List<RhymerEntity>
-    fun findAllByStressSyllablesAndWordNotOrderByWord(stressSyllables: String, word: String): List<RhymerEntity>
+
+    // These long method names are possible thanks to jpa:
+    // https://docs.spring.io/spring-data/jpa/docs/current/reference/html/#jpa.query-methods.query-creation
+    fun findByStressSyllablesAndWordNotOrderByWord(stressSyllables: String, word: String): List<RhymerEntity>
 
 }

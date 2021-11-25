@@ -41,8 +41,9 @@ class RhymerController {
                 variantNumber = wordVariant.variantNumber,
                 stressRhymes = SyllableRhymesModel(
                     syllables = wordVariant.stressSyllables,
-                    rhymes = repository.findAllByStressSyllablesAndWordNotOrderByWord(wordVariant.stressSyllables, word)
+                    rhymes = repository.findByStressSyllablesAndWordNotOrderByWord(wordVariant.stressSyllables, word)
                         .map { it.word }
+                        .distinct()
                 )
             )
         }.takeIf { it.isNotEmpty() }

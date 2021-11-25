@@ -19,7 +19,7 @@ For example, to find rhymes of the word "dove":
 ```shell
 curl "http://localhost:8080/rhymes?word=dove"
 
-[{"variant_number":0,"stress_rhymes":{"syllables":"AHV","rhymes":["above","belove","deneuve","deneuve","glove","gov","labov","labove","love","o'glove","of","of","shove","thereof","vanhove"]}},{"variant_number":1,"stress_rhymes":{"syllables":"OWV","rhymes":["boeve","bove","cove","drove","gove","grove","hove","labauve","nov","rove","soave","stove","strove","throve","tov","trove","wove"]}}]
+[{"variant_number":0,"stress_rhymes":{"syllables":"AHV","rhymes":["above","belove","deneuve","glove","gov","labov","labove","love","o'glove","of","shove","thereof","vanhove"]}},{"variant_number":1,"stress_rhymes":{"syllables":"OWV","rhymes":["boeve","bove","cove","drove","gove","grove","hove","labauve","nov","rove","soave","stove","strove","throve","tov","trove","wove"]}}]
 ```
 
 This response example in pretty print:
@@ -33,14 +33,12 @@ This response example in pretty print:
         "above",
         "belove",
         "deneuve",
-        "deneuve",
         "glove",
         "gov",
         "labov",
         "labove",
         "love",
         "o'glove",
-        "of",
         "of",
         "shove",
         "thereof",

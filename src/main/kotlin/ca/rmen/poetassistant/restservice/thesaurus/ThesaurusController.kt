@@ -19,24 +19,26 @@
 
 package ca.rmen.poetassistant.restservice.thesaurus
 
-import ca.rmen.poetassistant.restservice.InputValidator
+import ca.rmen.poetassistant.restservice.RequestValidator
 import ca.rmen.poetassistant.restservice.thesaurus.jpa.ThesaurusRepository
 import ca.rmen.poetassistant.restservice.thesaurus.model.ThesaurusEntryModel
 import org.springframework.beans.factory.annotation.Autowired
-import org.springframework.http.HttpStatus
-import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.RequestParam
 import org.springframework.web.bind.annotation.RestController
 
 @RestController
 class ThesaurusController {
+    companion object {
+        private const val QUERY_PARAM_WORD = "word"
+    }
+
     @Autowired
     private lateinit var repository: ThesaurusRepository
 
     @GetMapping("/thesaurus")
-    fun thesaurus(@RequestParam("word") word: String): ResponseEntity<List<ThesaurusEntryModel>> {
-        InputValidator.validateNotBlank("word", word)
+    fun thesaurus(@RequestParam(QUERY_PARAM_WORD) word: String): List<ThesaurusEntryModel> {
+        RequestValidator.validateInputNotBlank(QUERY_PARAM_WORD, word)
         return repository.findAllByWord(word)
             .map {
                 ThesaurusEntryModel(
@@ -48,8 +50,6 @@ class ThesaurusController {
                         .filter { antonym -> antonym.isNotEmpty() }
                         .sortedWith(compareBy(String.CASE_INSENSITIVE_ORDER) { it }),
                 )
-            }.takeIf { it.isNotEmpty() }
-            ?.let { ResponseEntity.ok(it) } ?: ResponseEntity.status(HttpStatus.NOT_FOUND)
-            .build()
+            }.also { RequestValidator.validateResultNotEmpty(word, it) }
     }
 }

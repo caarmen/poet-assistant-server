@@ -39,8 +39,12 @@ class ThesaurusController {
             .map {
                 ThesaurusEntryModel(
                     partOfSpeech = it.wordType,
-                    synonyms = it.synonyms.split(",").filter { synonym -> synonym.isNotEmpty() },
-                    antonyms = it.antonyms.split(",").filter { antonym -> antonym.isNotEmpty() },
+                    synonyms = it.synonyms.split(",")
+                        .filter { synonym -> synonym.isNotEmpty() }
+                        .sortedWith(compareBy(String.CASE_INSENSITIVE_ORDER) { it }),
+                    antonyms = it.antonyms.split(",")
+                        .filter { antonym -> antonym.isNotEmpty() }
+                        .sortedWith(compareBy(String.CASE_INSENSITIVE_ORDER) { it }),
                 )
             }.takeIf { it.isNotEmpty() }
             ?.let { ResponseEntity.ok(it) } ?: ResponseEntity.status(HttpStatus.NOT_FOUND)

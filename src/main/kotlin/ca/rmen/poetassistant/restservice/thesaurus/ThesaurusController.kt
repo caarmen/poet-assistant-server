@@ -19,6 +19,7 @@
 
 package ca.rmen.poetassistant.restservice.thesaurus
 
+import ca.rmen.poetassistant.restservice.InputValidator
 import ca.rmen.poetassistant.restservice.thesaurus.jpa.ThesaurusRepository
 import ca.rmen.poetassistant.restservice.thesaurus.model.ThesaurusEntryModel
 import org.springframework.beans.factory.annotation.Autowired
@@ -34,8 +35,9 @@ class ThesaurusController {
     private lateinit var repository: ThesaurusRepository
 
     @GetMapping("/thesaurus")
-    fun thesaurus(@RequestParam("word") word: String): ResponseEntity<List<ThesaurusEntryModel>> =
-        repository.findAllByWord(word)
+    fun thesaurus(@RequestParam("word") word: String): ResponseEntity<List<ThesaurusEntryModel>> {
+        InputValidator.validateNotBlank(word)
+        return repository.findAllByWord(word)
             .map {
                 ThesaurusEntryModel(
                     partOfSpeech = it.wordType,
@@ -49,4 +51,5 @@ class ThesaurusController {
             }.takeIf { it.isNotEmpty() }
             ?.let { ResponseEntity.ok(it) } ?: ResponseEntity.status(HttpStatus.NOT_FOUND)
             .build()
+    }
 }

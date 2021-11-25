@@ -19,6 +19,7 @@
 
 package ca.rmen.poetassistant.restservice.definitions
 
+import ca.rmen.poetassistant.restservice.InputValidator
 import ca.rmen.poetassistant.restservice.definitions.jpa.DefinitionRepository
 import ca.rmen.poetassistant.restservice.definitions.model.DefinitionModel
 import org.springframework.beans.factory.annotation.Autowired
@@ -34,8 +35,9 @@ class DefinitionController {
     private lateinit var repository: DefinitionRepository
 
     @GetMapping("/definition")
-    fun definition(@RequestParam("word") word: String): ResponseEntity<List<DefinitionModel>> =
-        repository.findAllByWord(word)
+    fun definition(@RequestParam("word") word: String): ResponseEntity<List<DefinitionModel>> {
+        InputValidator.validateNotBlank(word)
+        return repository.findAllByWord(word.lowercase())
             .map {
                 DefinitionModel(
                     word = it.word,
@@ -45,4 +47,5 @@ class DefinitionController {
             }.takeIf { it.isNotEmpty() }
             ?.let { ResponseEntity.ok(it) } ?: ResponseEntity.status(HttpStatus.NOT_FOUND)
             .build()
+    }
 }

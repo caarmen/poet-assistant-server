@@ -37,7 +37,7 @@ class RhymerController {
 
     @GetMapping("/rhymes")
     fun rhymes(@RequestParam("word") word: String): ResponseEntity<List<WordRhymesModel>> {
-        InputValidator.validateNotBlank(word)
+        InputValidator.validateNotBlank("word", word)
         return repository.findAllByWord(word).map { wordVariant ->
             WordRhymesModel(
                 variantNumber = wordVariant.variantNumber,

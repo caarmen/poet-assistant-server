@@ -36,7 +36,7 @@ class ThesaurusController {
 
     @GetMapping("/thesaurus")
     fun thesaurus(@RequestParam("word") word: String): ResponseEntity<List<ThesaurusEntryModel>> {
-        InputValidator.validateNotBlank(word)
+        InputValidator.validateNotBlank("word", word)
         return repository.findAllByWord(word)
             .map {
                 ThesaurusEntryModel(

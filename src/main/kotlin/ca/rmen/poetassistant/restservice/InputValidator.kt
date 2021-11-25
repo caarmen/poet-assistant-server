@@ -23,14 +23,14 @@ import org.springframework.http.HttpStatus
 import org.springframework.web.bind.annotation.ResponseStatus
 
 object InputValidator {
-    fun validateNotBlank(input: String) {
-        if (input.isBlank()) {
-            throw EmptyInputException()
+    fun validateNotBlank(name: String, value: String) {
+        if (value.isBlank()) {
+            throw EmptyInputException(name)
         }
     }
 
 
-    @ResponseStatus(value = HttpStatus.BAD_REQUEST, reason = "Input must not be blank")
-    class EmptyInputException : IllegalArgumentException()
+    @ResponseStatus(value = HttpStatus.BAD_REQUEST)
+    class EmptyInputException(name: String) : IllegalArgumentException("$name must not be empty")
 }
 

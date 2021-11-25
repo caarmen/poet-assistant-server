@@ -36,7 +36,7 @@ class DefinitionController {
 
     @GetMapping("/definition")
     fun definition(@RequestParam("word") word: String): ResponseEntity<List<DefinitionModel>> {
-        InputValidator.validateNotBlank(word)
+        InputValidator.validateNotBlank("word", word)
         return repository.findAllByWord(word.lowercase())
             .map {
                 DefinitionModel(

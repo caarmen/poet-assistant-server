@@ -21,7 +21,9 @@ package ca.rmen.poetassistant.restservice.definitions
 
 import ca.rmen.poetassistant.restservice.definitions.jpa.DefinitionRepository
 import ca.rmen.poetassistant.restservice.definitions.model.DefinitionModel
+import org.springframework.stereotype.Service
 
+@Service
 class DefinitionService(private val repository: DefinitionRepository) {
 
     fun findDefinitions(word: String): List<DefinitionModel> =

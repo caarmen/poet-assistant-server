@@ -21,23 +21,16 @@ package ca.rmen.poetassistant.restservice.rhymer
 
 import ca.rmen.poetassistant.restservice.RequestValidator.validateInputNotBlank
 import ca.rmen.poetassistant.restservice.RequestValidator.validateResultNotEmpty
-import ca.rmen.poetassistant.restservice.rhymer.jpa.RhymerRepository
 import ca.rmen.poetassistant.restservice.rhymer.model.WordRhymesModel
-import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.RequestParam
 import org.springframework.web.bind.annotation.RestController
 
 @RestController
-class RhymerController {
+class RhymerController(private val service: RhymerService) {
     companion object {
         private const val QUERY_PARAM_WORD = "word"
     }
-
-    @Autowired
-    private lateinit var repository: RhymerRepository
-
-    private val service: RhymerService by lazy { RhymerService(repository) }
 
     @GetMapping("/rhymes")
     fun rhymes(@RequestParam(QUERY_PARAM_WORD) word: String): List<WordRhymesModel> =

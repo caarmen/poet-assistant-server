@@ -21,7 +21,9 @@ package ca.rmen.poetassistant.restservice.thesaurus
 
 import ca.rmen.poetassistant.restservice.thesaurus.jpa.ThesaurusRepository
 import ca.rmen.poetassistant.restservice.thesaurus.model.ThesaurusEntryModel
+import org.springframework.stereotype.Service
 
+@Service
 class ThesaurusService(private val repository: ThesaurusRepository) {
     fun findThesaurusEntries(word: String): List<ThesaurusEntryModel> =
         repository.findAllByWord(word)

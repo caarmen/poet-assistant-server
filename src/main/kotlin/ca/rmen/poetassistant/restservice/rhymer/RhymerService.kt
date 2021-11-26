@@ -22,7 +22,9 @@ package ca.rmen.poetassistant.restservice.rhymer
 import ca.rmen.poetassistant.restservice.rhymer.jpa.RhymerRepository
 import ca.rmen.poetassistant.restservice.rhymer.model.SyllableRhymesModel
 import ca.rmen.poetassistant.restservice.rhymer.model.WordRhymesModel
+import org.springframework.stereotype.Service
 
+@Service
 class RhymerService(private val repository: RhymerRepository) {
     fun findRhymes(word: String): List<WordRhymesModel> =
         repository.findAllByWord(word).map { wordVariant ->

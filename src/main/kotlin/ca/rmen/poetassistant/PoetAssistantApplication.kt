@@ -27,8 +27,7 @@ import org.springframework.web.bind.annotation.RestController
 
 @SpringBootApplication
 @RestController
-class PoetAssistantApplication {
-}
+class PoetAssistantApplication
 
 fun main(args: Array<String>) {
 	runApplication<PoetAssistantApplication>(*args)

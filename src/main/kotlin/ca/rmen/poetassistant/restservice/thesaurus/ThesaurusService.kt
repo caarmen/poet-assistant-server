@@ -28,12 +28,19 @@ class ThesaurusService(private val repository: ThesaurusRepository) {
             .map {
                 ThesaurusEntryModel(
                     partOfSpeech = it.wordType,
-                    synonyms = it.synonyms.split(",")
-                        .filter { synonym -> synonym.isNotEmpty() }
-                        .sortedWith(compareBy(String.CASE_INSENSITIVE_ORDER) { it }),
-                    antonyms = it.antonyms.split(",")
-                        .filter { antonym -> antonym.isNotEmpty() }
-                        .sortedWith(compareBy(String.CASE_INSENSITIVE_ORDER) { it }),
+                    synonyms = it.synonyms.toWordList(),
+                    antonyms = it.antonyms.toWordList()
                 )
             }
+
+    /**
+     * In our database, the synonyms of a word are stored in a single
+     * column, as a comma-separated list of words. We need to convert
+     * this into a sorted list of words
+     */
+    private fun String.toWordList() =
+        split(",")
+            .filter { it.isNotEmpty() }
+            .sortedWith(compareBy(String.CASE_INSENSITIVE_ORDER) { it })
+
 }

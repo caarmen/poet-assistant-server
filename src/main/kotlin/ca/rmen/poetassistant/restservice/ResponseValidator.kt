@@ -22,13 +22,7 @@ package ca.rmen.poetassistant.restservice
 import org.springframework.http.HttpStatus
 import org.springframework.web.bind.annotation.ResponseStatus
 
-object RequestValidator {
-    fun String.validateInputNotBlank(parameterName: String): String {
-        if (isBlank()) {
-            throw EmptyInputException(parameterName)
-        }
-        return this
-    }
+object ResponseValidator {
 
     fun <T> List<T>.validateResultNotEmpty(word: String): List<T> {
         if (isEmpty()) {
@@ -37,10 +31,7 @@ object RequestValidator {
         return this
     }
 
-    @ResponseStatus(value = HttpStatus.BAD_REQUEST)
-    class EmptyInputException(parameterName: String) : IllegalArgumentException("'$parameterName' must not be empty")
-
-    @ResponseStatus(value = HttpStatus.NOT_FOUND)
-    class EmptyResultException(word: String) : IllegalArgumentException("No results found for $word")
+    @ResponseStatus(HttpStatus.NOT_FOUND)
+    class EmptyResultException(word: String) : NoSuchElementException("No results found for $word")
 }
 

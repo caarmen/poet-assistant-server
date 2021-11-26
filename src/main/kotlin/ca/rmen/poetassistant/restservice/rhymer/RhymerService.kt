@@ -19,31 +19,25 @@
 
 package ca.rmen.poetassistant.restservice.rhymer
 
-import ca.rmen.poetassistant.restservice.RequestValidator.validateInputNotBlank
-import ca.rmen.poetassistant.restservice.RequestValidator.validateResultNotEmpty
 import ca.rmen.poetassistant.restservice.rhymer.jpa.RhymerRepository
+import ca.rmen.poetassistant.restservice.rhymer.model.SyllableRhymesModel
 import ca.rmen.poetassistant.restservice.rhymer.model.WordRhymesModel
-import org.springframework.beans.factory.annotation.Autowired
-import org.springframework.web.bind.annotation.GetMapping
-import org.springframework.web.bind.annotation.RequestParam
-import org.springframework.web.bind.annotation.RestController
 
-@RestController
-class RhymerController {
-    companion object {
-        private const val QUERY_PARAM_WORD = "word"
-    }
-
-    @Autowired
-    private lateinit var repository: RhymerRepository
-
-    private val service: RhymerService by lazy { RhymerService(repository) }
-
-    @GetMapping("/rhymes")
-    fun rhymes(@RequestParam(QUERY_PARAM_WORD) word: String): List<WordRhymesModel> =
-        service.findRhymes(
-            word.lowercase().validateInputNotBlank(QUERY_PARAM_WORD)
-        ).validateResultNotEmpty(word)
+class RhymerService(private val repository: RhymerRepository) {
+    fun findRhymes(word: String): List<WordRhymesModel> =
+        repository.findAllByWord(word).map { wordVariant ->
+            WordRhymesModel(
+                variantNumber = wordVariant.variantNumber,
+                stressRhymes = SyllableRhymesModel(
+                    syllables = wordVariant.stressSyllables,
+                    rhymes = repository.findByStressSyllablesAndWordNotOrderByWord(
+                        wordVariant.stressSyllables,
+                        word
+                    ).map { it.word }
+                        .distinct()
+                )
+            )
+        }
     // TODO for now we only return words which match stress syllables
     // We should also return words which match the last one, two, or three syllables
 }

@@ -19,7 +19,8 @@
 
 package ca.rmen.poetassistant.restservice.definitions
 
-import ca.rmen.poetassistant.restservice.RequestValidator
+import ca.rmen.poetassistant.restservice.RequestValidator.validateInputNotBlank
+import ca.rmen.poetassistant.restservice.RequestValidator.validateResultNotEmpty
 import ca.rmen.poetassistant.restservice.definitions.jpa.DefinitionRepository
 import ca.rmen.poetassistant.restservice.definitions.model.DefinitionModel
 import org.springframework.beans.factory.annotation.Autowired
@@ -37,15 +38,14 @@ class DefinitionController {
     private lateinit var repository: DefinitionRepository
 
     @GetMapping("/definition")
-    fun definition(@RequestParam(QUERY_PARAM_WORD) word: String): List<DefinitionModel> {
-        RequestValidator.validateInputNotBlank(QUERY_PARAM_WORD, word)
-        return repository.findAllByWord(word.lowercase())
-            .map {
-                DefinitionModel(
-                    word = it.word,
-                    partOfSpeech = it.partOfSpeech,
-                    definition = it.definition
-                )
-            }.also { RequestValidator.validateResultNotEmpty(word, it) }
-    }
+    fun definition(@RequestParam(QUERY_PARAM_WORD) word: String): List<DefinitionModel> =
+        repository.findAllByWord(
+            word.lowercase().validateInputNotBlank(QUERY_PARAM_WORD)
+        ).map {
+            DefinitionModel(
+                word = it.word,
+                partOfSpeech = it.partOfSpeech,
+                definition = it.definition
+            )
+        }.validateResultNotEmpty(word)
 }

@@ -19,7 +19,8 @@
 
 package ca.rmen.poetassistant.restservice.rhymer
 
-import ca.rmen.poetassistant.restservice.RequestValidator
+import ca.rmen.poetassistant.restservice.RequestValidator.validateInputNotBlank
+import ca.rmen.poetassistant.restservice.RequestValidator.validateResultNotEmpty
 import ca.rmen.poetassistant.restservice.rhymer.jpa.RhymerRepository
 import ca.rmen.poetassistant.restservice.rhymer.model.SyllableRhymesModel
 import ca.rmen.poetassistant.restservice.rhymer.model.WordRhymesModel
@@ -38,20 +39,22 @@ class RhymerController {
     private lateinit var repository: RhymerRepository
 
     @GetMapping("/rhymes")
-    fun rhymes(@RequestParam(QUERY_PARAM_WORD) word: String): List<WordRhymesModel> {
-        RequestValidator.validateInputNotBlank(QUERY_PARAM_WORD, word)
-        return repository.findAllByWord(word).map { wordVariant ->
+    fun rhymes(@RequestParam(QUERY_PARAM_WORD) word: String): List<WordRhymesModel> =
+        repository.findAllByWord(
+            word.lowercase().validateInputNotBlank(QUERY_PARAM_WORD)
+        ).map { wordVariant ->
             WordRhymesModel(
                 variantNumber = wordVariant.variantNumber,
                 stressRhymes = SyllableRhymesModel(
                     syllables = wordVariant.stressSyllables,
-                    rhymes = repository.findByStressSyllablesAndWordNotOrderByWord(wordVariant.stressSyllables, word)
-                        .map { it.word }
+                    rhymes = repository.findByStressSyllablesAndWordNotOrderByWord(
+                        wordVariant.stressSyllables,
+                        word
+                    ).map { it.word }
                         .distinct()
                 )
             )
-        }.also { RequestValidator.validateResultNotEmpty(word, it) }
-        // TODO for now we only return words which match stress syllables
-        // We should also return words which match the last one, two, or three syllables
-    }
+        }.validateResultNotEmpty(word)
+    // TODO for now we only return words which match stress syllables
+    // We should also return words which match the last one, two, or three syllables
 }

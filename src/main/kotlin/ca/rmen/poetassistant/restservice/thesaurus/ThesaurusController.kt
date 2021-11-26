@@ -19,7 +19,8 @@
 
 package ca.rmen.poetassistant.restservice.thesaurus
 
-import ca.rmen.poetassistant.restservice.RequestValidator
+import ca.rmen.poetassistant.restservice.RequestValidator.validateInputNotBlank
+import ca.rmen.poetassistant.restservice.RequestValidator.validateResultNotEmpty
 import ca.rmen.poetassistant.restservice.thesaurus.jpa.ThesaurusRepository
 import ca.rmen.poetassistant.restservice.thesaurus.model.ThesaurusEntryModel
 import org.springframework.beans.factory.annotation.Autowired
@@ -37,19 +38,18 @@ class ThesaurusController {
     private lateinit var repository: ThesaurusRepository
 
     @GetMapping("/thesaurus")
-    fun thesaurus(@RequestParam(QUERY_PARAM_WORD) word: String): List<ThesaurusEntryModel> {
-        RequestValidator.validateInputNotBlank(QUERY_PARAM_WORD, word)
-        return repository.findAllByWord(word)
-            .map {
-                ThesaurusEntryModel(
-                    partOfSpeech = it.wordType,
-                    synonyms = it.synonyms.split(",")
-                        .filter { synonym -> synonym.isNotEmpty() }
-                        .sortedWith(compareBy(String.CASE_INSENSITIVE_ORDER) { it }),
-                    antonyms = it.antonyms.split(",")
-                        .filter { antonym -> antonym.isNotEmpty() }
-                        .sortedWith(compareBy(String.CASE_INSENSITIVE_ORDER) { it }),
-                )
-            }.also { RequestValidator.validateResultNotEmpty(word, it) }
-    }
+    fun thesaurus(@RequestParam(QUERY_PARAM_WORD) word: String): List<ThesaurusEntryModel> =
+        repository.findAllByWord(
+            word.lowercase().validateInputNotBlank(QUERY_PARAM_WORD)
+        ).map {
+            ThesaurusEntryModel(
+                partOfSpeech = it.wordType,
+                synonyms = it.synonyms.split(",")
+                    .filter { synonym -> synonym.isNotEmpty() }
+                    .sortedWith(compareBy(String.CASE_INSENSITIVE_ORDER) { it }),
+                antonyms = it.antonyms.split(",")
+                    .filter { antonym -> antonym.isNotEmpty() }
+                    .sortedWith(compareBy(String.CASE_INSENSITIVE_ORDER) { it }),
+            )
+        }.validateResultNotEmpty(word)
 }

@@ -23,22 +23,24 @@ import org.springframework.http.HttpStatus
 import org.springframework.web.bind.annotation.ResponseStatus
 
 object RequestValidator {
-    fun validateInputNotBlank(name: String, value: String) {
-        if (value.isBlank()) {
-            throw EmptyInputException(name)
+    fun String.validateInputNotBlank(parameterName: String): String {
+        if (isBlank()) {
+            throw EmptyInputException(parameterName)
         }
+        return this
     }
 
-    fun validateResultNotEmpty(name: String, result: List<Any>) {
-        if (result.isEmpty()) {
-            throw EmptyResultException(name)
+    fun <T> List<T>.validateResultNotEmpty(word: String): List<T> {
+        if (isEmpty()) {
+            throw EmptyResultException(word)
         }
+        return this
     }
 
     @ResponseStatus(value = HttpStatus.BAD_REQUEST)
-    class EmptyInputException(name: String) : IllegalArgumentException("$name must not be empty")
+    class EmptyInputException(parameterName: String) : IllegalArgumentException("'$parameterName' must not be empty")
 
     @ResponseStatus(value = HttpStatus.NOT_FOUND)
-    class EmptyResultException(name: String) : IllegalArgumentException("No results found for $name")
+    class EmptyResultException(word: String) : IllegalArgumentException("No results found for $word")
 }
 

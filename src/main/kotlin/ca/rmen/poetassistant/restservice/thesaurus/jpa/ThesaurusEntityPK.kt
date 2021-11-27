@@ -20,7 +20,7 @@
 package ca.rmen.poetassistant.restservice.thesaurus.jpa
 
 import java.io.Serializable
-import javax.persistence.*
+import javax.persistence.Embeddable
 
 @Embeddable
 data class ThesaurusEntityPK(

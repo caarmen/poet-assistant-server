@@ -20,7 +20,7 @@
 package ca.rmen.poetassistant.restservice.definitions.jpa
 
 import java.io.Serializable
-import javax.persistence.*
+import javax.persistence.Embeddable
 
 @Embeddable
 data class DefinitionEntityPK(

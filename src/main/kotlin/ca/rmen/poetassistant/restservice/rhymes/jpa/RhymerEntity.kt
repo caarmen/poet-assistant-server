@@ -17,7 +17,7 @@
  * along with Poet Assistant.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package ca.rmen.poetassistant.restservice.rhymer.jpa
+package ca.rmen.poetassistant.restservice.rhymes.jpa
 
 import javax.persistence.Column
 import javax.persistence.EmbeddedId

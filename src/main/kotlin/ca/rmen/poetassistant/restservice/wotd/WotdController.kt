@@ -30,6 +30,6 @@ import org.springframework.web.bind.annotation.RestController
 class WotdController(private val service: WotdService) {
 
     @GetMapping("/wotd")
-    fun wotd(pageable: Pageable): Slice<WotdModel> =
+    fun getWotd(pageable: Pageable): Slice<WotdModel> =
         SliceImpl(service.findWotdEntries(offset = pageable.offset, size = pageable.pageSize))
 }

@@ -17,7 +17,7 @@
  * along with Poet Assistant.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package ca.rmen.poetassistant.restservice.rhymer.model
+package ca.rmen.poetassistant.restservice.rhymes.model
 
 import com.fasterxml.jackson.annotation.JsonProperty
 

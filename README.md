@@ -90,7 +90,7 @@ curl "http://localhost:8080/thesaurus?word=<word>"
 
 For example, to find thesaurus entries of the word "happy":
 ```shell
-curl "http://localhost:8080/definition?word=happy"
+curl "http://localhost:8080/thesaurus?word=happy"
 
 [{"part_of_speech":"ADJ","synonyms":["blessed","blissful","bright","cheerful","content","contented","elated","euphoric","felicitous","glad","golden","halcyon","joyful","joyous","laughing","prosperous","riant"],"antonyms":["unhappy"]},{"part_of_speech":"ADJ","synonyms":["felicitous","fortunate"],"antonyms":[]},{"part_of_speech":"ADJ","synonyms":["glad","willing"],"antonyms":[]},{"part_of_speech":"ADJ","synonyms":["felicitous","well-chosen"],"antonyms":[]}]%
 ```
@@ -153,13 +153,13 @@ This response example in pretty print:
 ### Definitions
 
 ```shell
-curl "http://localhost:8080/definition?word=<word>"
+curl "http://localhost:8080/definitions?word=<word>"
 ```
 
 For example, to find definitions of the word "happy":
 
 ```shell
-curl "http://localhost:8080/definition?word=happy"
+curl "http://localhost:8080/definitions?word=happy"
 
 [{"word":"happy","part_of_speech":"a","definition":"eagerly disposed to act or to be of service"},{"word":"happy","part_of_speech":"a","definition":"enjoying or showing or marked by joy or pleasure"},{"word":"happy","part_of_speech":"a","definition":"marked by good fortune"},{"word":"happy","part_of_speech":"a","definition":"well expressed and to the point"}]
 ```

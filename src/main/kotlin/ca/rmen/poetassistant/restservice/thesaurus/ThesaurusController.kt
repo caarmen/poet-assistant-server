@@ -35,6 +35,6 @@ class ThesaurusController(private val service: ThesaurusService) {
     }
 
     @GetMapping("/thesaurus")
-    fun thesaurus(@RequestParam(QUERY_PARAM_WORD) @NotBlank word: String): List<ThesaurusEntryModel> =
+    fun getThesaurusEntries(@RequestParam(QUERY_PARAM_WORD) @NotBlank word: String): List<ThesaurusEntryModel> =
         service.findThesaurusEntries(word.lowercase()).validateResultNotEmpty(word)
 }

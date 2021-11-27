@@ -17,19 +17,13 @@
  * along with Poet Assistant.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package ca.rmen.poetassistant.restservice.rhymer.model
+package ca.rmen.poetassistant.restservice.rhymes.jpa
 
-import com.fasterxml.jackson.annotation.JsonProperty
+import java.io.Serializable
+import javax.persistence.Embeddable
 
-data class WordRhymesModel(
-    @JsonProperty("variant_number")
-    val variantNumber: Int,
-    @JsonProperty("stress_rhymes")
-    val stressRhymes: SyllableRhymesModel? = null,
-    @JsonProperty("last_three_syllable_rhymes")
-    val lastThreeSyllableRhymes: SyllableRhymesModel? = null,
-    @JsonProperty("last_two_syllable_rhymes")
-    val lastTwoSyllableRhymes: SyllableRhymesModel? = null,
-    @JsonProperty("last_syllable_rhymes")
-    val lastSyllableRhymes: SyllableRhymesModel? = null
-)
+@Embeddable
+data class RhymerEntityPK(
+    val word: String = "",
+    val variantNumber: Int = 0,
+) : Serializable

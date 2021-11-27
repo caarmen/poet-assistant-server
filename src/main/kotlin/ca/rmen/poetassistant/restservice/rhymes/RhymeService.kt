@@ -17,15 +17,15 @@
  * along with Poet Assistant.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package ca.rmen.poetassistant.restservice.rhymer
+package ca.rmen.poetassistant.restservice.rhymes
 
-import ca.rmen.poetassistant.restservice.rhymer.jpa.RhymerRepository
-import ca.rmen.poetassistant.restservice.rhymer.model.SyllableRhymesModel
-import ca.rmen.poetassistant.restservice.rhymer.model.WordRhymesModel
+import ca.rmen.poetassistant.restservice.rhymes.jpa.RhymerRepository
+import ca.rmen.poetassistant.restservice.rhymes.model.SyllableRhymesModel
+import ca.rmen.poetassistant.restservice.rhymes.model.WordRhymesModel
 import org.springframework.stereotype.Service
 
 @Service
-class RhymerService(private val repository: RhymerRepository) {
+class RhymeService(private val repository: RhymerRepository) {
     fun findRhymes(word: String): List<WordRhymesModel> =
         repository.findAllByWord(word).map { wordVariant ->
             WordRhymesModel(

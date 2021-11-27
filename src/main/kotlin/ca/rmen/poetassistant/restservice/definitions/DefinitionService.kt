@@ -30,7 +30,6 @@ class DefinitionService(private val repository: DefinitionRepository) {
         repository.findAllByWord(word)
             .map {
                 DefinitionModel(
-                    word = it.word,
                     partOfSpeech = it.partOfSpeech,
                     definition = it.definition
                 )

@@ -10,7 +10,7 @@ The following REST endpoints are provided:
 |---|---|
 |Rhymes|`/rhymes?word=<word>`|
 |Thesaurus|`/thesaurus?word=<word>`|
-|Definitions|`/definition?word=<word>`|
+|Definitions|`/definitions?word=<word>`|
 |Words of the day|`/wotd?page=<page number>&size=<page size>`|
 
 ## How to use it
@@ -160,30 +160,25 @@ For example, to find definitions of the word "happy":
 
 ```shell
 curl "http://localhost:8080/definitions?word=happy"
-
-[{"word":"happy","part_of_speech":"a","definition":"eagerly disposed to act or to be of service"},{"word":"happy","part_of_speech":"a","definition":"enjoying or showing or marked by joy or pleasure"},{"word":"happy","part_of_speech":"a","definition":"marked by good fortune"},{"word":"happy","part_of_speech":"a","definition":"well expressed and to the point"}]
+[{"part_of_speech":"a","definition":"eagerly disposed to act or to be of service"},{"part_of_speech":"a","definition":"enjoying or showing or marked by joy or pleasure"},{"part_of_speech":"a","definition":"marked by good fortune"},{"part_of_speech":"a","definition":"well expressed and to the point"}]  
 ```
 
 This response example in pretty print:
 ```json
 [
   {
-    "word": "happy",
     "part_of_speech": "a",
     "definition": "eagerly disposed to act or to be of service"
   },
   {
-    "word": "happy",
     "part_of_speech": "a",
     "definition": "enjoying or showing or marked by joy or pleasure"
   },
   {
-    "word": "happy",
     "part_of_speech": "a",
     "definition": "marked by good fortune"
   },
   {
-    "word": "happy",
     "part_of_speech": "a",
     "definition": "well expressed and to the point"
   }

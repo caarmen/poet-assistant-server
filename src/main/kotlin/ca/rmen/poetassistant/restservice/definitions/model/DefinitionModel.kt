@@ -22,8 +22,6 @@ package ca.rmen.poetassistant.restservice.definitions.model
 import com.fasterxml.jackson.annotation.JsonProperty
 
 data class DefinitionModel(
-    @JsonProperty("word")
-    val word: String,
     @JsonProperty("part_of_speech")
     val partOfSpeech: String,
     @JsonProperty("definition")

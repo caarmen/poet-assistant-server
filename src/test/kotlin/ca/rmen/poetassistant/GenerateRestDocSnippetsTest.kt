@@ -56,7 +56,7 @@ class GenerateRestDocSnippetsTest {
 
     @Test
     fun testGenerateDefinitionsSnippet() {
-        mockMvc.perform(MockMvcRequestBuilders.get("${DefinitionController.SERVICE}?${DefinitionController.QUERY_PARAM_WORD}=happy"))
+        mockMvc.perform(MockMvcRequestBuilders.get("${DefinitionController.SERVICE}?${DefinitionController.QUERY_PARAM_WORD}=baffle"))
             .andDo(documentPretty(DefinitionController.SERVICE))
     }
 

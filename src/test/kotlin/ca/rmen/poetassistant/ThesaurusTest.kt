@@ -19,6 +19,7 @@
 
 package ca.rmen.poetassistant
 
+import ca.rmen.poetassistant.restservice.common.model.PartOfSpeech
 import ca.rmen.poetassistant.restservice.thesaurus.ThesaurusController
 import ca.rmen.poetassistant.restservice.thesaurus.model.ThesaurusEntryModel
 import org.junit.jupiter.api.Assertions.assertEquals
@@ -37,12 +38,12 @@ class ThesaurusTest {
         val actualThesaurusEntries = controller.getThesaurusEntries("nightmare")
         val expectedThesaurusEntries = listOf(
             ThesaurusEntryModel(
-                partOfSpeech = "NOUN",
+                partOfSpeech = PartOfSpeech.NOUN,
                 synonyms = listOf("incubus", "situation"),
                 antonyms = emptyList()
             ),
             ThesaurusEntryModel(
-                partOfSpeech = "NOUN",
+                partOfSpeech = PartOfSpeech.NOUN,
                 synonyms = listOf("dream", "dreaming"),
                 antonyms = emptyList()
             )
@@ -55,12 +56,12 @@ class ThesaurusTest {
         val actualThesaurusEntries = controller.getThesaurusEntries("unstructured")
         val expectedThesaurusEntries = listOf(
             ThesaurusEntryModel(
-                partOfSpeech = "ADJ",
+                partOfSpeech = PartOfSpeech.ADJECTIVE,
                 synonyms = listOf("ambiguous", "unorganised", "unorganized", "unregulated"),
                 antonyms = listOf("structured")
             ),
             ThesaurusEntryModel(
-                partOfSpeech = "ADJ",
+                partOfSpeech = PartOfSpeech.ADJECTIVE,
                 synonyms = listOf("amorphous", "inorganic"),
                 antonyms = emptyList()
             )

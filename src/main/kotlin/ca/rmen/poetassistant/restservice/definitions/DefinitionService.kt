@@ -19,6 +19,7 @@
 
 package ca.rmen.poetassistant.restservice.definitions
 
+import ca.rmen.poetassistant.restservice.common.model.PartOfSpeech
 import ca.rmen.poetassistant.restservice.definitions.jpa.DefinitionRepository
 import ca.rmen.poetassistant.restservice.definitions.model.DefinitionModel
 import org.springframework.stereotype.Service
@@ -30,8 +31,17 @@ class DefinitionService(private val repository: DefinitionRepository) {
         repository.findAllByWord(word)
             .map {
                 DefinitionModel(
-                    partOfSpeech = it.partOfSpeech,
+                    partOfSpeech = it.partOfSpeech.toPartOfSpeech,
                     definition = it.definition
                 )
             }
+
+    private val String.toPartOfSpeech
+        get() = when (this) {
+            "a" -> PartOfSpeech.ADJECTIVE
+            "n" -> PartOfSpeech.NOUN
+            "r" -> PartOfSpeech.ADVERB
+            "v" -> PartOfSpeech.VERB
+            else -> PartOfSpeech.UNKNOWN
+        }
 }

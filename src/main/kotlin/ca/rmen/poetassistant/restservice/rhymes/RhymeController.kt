@@ -31,10 +31,11 @@ import javax.validation.constraints.NotBlank
 @Validated
 class RhymeController(private val service: RhymeService) {
     companion object {
-        private const val QUERY_PARAM_WORD = "word"
+        const val SERVICE = "/rhymes"
+        const val QUERY_PARAM_WORD = "word"
     }
 
-    @GetMapping("/rhymes")
+    @GetMapping(SERVICE)
     fun getRhymes(@RequestParam(QUERY_PARAM_WORD) @NotBlank word: String): List<WordRhymesModel> =
         service.findRhymes(word.lowercase()).validateResultNotEmpty(word)
     // TODO for now we only return words which match stress syllables

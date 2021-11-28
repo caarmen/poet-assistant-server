@@ -31,10 +31,11 @@ import javax.validation.constraints.NotBlank
 @Validated
 class ThesaurusController(private val service: ThesaurusService) {
     companion object {
-        private const val QUERY_PARAM_WORD = "word"
+        const val SERVICE = "/thesaurus"
+        const val QUERY_PARAM_WORD = "word"
     }
 
-    @GetMapping("/thesaurus")
+    @GetMapping(SERVICE)
     fun getThesaurusEntries(@RequestParam(QUERY_PARAM_WORD) @NotBlank word: String): List<ThesaurusEntryModel> =
         service.findThesaurusEntries(word.lowercase()).validateResultNotEmpty(word)
 }

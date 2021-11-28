@@ -33,13 +33,19 @@ import javax.validation.constraints.Positive
 @Validated
 class WotdController(private val service: WotdService) {
 
-    @GetMapping("/wotd")
+    companion object {
+        const val SERVICE = "/wotd"
+        const val QUERY_PARAM_BEFORE = "before"
+        const val QUERY_PARAM_SIZE = "size"
+    }
+
+    @GetMapping(SERVICE)
     fun getWotd(
-        @RequestParam("before", required = false)
+        @RequestParam(QUERY_PARAM_BEFORE, required = false)
         @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
         before: LocalDate?,
 
-        @RequestParam("size", defaultValue = "1")
+        @RequestParam(QUERY_PARAM_SIZE, defaultValue = "1")
         @Positive
         @Max(366)
         size: Int

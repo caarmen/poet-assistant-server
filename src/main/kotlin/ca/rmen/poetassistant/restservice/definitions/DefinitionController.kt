@@ -31,10 +31,11 @@ import org.springframework.web.bind.annotation.RestController
 @Validated
 class DefinitionController(private val service: DefinitionService) {
     companion object {
-        private const val QUERY_PARAM_WORD = "word"
+        const val SERVICE = "/definitions"
+        const val QUERY_PARAM_WORD = "word"
     }
 
-    @GetMapping("/definitions")
+    @GetMapping(SERVICE)
     fun getDefinitions(@RequestParam(QUERY_PARAM_WORD) @NotBlank word: String): List<DefinitionModel> =
         service.findDefinitions(word.lowercase()).validateResultNotEmpty(word)
 }

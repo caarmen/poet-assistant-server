@@ -1,0 +1,91 @@
+= Poet Assistant REST documentation
+
+This server contains a read-only embedded database with dictionaries
+for rhymes, synonyms/antonyms and definitions.
+
+The following REST endpoints are provided:
+
+[cols="1,1"]
+|===
+|Feature | Endpoint
+
+|Rhymes
+|`/rhymes?word=<word>`
+
+|Thesaurus
+|`/thesaurus?word=<word>
+
+|Definitions
+|`/definitions?word=<word>`
+
+|Words of the day
+|`/wotd?before=<yyyy-MM-dd>&size=<page size>` +
+`before`: inclusive, defaults to today +
+`size`: defaults to 1
+|===
+
+== How to use it
+
+Start the application:
+
+[source, shell]
+----
+./gradlew bootRun
+----
+
+=== Rhymes
+
+.request
+include::{snippets}/rhymes/curl-request.adoc[]
+
+.response
+include::{snippets}/rhymes/response-body.adoc[]
+
+=== Thesaurus
+
+.request
+include::{snippets}/thesaurus/curl-request.adoc[]
+
+.response
+include::{snippets}/thesaurus/response-body.adoc[]
+
+=== Definitions
+
+.request
+include::{snippets}/definitions/curl-request.adoc[]
+
+.response
+include::{snippets}/definitions/response-body.adoc[]
+
+=== Word of the day
+
+==== Today's word of the day
+To get today's word of the day, specify no query parameter:
+
+.request
+include::{snippets}/wotd/today/curl-request.adoc[]
+
+.response
+include::{snippets}/wotd/today/response-body.adoc[]
+
+==== Paginated list of words of the day
+
+To get one page of words of the day, leading up to
+a specific date, specify the `before` and `size`
+parameters.
+
+For example, to get the words of the day of the last
+week of 2021:
+
+.request
+include::{snippets}/wotd/list/curl-request.adoc[]
+
+.response
+include::{snippets}/wotd/list/response-body.adoc[]
+
+
+Note: since the word of the day endpoint is infinite
+pagination, and since there is one word for each date
+in time, the response body provides no indication of
+the total number of items, nor the "id" of the next
+or previous page.

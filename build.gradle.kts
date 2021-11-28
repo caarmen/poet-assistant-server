@@ -1,10 +1,12 @@
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
+import org.asciidoctor.gradle.jvm.AsciidoctorTask
 
 plugins {
     id("org.springframework.boot") version "2.6.0"
     id("io.spring.dependency-management") version "1.0.11.RELEASE"
     kotlin("jvm") version "1.6.0"
     kotlin("plugin.spring") version "1.6.0"
+    id("org.asciidoctor.jvm.convert") version "3.3.2"
 }
 
 group = "ca.rmen"
@@ -27,6 +29,7 @@ dependencies {
     implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
     testImplementation("org.springframework.boot:spring-boot-starter-test")
     testImplementation("org.springframework.restdocs:spring-restdocs-mockmvc")
+    testImplementation("org.springframework.restdocs:spring-restdocs-mockmvc")
     testImplementation("junit:junit:4.13.1")
 }
 
@@ -39,4 +42,12 @@ tasks.withType<KotlinCompile> {
 
 tasks.withType<Test> {
     useJUnitPlatform()
+}
+
+tasks {
+    "asciidoctor"(AsciidoctorTask::class) {
+        setOutputDir(file("docs"))
+        setSourceDir(file("src/main/asciidoc"))
+        attributes = mapOf("snippets" to file("build/snippets"))
+    }
 }

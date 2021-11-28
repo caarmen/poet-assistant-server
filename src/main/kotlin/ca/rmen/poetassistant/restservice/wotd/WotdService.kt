@@ -19,6 +19,7 @@
 
 package ca.rmen.poetassistant.restservice.wotd
 
+import ca.rmen.poetassistant.restservice.wotd.jpa.StemEntity
 import ca.rmen.poetassistant.restservice.wotd.jpa.StemRepository
 import ca.rmen.poetassistant.restservice.wotd.model.WotdModel
 import org.springframework.stereotype.Service
@@ -41,18 +42,23 @@ class WotdService(private val repository: StemRepository) {
         private const val MAX_INTERESTING_FREQUENCY = 24999
     }
 
-    fun findWotdEntries(before: LocalDate, size: Int): List<WotdModel> {
-        // Comment on performance:
-        // This will load all the "interesting words" into memory. There are
-        // about 20000 entries. In case this could be a performance issue, I
-        // wanted to use other apis (for example, prepareStatement with
-        // ResultSet), which could iterate to the "random" positions in the db,
-        // "size" times, to create the number of objects we need for the result.
-        // It appears, however, that the jdbc driver for sqlite only allows
-        // moving forward, row by row.
-        val interestingWords =
-            repository.findByGoogleNgramFrequencyBetween(MIN_INTERESTING_FREQUENCY, MAX_INTERESTING_FREQUENCY)
-        return (0 until size).map { resultPosition ->
+    // Comment on performance:
+    // This will load all the "interesting words" into memory. There are
+    // about 20000 entries. In case this could be a performance issue, I
+    // wanted to use other apis (for example, prepareStatement with
+    // ResultSet), which could iterate to the "random" positions in the db,
+    // "size" times, to create the number of objects we need for the result.
+    // It appears, however, that the jdbc driver for sqlite only allows
+    // moving forward, row by row.
+    // Load the list of words in memory just once. The data won't change, and
+    // this will help us to provide a response more quickly after the first
+    // request
+    private val interestingWords: List<StemEntity> by lazy {
+        repository.findByGoogleNgramFrequencyBetween(MIN_INTERESTING_FREQUENCY, MAX_INTERESTING_FREQUENCY)
+    }
+
+    fun findWotdEntries(before: LocalDate, size: Int): List<WotdModel> =
+        (0 until size).map { resultPosition ->
             val dateForWotd = before.minusDays(resultPosition.toLong())
             val positionForDate = Random().apply {
                 setSeed(dateForWotd.atStartOfDay(ZoneOffset.UTC).toInstant().toEpochMilli())
@@ -62,5 +68,4 @@ class WotdService(private val repository: StemRepository) {
                 word = interestingWords[positionForDate].word,
             )
         }
-    }
 }

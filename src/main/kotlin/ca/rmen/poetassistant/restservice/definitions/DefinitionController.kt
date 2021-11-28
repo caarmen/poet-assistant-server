@@ -22,10 +22,10 @@ package ca.rmen.poetassistant.restservice.definitions
 import ca.rmen.poetassistant.restservice.ResponseValidator.validateResultNotEmpty
 import ca.rmen.poetassistant.restservice.definitions.model.DefinitionModel
 import org.springframework.validation.annotation.Validated
-import javax.validation.constraints.NotBlank
 import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.RequestParam
 import org.springframework.web.bind.annotation.RestController
+import javax.validation.constraints.NotBlank
 
 @RestController
 @Validated

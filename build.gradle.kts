@@ -7,6 +7,7 @@ plugins {
     kotlin("jvm") version "1.6.0"
     kotlin("plugin.spring") version "1.6.0"
     id("org.asciidoctor.jvm.convert") version "3.3.2"
+    jacoco
 }
 
 group = "ca.rmen"

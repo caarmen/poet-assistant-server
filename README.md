@@ -205,7 +205,7 @@ curl -i "http://localhost:8080/wotd?before=2021-12-31&size=7"
 ```
 
 ```json
-[{"date":"2021-12-31","word":"raindrop"},{"date":"2021-12-30","word":"ceaselessly"},{"date":"2021-12-29","word":"foresail"},{"date":"2021-12-28","word":"haematopoietic"},{"date":"2021-12-27","word":"crosier"},{"date":"2021-12-26","word":"demo"},{"date":"2021-12-25","word":"ceaselessly"}
+[{"date":"2021-12-31","word":"raindrop"},{"date":"2021-12-30","word":"ceaselessly"},{"date":"2021-12-29","word":"foresail"},{"date":"2021-12-28","word":"haematopoietic"},{"date":"2021-12-27","word":"crosier"},{"date":"2021-12-26","word":"demo"},{"date":"2021-12-25","word":"ceaselessly"}]
 ```
 
 This response example in pretty print:
@@ -241,3 +241,9 @@ This response example in pretty print:
   }
 ]
 ```
+
+Note: since the word of the day endpoint is infinite
+pagination, and since there is one word for each date
+in time, the response body provides no indication of
+the total number of items, nor the "id" of the next
+or previous page.

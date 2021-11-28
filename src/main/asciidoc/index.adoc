@@ -82,3 +82,7 @@ include::{snippets}/wotd/list/curl-request.adoc[]
 include::{snippets}/wotd/list/response-body.adoc[]
 
 Note: since the word of the day endpoint is infinite pagination, and since there is one word for each date in time, the response body provides no indication of the total number of items, nor the "id" of the next or previous page.
+
+== Documentation
+
+When the application is running, Swagger documentation is available at http://localhost:8080/swagger-ui.html

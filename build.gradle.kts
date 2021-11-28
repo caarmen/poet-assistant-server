@@ -1,5 +1,5 @@
-import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 import org.asciidoctor.gradle.jvm.AsciidoctorTask
+import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 plugins {
     id("org.springframework.boot") version "2.6.0"
@@ -19,6 +19,7 @@ repositories {
 }
 
 dependencies {
+    val springDocVersion = "1.5.12"
     implementation("org.springframework.boot:spring-boot-starter-data-jpa")
     implementation("org.springframework.boot:spring-boot-starter-jdbc")
     implementation("org.springframework.boot:spring-boot-starter-validation")
@@ -28,6 +29,8 @@ dependencies {
     implementation("org.xerial:sqlite-jdbc:3.36.0.3")
     implementation("org.jetbrains.kotlin:kotlin-reflect")
     implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
+    implementation("org.springdoc:springdoc-openapi-ui:$springDocVersion")
+    implementation("org.springdoc:springdoc-openapi-kotlin:$springDocVersion")
     testImplementation("org.springframework.boot:spring-boot-starter-test")
     testImplementation("org.springframework.restdocs:spring-restdocs-mockmvc")
     testImplementation("org.springframework.restdocs:spring-restdocs-mockmvc")

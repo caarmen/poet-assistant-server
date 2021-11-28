@@ -20,21 +20,28 @@ repositories {
 
 dependencies {
     val springDocVersion = "1.5.12"
+    val sqliteDialectVersion = "0.1.2"
+    val sqliteJdbcVersion = "3.36.0.3"
+    val jUnitVersion = "4.13.2"
+
+    implementation("org.jetbrains.kotlin:kotlin-reflect")
+    implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
+
+    implementation("org.springframework.boot:spring-boot-starter")
     implementation("org.springframework.boot:spring-boot-starter-data-jpa")
     implementation("org.springframework.boot:spring-boot-starter-jdbc")
     implementation("org.springframework.boot:spring-boot-starter-validation")
     implementation("org.springframework.boot:spring-boot-starter-web")
-    implementation("org.springframework.boot:spring-boot-starter")
-    implementation("com.github.gwenn:sqlite-dialect:0.1.2")
-    implementation("org.xerial:sqlite-jdbc:3.36.0.3")
-    implementation("org.jetbrains.kotlin:kotlin-reflect")
-    implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
+
     implementation("org.springdoc:springdoc-openapi-ui:$springDocVersion")
     implementation("org.springdoc:springdoc-openapi-kotlin:$springDocVersion")
+    implementation("com.github.gwenn:sqlite-dialect:$sqliteDialectVersion")
+    implementation("org.xerial:sqlite-jdbc:$sqliteJdbcVersion")
+
+    testImplementation("junit:junit:$jUnitVersion")
     testImplementation("org.springframework.boot:spring-boot-starter-test")
     testImplementation("org.springframework.restdocs:spring-restdocs-mockmvc")
     testImplementation("org.springframework.restdocs:spring-restdocs-mockmvc")
-    testImplementation("junit:junit:4.13.1")
 }
 
 tasks.withType<KotlinCompile> {

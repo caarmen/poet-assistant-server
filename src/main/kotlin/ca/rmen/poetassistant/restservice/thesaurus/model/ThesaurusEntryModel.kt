@@ -19,11 +19,12 @@
 
 package ca.rmen.poetassistant.restservice.thesaurus.model
 
+import ca.rmen.poetassistant.restservice.common.model.PartOfSpeech
 import com.fasterxml.jackson.annotation.JsonProperty
 
 data class ThesaurusEntryModel(
     @JsonProperty("part_of_speech")
-    val partOfSpeech: String,
+    val partOfSpeech: PartOfSpeech,
     @JsonProperty("synonyms")
     val synonyms: List<String>,
     @JsonProperty("antonyms")

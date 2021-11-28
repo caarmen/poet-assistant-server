@@ -19,6 +19,7 @@
 
 package ca.rmen.poetassistant
 
+import ca.rmen.poetassistant.restservice.common.model.PartOfSpeech
 import ca.rmen.poetassistant.restservice.definitions.DefinitionController
 import ca.rmen.poetassistant.restservice.definitions.model.DefinitionModel
 import org.junit.jupiter.api.Assertions.assertEquals
@@ -37,19 +38,19 @@ class DefinitionServiceTest {
         val actualDefinitions = controller.getDefinitions("happy")
         val expectedDefinitions = listOf(
             DefinitionModel(
-                partOfSpeech = "a",
+                partOfSpeech = PartOfSpeech.ADJECTIVE,
                 definition = "eagerly disposed to act or to be of service"
             ),
             DefinitionModel(
-                partOfSpeech = "a",
+                partOfSpeech = PartOfSpeech.ADJECTIVE,
                 definition = "enjoying or showing or marked by joy or pleasure"
             ),
             DefinitionModel(
-                partOfSpeech = "a",
+                partOfSpeech = PartOfSpeech.ADJECTIVE,
                 definition = "marked by good fortune"
             ),
             DefinitionModel(
-                partOfSpeech = "a",
+                partOfSpeech = PartOfSpeech.ADJECTIVE,
                 definition = "well expressed and to the point"
             )
         )

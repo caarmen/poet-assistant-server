@@ -17,14 +17,14 @@
  * along with Poet Assistant.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package ca.rmen.poetassistant.restservice.definitions.model
+package ca.rmen.poetassistant.restservice.common.model
 
-import ca.rmen.poetassistant.restservice.common.model.PartOfSpeech
-import com.fasterxml.jackson.annotation.JsonProperty
+import com.fasterxml.jackson.annotation.JsonValue
 
-data class DefinitionModel(
-    @JsonProperty("part_of_speech")
-    val partOfSpeech: PartOfSpeech,
-    @JsonProperty("definition")
-    val definition: String
-)
+enum class PartOfSpeech(@JsonValue val modelName: String) {
+    NOUN("noun"),
+    ADJECTIVE("adjective"),
+    ADVERB("adverb"),
+    VERB("verb"),
+    UNKNOWN("unknown")
+}

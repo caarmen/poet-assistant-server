@@ -19,6 +19,7 @@
 
 package ca.rmen.poetassistant.restservice.thesaurus
 
+import ca.rmen.poetassistant.restservice.common.model.PartOfSpeech
 import ca.rmen.poetassistant.restservice.thesaurus.jpa.ThesaurusRepository
 import ca.rmen.poetassistant.restservice.thesaurus.model.ThesaurusEntryModel
 import org.springframework.stereotype.Service
@@ -29,7 +30,7 @@ class ThesaurusService(private val repository: ThesaurusRepository) {
         repository.findAllByWord(word)
             .map {
                 ThesaurusEntryModel(
-                    partOfSpeech = it.wordType,
+                    partOfSpeech = it.wordType.toPartOfSpeech,
                     synonyms = it.synonyms.toWordList(),
                     antonyms = it.antonyms.toWordList()
                 )
@@ -45,4 +46,12 @@ class ThesaurusService(private val repository: ThesaurusRepository) {
             .filter { it.isNotEmpty() }
             .sortedWith(compareBy(String.CASE_INSENSITIVE_ORDER) { it })
 
+    private val String.toPartOfSpeech
+        get() = when (this) {
+            "ADJ" -> PartOfSpeech.ADJECTIVE
+            "NOUN" -> PartOfSpeech.NOUN
+            "ADV" -> PartOfSpeech.ADVERB
+            "VERB" -> PartOfSpeech.VERB
+            else -> PartOfSpeech.UNKNOWN
+        }
 }

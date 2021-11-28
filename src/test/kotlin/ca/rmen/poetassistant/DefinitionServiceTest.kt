@@ -27,7 +27,7 @@ import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.context.SpringBootTest
 
 @SpringBootTest
-class DefinitionTests {
+class DefinitionServiceTest {
 
     @Autowired
     private lateinit var controller: DefinitionController

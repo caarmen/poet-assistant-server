@@ -28,7 +28,7 @@ import org.springframework.boot.test.context.SpringBootTest
 import java.time.LocalDate
 
 @SpringBootTest
-class WotdTests {
+class WotdServiceTest {
 
     @Autowired
     private lateinit var controller: WotdController

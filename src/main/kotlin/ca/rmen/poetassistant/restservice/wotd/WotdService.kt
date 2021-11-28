@@ -41,7 +41,7 @@ class WotdService(private val repository: StemRepository) {
         private const val MAX_INTERESTING_FREQUENCY = 24999
     }
 
-    fun findWotdEntries(offset: Long, size: Int): List<WotdModel> {
+    fun findWotdEntries(before: LocalDate, size: Int): List<WotdModel> {
         // Comment on performance:
         // This will load all the "interesting words" into memory. There are
         // about 20000 entries. In case this could be a performance issue, I
@@ -52,9 +52,8 @@ class WotdService(private val repository: StemRepository) {
         // moving forward, row by row.
         val interestingWords =
             repository.findByGoogleNgramFrequencyBetween(MIN_INTERESTING_FREQUENCY, MAX_INTERESTING_FREQUENCY)
-        val firstDay = LocalDate.now().minusDays(offset)
         return (0 until size).map { resultPosition ->
-            val dateForWotd = firstDay.minusDays(resultPosition.toLong())
+            val dateForWotd = before.minusDays(resultPosition.toLong())
             val positionForDate = Random().apply {
                 setSeed(dateForWotd.atStartOfDay(ZoneOffset.UTC).toInstant().toEpochMilli())
             }.nextInt(interestingWords.size)

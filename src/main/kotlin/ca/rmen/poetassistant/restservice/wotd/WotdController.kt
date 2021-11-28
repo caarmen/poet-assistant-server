@@ -20,16 +20,26 @@
 package ca.rmen.poetassistant.restservice.wotd
 
 import ca.rmen.poetassistant.restservice.wotd.model.WotdModel
-import org.springframework.data.domain.Pageable
-import org.springframework.data.domain.Slice
-import org.springframework.data.domain.SliceImpl
+import org.springframework.format.annotation.DateTimeFormat
+import org.springframework.validation.annotation.Validated
 import org.springframework.web.bind.annotation.GetMapping
+import org.springframework.web.bind.annotation.RequestParam
 import org.springframework.web.bind.annotation.RestController
+import java.time.LocalDate
+import javax.validation.constraints.Positive
 
 @RestController
+@Validated
 class WotdController(private val service: WotdService) {
 
     @GetMapping("/wotd")
-    fun getWotd(pageable: Pageable): Slice<WotdModel> =
-        SliceImpl(service.findWotdEntries(offset = pageable.offset, size = pageable.pageSize))
+    fun getWotd(
+        @RequestParam("before", required = false)
+        @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
+        before: LocalDate?,
+
+        @RequestParam("size", defaultValue = "1")
+        @Positive
+        size: Int
+    ): List<WotdModel> = service.findWotdEntries(before ?: LocalDate.now(), size)
 }

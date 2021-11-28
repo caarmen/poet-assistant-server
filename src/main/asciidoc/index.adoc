@@ -13,7 +13,7 @@ The following REST endpoints are provided:
 |`/rhymes?word=<word>`
 
 |Thesaurus
-|`/thesaurus?word=<word>
+|`/thesaurus?word=<word>`
 
 |Definitions
 |`/definitions?word=<word>`

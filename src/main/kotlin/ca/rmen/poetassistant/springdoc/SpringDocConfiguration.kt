@@ -32,6 +32,7 @@ class SpringDocConfiguration {
     fun springOpenAPI() = OpenAPI()
         .info(
             Info().title("Poet Assistant REST Api")
+                .description("English-language tools for writing poetry")
                 .license(
                     License().name("GPLv3")
                         .url("https://github.com/caarmen/poet-assistant-server/blob/main/LICENSE.txt")

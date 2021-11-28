@@ -11,7 +11,7 @@ The following REST endpoints are provided:
 |Rhymes|`/rhymes?word=<word>`|
 |Thesaurus|`/thesaurus?word=<word>`|
 |Definitions|`/definitions?word=<word>`|
-|Words of the day|`/wotd?page=<page number>&size=<page size>`|
+|Words of the day|`/wotd?before=<yyyy-MM-dd>&size=<page size>`<br>`before`: inclusive, defaults to today<br>`size`: defaults to 1|
 
 ## How to use it
 Start the application:
@@ -187,60 +187,57 @@ This response example in pretty print:
 ### Words of the day
 
 ```shell
-curl "http://localhost:8080/wotd?page=<page number>&size=<page size>"
+curl "http://localhost:8080/wotd?before=yyyy-MM-dd&size=<page size>"
 ```
 
-For example, to find the words of the day for one week, ending one week ago:
-
+To find to word of the day for today:
 ```shell
-curl "http://localhost:8080/wotd?page=1&size=7"
-{"content":[{"date":"2021-11-20","word":"traitorous"},{"date":"2021-11-19","word":"unplug"},{"date":"2021-11-18","word":"glade"},{"date":"2021-11-17","word":"casework"},{"date":"2021-11-16","word":"replenish"},{"date":"2021-11-15","word":"eiderdown"},{"date":"2021-11-14","word":"oligarchic"}],"pageable":"INSTANCE","size":7,"number":0,"sort":{"empty":true,"sorted":false,"unsorted":true},"numberOfElements":7,"first":true,"last":true,"empty":false}
+curl -i "http://localhost:8080/wotd" 
+```
+
+```json
+[{"date":"2021-11-28","word":"clothesline"}]
+```
+
+To find the word of the day for last week of 2021:
+```shell
+curl -i "http://localhost:8080/wotd?before=2021-12-31&size=7"
+```
+
+```json
+[{"date":"2021-12-31","word":"raindrop"},{"date":"2021-12-30","word":"ceaselessly"},{"date":"2021-12-29","word":"foresail"},{"date":"2021-12-28","word":"haematopoietic"},{"date":"2021-12-27","word":"crosier"},{"date":"2021-12-26","word":"demo"},{"date":"2021-12-25","word":"ceaselessly"}
 ```
 
 This response example in pretty print:
 ```json
-{
-  "content": [
-    {
-      "date": "2021-11-20",
-      "word": "traitorous"
-    },
-    {
-      "date": "2021-11-19",
-      "word": "unplug"
-    },
-    {
-      "date": "2021-11-18",
-      "word": "glade"
-    },
-    {
-      "date": "2021-11-17",
-      "word": "casework"
-    },
-    {
-      "date": "2021-11-16",
-      "word": "replenish"
-    },
-    {
-      "date": "2021-11-15",
-      "word": "eiderdown"
-    },
-    {
-      "date": "2021-11-14",
-      "word": "oligarchic"
-    }
-  ],
-  "pageable": "INSTANCE",
-  "size": 7,
-  "number": 0,
-  "sort": {
-    "empty": true,
-    "sorted": false,
-    "unsorted": true
+[
+  {
+    "date": "2021-12-31",
+    "word": "raindrop"
   },
-  "numberOfElements": 7,
-  "first": true,
-  "last": true,
-  "empty": false
-}
+  {
+    "date": "2021-12-30",
+    "word": "ceaselessly"
+  },
+  {
+    "date": "2021-12-29",
+    "word": "foresail"
+  },
+  {
+    "date": "2021-12-28",
+    "word": "haematopoietic"
+  },
+  {
+    "date": "2021-12-27",
+    "word": "crosier"
+  },
+  {
+    "date": "2021-12-26",
+    "word": "demo"
+  },
+  {
+    "date": "2021-12-25",
+    "word": "ceaselessly"
+  }
+]
 ```

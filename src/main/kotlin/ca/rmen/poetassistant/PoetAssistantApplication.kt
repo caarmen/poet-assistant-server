@@ -26,5 +26,5 @@ import org.springframework.boot.runApplication
 class PoetAssistantApplication
 
 fun main(args: Array<String>) {
-	runApplication<PoetAssistantApplication>(*args)
+    runApplication<PoetAssistantApplication>(*args)
 }

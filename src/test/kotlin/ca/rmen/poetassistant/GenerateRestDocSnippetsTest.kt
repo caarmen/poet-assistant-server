@@ -32,7 +32,7 @@ import org.springframework.restdocs.mockmvc.MockMvcRestDocumentation.document
 import org.springframework.restdocs.operation.preprocess.Preprocessors.preprocessResponse
 import org.springframework.restdocs.operation.preprocess.Preprocessors.prettyPrint
 import org.springframework.test.web.servlet.MockMvc
-import org.springframework.test.web.servlet.request.MockMvcRequestBuilders
+import org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get
 
 @AutoConfigureMockMvc
 @SpringBootTest
@@ -44,31 +44,31 @@ class GenerateRestDocSnippetsTest {
 
     @Test
     fun testGenerateRhymesSnippet() {
-        mockMvc.perform(MockMvcRequestBuilders.get("${RhymeController.SERVICE}?${RhymeController.QUERY_PARAM_WORD}=dove"))
+        mockMvc.perform(get("${RhymeController.SERVICE}?${RhymeController.QUERY_PARAM_WORD}=dove"))
             .andDo(documentPretty(RhymeController.SERVICE))
     }
 
     @Test
     fun testGenerateThesaurusSnippet() {
-        mockMvc.perform(MockMvcRequestBuilders.get("${ThesaurusController.SERVICE}?${ThesaurusController.QUERY_PARAM_WORD}=happy"))
+        mockMvc.perform(get("${ThesaurusController.SERVICE}?${ThesaurusController.QUERY_PARAM_WORD}=happy"))
             .andDo(documentPretty(ThesaurusController.SERVICE))
     }
 
     @Test
     fun testGenerateDefinitionsSnippet() {
-        mockMvc.perform(MockMvcRequestBuilders.get("${DefinitionController.SERVICE}?${DefinitionController.QUERY_PARAM_WORD}=baffle"))
+        mockMvc.perform(get("${DefinitionController.SERVICE}?${DefinitionController.QUERY_PARAM_WORD}=baffle"))
             .andDo(documentPretty(DefinitionController.SERVICE))
     }
 
     @Test
     fun testGenerateWotdTodaySnippet() {
-        mockMvc.perform(MockMvcRequestBuilders.get(WotdController.SERVICE))
+        mockMvc.perform(get(WotdController.SERVICE))
             .andDo(documentPretty("${WotdController.SERVICE}/today"))
     }
 
     @Test
     fun testGenerateWotdListSnippet() {
-        mockMvc.perform(MockMvcRequestBuilders.get("${WotdController.SERVICE}?${WotdController.QUERY_PARAM_BEFORE}=2021-12-31&${WotdController.QUERY_PARAM_SIZE}=7"))
+        mockMvc.perform(get("${WotdController.SERVICE}?${WotdController.QUERY_PARAM_BEFORE}=2021-12-31&${WotdController.QUERY_PARAM_SIZE}=7"))
             .andDo(documentPretty("${WotdController.SERVICE}/list"))
     }
 

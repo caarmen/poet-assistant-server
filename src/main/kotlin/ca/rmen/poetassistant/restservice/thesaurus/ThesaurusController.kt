@@ -19,7 +19,7 @@
 
 package ca.rmen.poetassistant.restservice.thesaurus
 
-import ca.rmen.poetassistant.restservice.ResponseValidator.validateResultNotEmpty
+import ca.rmen.poetassistant.restservice.common.ResponseValidator.validateResultNotEmpty
 import ca.rmen.poetassistant.restservice.thesaurus.model.ThesaurusEntryModel
 import org.springframework.validation.annotation.Validated
 import org.springframework.web.bind.annotation.GetMapping

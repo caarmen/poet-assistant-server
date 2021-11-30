@@ -21,6 +21,12 @@ package ca.rmen.poetassistant.restservice.definitions
 
 import ca.rmen.poetassistant.restservice.common.ResponseValidator.validateResultNotEmpty
 import ca.rmen.poetassistant.restservice.definitions.model.DefinitionModel
+import io.swagger.v3.oas.annotations.Operation
+import io.swagger.v3.oas.annotations.media.ArraySchema
+import io.swagger.v3.oas.annotations.media.Content
+import io.swagger.v3.oas.annotations.media.Schema
+import io.swagger.v3.oas.annotations.responses.ApiResponse
+import io.swagger.v3.oas.annotations.responses.ApiResponses
 import org.springframework.validation.annotation.Validated
 import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.RequestParam
@@ -35,6 +41,21 @@ class DefinitionController(private val service: DefinitionService) {
         const val QUERY_PARAM_WORD = "word"
     }
 
+    @Operation(summary = "Find definitions for a word")
+    @ApiResponses(
+        ApiResponse(
+            description = "The definitions of the given word", responseCode = "200",
+            content = arrayOf(
+                Content(
+                    array = ArraySchema(
+                        schema = Schema(implementation = DefinitionModel::class, name = "definition")
+                    )
+                )
+            )
+        ),
+        ApiResponse(description = "No definitions exist for the word", responseCode = "404"),
+        ApiResponse(description = "The given word is blank", responseCode = "400"),
+    )
     @GetMapping(SERVICE)
     fun getDefinitions(@RequestParam(QUERY_PARAM_WORD) @NotBlank word: String): List<DefinitionModel> =
         service.findDefinitions(word.lowercase()).validateResultNotEmpty(word)

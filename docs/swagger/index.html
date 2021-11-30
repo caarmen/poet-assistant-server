@@ -215,7 +215,7 @@
     <div class="method-path">
     <a class="up" href="#__Methods">Up</a>
     <pre class="get"><code class="huge"><span class="http-method">get</span> /definitions</code></pre></div>
-    <div class="method-summary"> (<span class="nickname">getDefinitions</span>)</div>
+    <div class="method-summary">Find definitions for a word (<span class="nickname">getDefinitions</span>)</div>
     <div class="method-notes"></div>
 
 
@@ -256,10 +256,13 @@
 
     <h3 class="field-label">Responses</h3>
     <h4 class="field-label">400</h4>
-    Bad Request
+    The given word is blank
         <a href="#ConstraintViolation">ConstraintViolation</a>
+    <h4 class="field-label">404</h4>
+    No definitions exist for the word
+        
     <h4 class="field-label">200</h4>
-    OK
+    The definitions of the given word
         
   </div> <!-- method -->
   <hr/>

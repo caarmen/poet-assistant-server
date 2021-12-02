@@ -2,10 +2,10 @@ import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 import org.springframework.boot.gradle.plugin.SpringBootPlugin
 
 plugins {
-    id("org.springframework.boot") version "2.6.0"
-    id("io.spring.dependency-management") version "1.0.11.RELEASE"
-    kotlin("jvm") version "1.6.0"
-    kotlin("plugin.spring") version "1.6.0"
+    id("org.springframework.boot") version springBootVersion
+    id("io.spring.dependency-management") version springDependencyManagemntVersion
+    kotlin("jvm") version kotlinVersion
+    kotlin("plugin.spring") version kotlinVersion
     jacoco
 }
 
@@ -18,13 +18,12 @@ repositories {
 }
 
 dependencies {
-    val jUnitVersion = "4.13.2"
 
     File("modules").listFiles()?.forEach {
         implementation(project(":modules:${it.name}"))
     }
 
-    testImplementation("junit:junit:$jUnitVersion")
+    testImplementation("junit:junit:$junitVersion")
     testImplementation("org.springframework.boot:spring-boot-starter-test")
     testImplementation("org.springframework.restdocs:spring-restdocs-mockmvc")
     testImplementation("org.springframework.restdocs:spring-restdocs-mockmvc")

@@ -13,9 +13,6 @@ val bootJar: org.springframework.boot.gradle.tasks.bundling.BootJar by tasks
 bootJar.enabled = false
 
 dependencies {
-    val springDocVersion = "1.5.12"
-    val swaggerCodeGenVersion = "3.0.28"
-
     implementation(project(":modules:api"))
     implementation(project(":modules:app"))
     implementation("org.springdoc:springdoc-openapi-kotlin:$springDocVersion")

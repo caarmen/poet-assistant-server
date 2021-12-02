@@ -1,13 +1,6 @@
-import com.vanniktech.dependency.graph.generator.DependencyGraphGeneratorExtension
-import com.vanniktech.dependency.graph.generator.DependencyGraphGeneratorPlugin
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 import org.springframework.boot.gradle.plugin.SpringBootPlugin
 
-buildscript {
-    dependencies {
-        classpath("com.vanniktech:gradle-dependency-graph-generator-plugin:0.6.0")
-    }
-}
 plugins {
     id("org.springframework.boot") version "2.6.0"
     id("io.spring.dependency-management") version "1.0.11.RELEASE"
@@ -16,7 +9,6 @@ plugins {
     jacoco
 }
 
-apply(plugin = "com.vanniktech.dependency.graph.generator")
 group = "ca.rmen"
 version = "0.0.1-SNAPSHOT"
 java.sourceCompatibility = JavaVersion.VERSION_11
@@ -64,12 +56,4 @@ subprojects {
     }
 }
 
-rootProject.plugins.apply(DependencyGraphGeneratorPlugin::class.java)
-rootProject.configure<DependencyGraphGeneratorExtension> {
-    generators.create("poetAssistant") {
-        include = { dependency ->
-            dependency.moduleGroup.startsWith("Poet Assistant")
-        }
-        children = { true }
-    }
-}
+apply(from = "dependencygraph.gradle.kts")

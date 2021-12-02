@@ -19,8 +19,8 @@
 
 package ca.rmen.poetassistant
 
-import ca.rmen.poetassistant.restservice.wotd.WotdController
-import ca.rmen.poetassistant.restservice.wotd.model.WotdModel
+import ca.rmen.poetassistant.api.WotdController
+import ca.rmen.poetassistant.model.WotdModel
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Test
 import org.springframework.beans.factory.annotation.Autowired

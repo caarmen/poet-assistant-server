@@ -19,9 +19,9 @@
 
 package ca.rmen.poetassistant
 
-import ca.rmen.poetassistant.restservice.wotd.WotdController.Companion.QUERY_PARAM_BEFORE
-import ca.rmen.poetassistant.restservice.wotd.WotdController.Companion.QUERY_PARAM_SIZE
-import ca.rmen.poetassistant.restservice.wotd.WotdController.Companion.SERVICE
+import ca.rmen.poetassistant.api.WotdController.Companion.QUERY_PARAM_BEFORE
+import ca.rmen.poetassistant.api.WotdController.Companion.QUERY_PARAM_SIZE
+import ca.rmen.poetassistant.api.WotdController.Companion.SERVICE
 import org.hamcrest.Matchers.not
 import org.hamcrest.core.StringContains.containsString
 import org.junit.jupiter.api.Test

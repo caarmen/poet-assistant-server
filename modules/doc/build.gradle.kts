@@ -27,7 +27,7 @@ dependencies {
 tasks {
     "asciidoctor"(AsciidoctorTask::class) {
         setOutputDir(file("${rootProject.projectDir}/docs"))
-        setSourceDir(file("${rootProject.projectDir}/src/main/asciidoc"))
+        setSourceDir(file("src/main/asciidoc"))
         attributes = mapOf("snippets" to file("${rootProject.buildDir}/snippets"))
     }
 }

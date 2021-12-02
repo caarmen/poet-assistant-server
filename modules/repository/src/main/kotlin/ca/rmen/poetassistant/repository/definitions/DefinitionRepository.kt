@@ -17,13 +17,10 @@
  * along with Poet Assistant.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package ca.rmen.poetassistant.jpa.rhymes
+package ca.rmen.poetassistant.repository.definitions
 
-import java.io.Serializable
-import javax.persistence.Embeddable
+import org.springframework.data.repository.CrudRepository
 
-@Embeddable
-data class RhymerEntityPK(
-    val word: String = "",
-    val variantNumber: Int = 0,
-) : Serializable
+interface DefinitionRepository : CrudRepository<DefinitionEntity, DefinitionEntity> {
+    fun findAllByWord(word: String): List<DefinitionEntity>
+}

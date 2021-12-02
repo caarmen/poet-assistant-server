@@ -17,23 +17,14 @@
  * along with Poet Assistant.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package ca.rmen.poetassistant.jpa.wotd
+package ca.rmen.poetassistant.repository.definitions
 
-import javax.persistence.Column
-import javax.persistence.Entity
-import javax.persistence.Id
-import javax.persistence.Table
+import java.io.Serializable
+import javax.persistence.Embeddable
 
-@Entity
-@Table(name = "stems")
-class StemEntity {
-    @Id
-    @Column(insertable = false, updatable = false)
-    val word: String = ""
-
-    @Column(insertable = false, updatable = false)
-    val stem: String = ""
-
-    @Column(name = "google_ngram_frequency", insertable = false, updatable = false)
-    val googleNgramFrequency: Int = 0
-}
+@Embeddable
+data class DefinitionEntityPK(
+    val word: String = "",
+    val partOfSpeech: String = "",
+    val definition: String = ""
+) : Serializable

@@ -17,10 +17,10 @@
  * along with Poet Assistant.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package ca.rmen.poetassistant.jpa.definitions
+package ca.rmen.poetassistant.repository.thesaurus
 
 import org.springframework.data.repository.CrudRepository
 
-interface DefinitionRepository : CrudRepository<DefinitionEntity, DefinitionEntity> {
-    fun findAllByWord(word: String): List<DefinitionEntity>
+interface ThesaurusRepository : CrudRepository<ThesaurusEntity, ThesaurusEntityPK> {
+    fun findAllByWord(word: String): List<ThesaurusEntity>
 }

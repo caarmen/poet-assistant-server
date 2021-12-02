@@ -17,7 +17,7 @@
  * along with Poet Assistant.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package ca.rmen.poetassistant.jpa.definitions
+package ca.rmen.poetassistant.repository.thesaurus
 
 import javax.persistence.Column
 import javax.persistence.EmbeddedId
@@ -26,18 +26,19 @@ import javax.persistence.Table
 
 /**
  * Our embedded database doesn't have an id column.
- * A word may have multiple definition entries for a given part_of_speech value.
- * So, we have to use all three attributes as the primary key
+ * So, we have to use all its attributes as the primary key
  */
 @Entity
-@Table(name = "dictionary")
-data class DefinitionEntity(
+@Table(name = "thesaurus")
+data class ThesaurusEntity(
     @EmbeddedId
-    private val id: DefinitionEntityPK = DefinitionEntityPK(),
+    private val id: ThesaurusEntityPK = ThesaurusEntityPK(),
     @Column(insertable = false, updatable = false)
     val word: String = "",
     @Column(insertable = false, updatable = false)
-    val partOfSpeech: String = "",
+    val wordType: String = "",
     @Column(insertable = false, updatable = false)
-    val definition: String = ""
+    val synonyms: String = "",
+    @Column(insertable = false, updatable = false)
+    val antonyms: String = "",
 )

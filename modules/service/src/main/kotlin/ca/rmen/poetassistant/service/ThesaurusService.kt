@@ -21,7 +21,7 @@ package ca.rmen.poetassistant.service
 
 import ca.rmen.poetassistant.model.PartOfSpeech
 import ca.rmen.poetassistant.model.ThesaurusEntryModel
-import ca.rmen.poetassistant.jpa.thesaurus.ThesaurusRepository
+import ca.rmen.poetassistant.repository.thesaurus.ThesaurusRepository
 import org.springframework.stereotype.Service
 
 @Service

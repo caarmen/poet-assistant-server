@@ -17,28 +17,28 @@
  * along with Poet Assistant.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package ca.rmen.poetassistant.jpa.thesaurus
+package ca.rmen.poetassistant.repository.rhymes
 
 import javax.persistence.Column
 import javax.persistence.EmbeddedId
 import javax.persistence.Entity
 import javax.persistence.Table
 
-/**
- * Our embedded database doesn't have an id column.
- * So, we have to use all its attributes as the primary key
- */
 @Entity
-@Table(name = "thesaurus")
-data class ThesaurusEntity(
+@Table(name = "word_variants")
+data class RhymerEntity(
     @EmbeddedId
-    private val id: ThesaurusEntityPK = ThesaurusEntityPK(),
+    private val id: RhymerEntityPK = RhymerEntityPK(),
     @Column(insertable = false, updatable = false)
     val word: String = "",
     @Column(insertable = false, updatable = false)
-    val wordType: String = "",
+    val variantNumber: Int = 0,
     @Column(insertable = false, updatable = false)
-    val synonyms: String = "",
+    val stressSyllables: String = "",
     @Column(insertable = false, updatable = false)
-    val antonyms: String = "",
+    val lastSyllable: String = "",
+    @Column(insertable = false, updatable = false)
+    val lastTwoSyllables: String = "",
+    @Column(insertable = false, updatable = false)
+    val lastThreeSyllables: String = "",
 )

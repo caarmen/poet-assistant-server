@@ -21,7 +21,7 @@ package ca.rmen.poetassistant.service
 
 import ca.rmen.poetassistant.model.DefinitionModel
 import ca.rmen.poetassistant.model.PartOfSpeech
-import ca.rmen.poetassistant.jpa.definitions.DefinitionRepository
+import ca.rmen.poetassistant.repository.definitions.DefinitionRepository
 import org.springframework.stereotype.Service
 
 @Service

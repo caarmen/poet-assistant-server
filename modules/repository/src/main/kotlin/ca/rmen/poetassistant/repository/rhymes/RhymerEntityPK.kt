@@ -17,10 +17,13 @@
  * along with Poet Assistant.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package ca.rmen.poetassistant.jpa.wotd
+package ca.rmen.poetassistant.repository.rhymes
 
-import org.springframework.data.repository.CrudRepository
+import java.io.Serializable
+import javax.persistence.Embeddable
 
-interface StemRepository : CrudRepository<StemEntity, String> {
-    fun findByGoogleNgramFrequencyBetween(minGoogleNgramFrequency: Int, maxGoogleNgramFrequency: Int): List<StemEntity>
-}
+@Embeddable
+data class RhymerEntityPK(
+    val word: String = "",
+    val variantNumber: Int = 0,
+) : Serializable

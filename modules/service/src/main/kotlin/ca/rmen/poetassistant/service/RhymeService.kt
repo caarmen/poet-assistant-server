@@ -21,7 +21,7 @@ package ca.rmen.poetassistant.service
 
 import ca.rmen.poetassistant.model.SyllableRhymesModel
 import ca.rmen.poetassistant.model.WordRhymesModel
-import ca.rmen.poetassistant.jpa.rhymes.RhymerRepository
+import ca.rmen.poetassistant.repository.rhymes.RhymerRepository
 import org.springframework.stereotype.Service
 
 @Service

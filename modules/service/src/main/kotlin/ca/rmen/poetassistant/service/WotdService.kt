@@ -20,8 +20,8 @@
 package ca.rmen.poetassistant.service
 
 import ca.rmen.poetassistant.model.WotdModel
-import ca.rmen.poetassistant.jpa.wotd.StemEntity
-import ca.rmen.poetassistant.jpa.wotd.StemRepository
+import ca.rmen.poetassistant.repository.wotd.StemEntity
+import ca.rmen.poetassistant.repository.wotd.StemRepository
 import org.springframework.stereotype.Service
 import java.time.LocalDate
 import java.time.ZoneOffset

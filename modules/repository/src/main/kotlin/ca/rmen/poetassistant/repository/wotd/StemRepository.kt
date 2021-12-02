@@ -17,15 +17,10 @@
  * along with Poet Assistant.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package ca.rmen.poetassistant.jpa.thesaurus
+package ca.rmen.poetassistant.repository.wotd
 
-import java.io.Serializable
-import javax.persistence.Embeddable
+import org.springframework.data.repository.CrudRepository
 
-@Embeddable
-data class ThesaurusEntityPK(
-    val word: String = "",
-    val wordType: String = "",
-    val synonyms: String = "",
-    val antonyms: String = ""
-) : Serializable
+interface StemRepository : CrudRepository<StemEntity, String> {
+    fun findByGoogleNgramFrequencyBetween(minGoogleNgramFrequency: Int, maxGoogleNgramFrequency: Int): List<StemEntity>
+}

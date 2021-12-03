@@ -6,6 +6,7 @@ plugins {
     id("org.springdoc.openapi-gradle-plugin") version openApiGradlePluginVersion
     id("org.hidetake.swagger.generator") version swaggerGeneratorVersion
     kotlin("plugin.spring")
+    scala
 }
 
 
@@ -15,6 +16,7 @@ bootJar.enabled = false
 dependencies {
     implementation(project(":modules:api"))
     implementation(project(":modules:app"))
+    implementation("org.scala-lang:scala3-library_3:$scala3Version")
     implementation("org.springdoc:springdoc-openapi-kotlin:$springDocVersion")
     implementation("org.springdoc:springdoc-openapi-ui:$springDocVersion")
 

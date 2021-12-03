@@ -19,8 +19,8 @@
 
 package ca.rmen.poetassistant
 
-import ca.rmen.poetassistant.restservice.rhymes.RhymeController.Companion.QUERY_PARAM_WORD
-import ca.rmen.poetassistant.restservice.rhymes.RhymeController.Companion.SERVICE
+import ca.rmen.poetassistant.api.RhymeController.Companion.QUERY_PARAM_WORD
+import ca.rmen.poetassistant.api.RhymeController.Companion.SERVICE
 import org.hamcrest.core.StringContains.containsString
 import org.junit.jupiter.api.Test
 import org.springframework.beans.factory.annotation.Autowired

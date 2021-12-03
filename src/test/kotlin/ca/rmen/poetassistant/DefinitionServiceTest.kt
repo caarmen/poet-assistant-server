@@ -19,9 +19,9 @@
 
 package ca.rmen.poetassistant
 
-import ca.rmen.poetassistant.restservice.common.model.PartOfSpeech
-import ca.rmen.poetassistant.restservice.definitions.DefinitionController
-import ca.rmen.poetassistant.restservice.definitions.model.DefinitionModel
+import ca.rmen.poetassistant.api.DefinitionController
+import ca.rmen.poetassistant.model.DefinitionModel
+import ca.rmen.poetassistant.model.PartOfSpeech
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Test
 import org.springframework.beans.factory.annotation.Autowired

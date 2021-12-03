@@ -19,10 +19,10 @@
 
 package ca.rmen.poetassistant
 
-import ca.rmen.poetassistant.restservice.definitions.DefinitionController
-import ca.rmen.poetassistant.restservice.rhymes.RhymeController
-import ca.rmen.poetassistant.restservice.thesaurus.ThesaurusController
-import ca.rmen.poetassistant.restservice.wotd.WotdController
+import ca.rmen.poetassistant.api.DefinitionController
+import ca.rmen.poetassistant.api.RhymeController
+import ca.rmen.poetassistant.api.ThesaurusController
+import ca.rmen.poetassistant.api.WotdController
 import org.junit.jupiter.api.Test
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.autoconfigure.restdocs.AutoConfigureRestDocs

@@ -19,8 +19,8 @@
 
 package ca.rmen.poetassistant
 
-import ca.rmen.poetassistant.restservice.definitions.DefinitionController.Companion.QUERY_PARAM_WORD
-import ca.rmen.poetassistant.restservice.definitions.DefinitionController.Companion.SERVICE
+import ca.rmen.poetassistant.api.DefinitionController.Companion.QUERY_PARAM_WORD
+import ca.rmen.poetassistant.api.DefinitionController.Companion.SERVICE
 import org.hamcrest.core.StringContains.containsString
 import org.junit.jupiter.api.Test
 import org.springframework.beans.factory.annotation.Autowired

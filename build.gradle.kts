@@ -63,4 +63,3 @@ subprojects {
     }
 }
 
-apply(from = "dependencygraph.gradle.kts")

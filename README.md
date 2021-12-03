@@ -8,7 +8,7 @@ for the list of endpoints and how to use them.
 ## Architecture
 The app contains the following modules:
 
-<img src="dependency-graph-poet-assistant.png">
+<img src="modules/doc/src/main/plantuml/object-diagram.png">
 
 * Bottom:
   - `repository`: Accesses the database and exposes functions to retrieve Entities

@@ -1,0 +1,21 @@
+@startuml
+
+package "Poet Assistant Server"  {
+package "endpoints" <<Cloud>> {
+object api
+}
+object model
+package "business logic" {
+object service
+}
+package "persistence" <<Database>> {
+object repository
+}
+
+api --> model
+model <-- service
+api --> service
+service --> repository
+}
+
+@endpuml

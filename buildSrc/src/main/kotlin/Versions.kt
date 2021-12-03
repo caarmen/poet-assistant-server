@@ -1,7 +1,6 @@
 const val asciiDoctorVersion = "3.3.2"
 const val dependencyGraphGenerator = "0.6.0"
 const val johnrengelmanProcessesVerision = "0.5.0"
-const val junitVersion = "4.13.2"
 const val kotlinVersion = "1.6.0"
 const val openApiGradlePluginVersion = "1.3.3"
 const val springBootVersion = "2.6.0"

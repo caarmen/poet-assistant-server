@@ -23,9 +23,7 @@ dependencies {
         implementation(project(":modules:${it.name}"))
     }
 
-    testImplementation("junit:junit:$junitVersion")
     testImplementation("org.springframework.boot:spring-boot-starter-test")
-    testImplementation("org.springframework.restdocs:spring-restdocs-mockmvc")
     testImplementation("org.springframework.restdocs:spring-restdocs-mockmvc")
 }
 springBoot {

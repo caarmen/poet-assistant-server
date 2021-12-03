@@ -28,32 +28,32 @@ import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.context.SpringBootTest
 
 @SpringBootTest
-class DefinitionServiceTest {
+class DefinitionServiceTest() {
 
-    @Autowired
-    private lateinit var controller: DefinitionController
+  @Autowired
+  var controller: DefinitionController = null
 
-    @Test
-    fun testDefinitions() {
-        val actualDefinitions = controller.getDefinitions("happy")
-        val expectedDefinitions = listOf(
-            DefinitionModel(
-                partOfSpeech = PartOfSpeech.ADJECTIVE,
-                definition = "eagerly disposed to act or to be of service"
-            ),
-            DefinitionModel(
-                partOfSpeech = PartOfSpeech.ADJECTIVE,
-                definition = "enjoying or showing or marked by joy or pleasure"
-            ),
-            DefinitionModel(
-                partOfSpeech = PartOfSpeech.ADJECTIVE,
-                definition = "marked by good fortune"
-            ),
-            DefinitionModel(
-                partOfSpeech = PartOfSpeech.ADJECTIVE,
-                definition = "well expressed and to the point"
-            )
-        )
-        assertEquals(expectedDefinitions, actualDefinitions)
-    }
+  @Test
+  def testDefinitions() = {
+    val actualDefinitions = controller.getDefinitions("happy")
+    val expectedDefinitions = List(
+      DefinitionModel(
+        partOfSpeech = PartOfSpeech.ADJECTIVE,
+        definition = "eagerly disposed to act or to be of service"
+      ),
+      DefinitionModel(
+        partOfSpeech = PartOfSpeech.ADJECTIVE,
+        definition = "enjoying or showing or marked by joy or pleasure"
+      ),
+      DefinitionModel(
+        partOfSpeech = PartOfSpeech.ADJECTIVE,
+        definition = "marked by good fortune"
+      ),
+      DefinitionModel(
+        partOfSpeech = PartOfSpeech.ADJECTIVE,
+        definition = "well expressed and to the point"
+      )
+    )
+    assertEquals(expectedDefinitions, actualDefinitions)
+  }
 }

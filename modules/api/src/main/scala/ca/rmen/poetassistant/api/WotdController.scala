@@ -26,6 +26,7 @@ import org.springframework.validation.annotation.Validated
 import org.springframework.web.bind.annotation.{GetMapping, RequestParam, RestController}
 
 import java.time.LocalDate
+import java.util.Optional
 import javax.validation.constraints.{Max, Positive}
 
 @RestController
@@ -34,16 +35,16 @@ class WotdController(private val service: WotdService) {
 
   @GetMapping(path = Array(WotdController.SERVICE))
   def getWotd(
-               @RequestParam(WotdController.QUERY_PARAM_BEFORE, required = false)
+               @RequestParam(WotdController.QUERY_PARAM_BEFORE)
                @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
-               before: Option[LocalDate],
+               before: Optional[LocalDate] = Optional.empty,
 
                @RequestParam(WotdController.QUERY_PARAM_SIZE, defaultValue = "1")
                @Positive
                @Max(value = 366L)
                size: Int
              ):
-  List[WotdModel] = service.findWotdEntries(before.getOrElse(LocalDate.now), size)
+  List[WotdModel] = service.findWotdEntries(before.orElse(LocalDate.now), size)
 }
 
 object WotdController {

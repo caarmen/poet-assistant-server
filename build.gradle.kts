@@ -7,6 +7,7 @@ plugins {
     kotlin("jvm") version kotlinVersion
     kotlin("plugin.spring") version kotlinVersion
     jacoco
+    scala
 }
 
 group = "ca.rmen"
@@ -22,7 +23,7 @@ dependencies {
     File("modules").listFiles()?.forEach {
         implementation(project(":modules:${it.name}"))
     }
-    implementation("org.scala-lang:scala-library:$scalaVersion")
+    testImplementation("org.scala-lang:scala3-library_3:$scala3Version")
 
     testImplementation("org.springframework.boot:spring-boot-starter-test")
     testImplementation("org.springframework.restdocs:spring-restdocs-mockmvc")
@@ -44,10 +45,10 @@ tasks.withType<Test> {
 tasks.withType<JacocoReport> {
     classDirectories.setFrom(
         fileTree(rootProject.projectDir)
-            .include("**/build/classes/kotlin/main/ca/rmen/poetassistant/**")
+            .include("**/build/classes/scala/main/ca/rmen/poetassistant/**")
     )
     sourceDirectories.setFrom(files(File("${rootProject.projectDir}/modules").listFiles()?.map {
-        File("$it/src/main/kotlin")
+        File("$it/src/main/scala")
     }))
 }
 

@@ -19,8 +19,7 @@
 
 package ca.rmen.poetassistant
 
-import ca.rmen.poetassistant.api.DefinitionController.Companion.QUERY_PARAM_WORD
-import ca.rmen.poetassistant.api.DefinitionController.Companion.SERVICE
+import ca.rmen.poetassistant.api.DefinitionController.{QUERY_PARAM_WORD, SERVICE}
 import org.hamcrest.core.StringContains.containsString
 import org.junit.jupiter.api.Test
 import org.springframework.beans.factory.annotation.Autowired
@@ -28,39 +27,38 @@ import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMock
 import org.springframework.boot.test.context.SpringBootTest
 import org.springframework.test.web.servlet.MockMvc
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get
-import org.springframework.test.web.servlet.result.MockMvcResultMatchers.content
-import org.springframework.test.web.servlet.result.MockMvcResultMatchers.status
+import org.springframework.test.web.servlet.result.MockMvcResultMatchers.{content, status}
 
 
 @AutoConfigureMockMvc
 @SpringBootTest
 class DefinitionMvcTest {
 
-    @Autowired
-    private lateinit var mockMvc: MockMvc
+  @Autowired
+  private var mockMvc: MockMvc = null
 
-    @Test
-    fun testDefinitionsOk() {
-        mockMvc.perform(get("${SERVICE}?${QUERY_PARAM_WORD}=dwindling"))
-            .andExpect(status().isOk)
-            .andExpect(content().string(containsString("gradually decreasing until little remains")))
-    }
+  @Test
+  def testDefinitionsOk(): Unit = {
+    mockMvc.perform(get(s"${SERVICE}?${QUERY_PARAM_WORD}=dwindling"))
+      .andExpect(status().isOk)
+      .andExpect(content().string(containsString("gradually decreasing until little remains")))
+  }
 
-    @Test
-    fun testDefinitionsNotFound() {
-        mockMvc.perform(get("${SERVICE}?${QUERY_PARAM_WORD}=qsdfqsdf"))
-            .andExpect(status().isNotFound)
-    }
+  @Test
+  def testDefinitionsNotFound(): Unit = {
+    mockMvc.perform(get(s"${SERVICE}?${QUERY_PARAM_WORD}=qsdfqsdf"))
+      .andExpect(status().isNotFound)
+  }
 
-    @Test
-    fun testDefinitionsEmptyParameter() {
-        mockMvc.perform(get("${SERVICE}?${QUERY_PARAM_WORD}="))
-            .andExpect(status().isBadRequest)
-    }
+  @Test
+  def testDefinitionsEmptyParameter(): Unit = {
+    mockMvc.perform(get(s"${SERVICE}?${QUERY_PARAM_WORD}="))
+      .andExpect(status().isBadRequest)
+  }
 
-    @Test
-    fun testDefinitionsMissingParameter() {
-        mockMvc.perform(get(SERVICE))
-            .andExpect(status().isBadRequest)
-    }
+  @Test
+  def testDefinitionsMissingParameter(): Unit = {
+    mockMvc.perform(get(SERVICE))
+      .andExpect(status().isBadRequest)
+  }
 }

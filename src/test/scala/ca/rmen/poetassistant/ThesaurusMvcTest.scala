@@ -19,8 +19,7 @@
 
 package ca.rmen.poetassistant
 
-import ca.rmen.poetassistant.api.ThesaurusController.Companion.QUERY_PARAM_WORD
-import ca.rmen.poetassistant.api.ThesaurusController.Companion.SERVICE
+import ca.rmen.poetassistant.api.ThesaurusController.{QUERY_PARAM_WORD, SERVICE}
 import org.hamcrest.core.StringContains.containsString
 import org.junit.jupiter.api.Test
 import org.springframework.beans.factory.annotation.Autowired
@@ -28,39 +27,38 @@ import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMock
 import org.springframework.boot.test.context.SpringBootTest
 import org.springframework.test.web.servlet.MockMvc
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get
-import org.springframework.test.web.servlet.result.MockMvcResultMatchers.content
-import org.springframework.test.web.servlet.result.MockMvcResultMatchers.status
+import org.springframework.test.web.servlet.result.MockMvcResultMatchers.{content, status}
 
 
 @AutoConfigureMockMvc
 @SpringBootTest
 class ThesaurusMvcTest {
 
-    @Autowired
-    private lateinit var mockMvc: MockMvc
+  @Autowired
+  private var mockMvc: MockMvc = null
 
-    @Test
-    fun testThesaurusOk() {
-        mockMvc.perform(get("${SERVICE}?${QUERY_PARAM_WORD}=intuition"))
-            .andExpect(status().isOk)
-            .andExpect(content().string(containsString("hunch")))
-    }
+  @Test
+  def testThesaurusOk(): Unit = {
+    mockMvc.perform(get(s"${SERVICE}?${QUERY_PARAM_WORD}=intuition"))
+      .andExpect(status().isOk)
+      .andExpect(content().string(containsString("hunch")))
+  }
 
-    @Test
-    fun testThesaurusNotFound() {
-        mockMvc.perform(get("${SERVICE}?${QUERY_PARAM_WORD}=blahblahblah"))
-            .andExpect(status().isNotFound)
-    }
+  @Test
+  def testThesaurusNotFound(): Unit = {
+    mockMvc.perform(get(s"${SERVICE}?${QUERY_PARAM_WORD}=blahblahblah"))
+      .andExpect(status().isNotFound)
+  }
 
-    @Test
-    fun testThesaurusEmptyParameter() {
-        mockMvc.perform(get("${SERVICE}?${QUERY_PARAM_WORD}="))
-            .andExpect(status().isBadRequest)
-    }
+  @Test
+  def testThesaurusEmptyParameter(): Unit = {
+    mockMvc.perform(get(s"${SERVICE}?${QUERY_PARAM_WORD}="))
+      .andExpect(status().isBadRequest)
+  }
 
-    @Test
-    fun testThesaurusMissingParameter() {
-        mockMvc.perform(get(SERVICE))
-            .andExpect(status().isBadRequest)
-    }
+  @Test
+  def testThesaurusMissingParameter(): Unit = {
+    mockMvc.perform(get(SERVICE))
+      .andExpect(status().isBadRequest)
+  }
 }

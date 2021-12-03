@@ -20,8 +20,7 @@
 package ca.rmen.poetassistant
 
 import ca.rmen.poetassistant.api.RhymeController
-import ca.rmen.poetassistant.model.SyllableRhymesModel
-import ca.rmen.poetassistant.model.WordRhymesModel
+import ca.rmen.poetassistant.model.{SyllableRhymesModel, WordRhymesModel}
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Test
 import org.springframework.beans.factory.annotation.Autowired
@@ -30,32 +29,34 @@ import org.springframework.boot.test.context.SpringBootTest
 @SpringBootTest
 class RhymeServiceTest {
 
-    @Autowired
-    private lateinit var controller: RhymeController
+  @Autowired
+  private var controller: RhymeController = null
 
-    @Test
-    fun testRhymes() {
-        val actualRhymes = controller.getRhymes("happy")
-        val expectedRhymes = listOf(
-            WordRhymesModel(
-                variantNumber = 0, stressRhymes = SyllableRhymesModel(
-                    syllables = "AEPIY",
-                    rhymes = listOf(
-                        "cappy",
-                        "chappie",
-                        "crappie",
-                        "crappy",
-                        "mapi",
-                        "nappi",
-                        "scrappy",
-                        "slappey",
-                        "snappy",
-                        "tapie",
-                        "unhappy"
-                    )
-                )
+  @Test
+  def testRhymes() = {
+    val actualRhymes = controller.getRhymes("happy")
+    val expectedRhymes = List(
+      WordRhymesModel(
+        variantNumber = 0, stressRhymes = Option(
+          SyllableRhymesModel(
+            syllables = "AEPIY",
+            rhymes = List(
+              "cappy",
+              "chappie",
+              "crappie",
+              "crappy",
+              "mapi",
+              "nappi",
+              "scrappy",
+              "slappey",
+              "snappy",
+              "tapie",
+              "unhappy"
             )
+          )
         )
-        assertEquals(expectedRhymes, actualRhymes)
-    }
+      )
+    )
+    assertEquals(expectedRhymes, actualRhymes)
+  }
 }

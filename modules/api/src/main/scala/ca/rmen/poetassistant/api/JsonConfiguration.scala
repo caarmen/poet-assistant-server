@@ -21,6 +21,7 @@ package ca.rmen.poetassistant.api
 
 import com.github.pjfanning.`enum`.EnumModule
 import com.fasterxml.jackson.databind.ObjectMapper
+import com.fasterxml.jackson.datatype.jsr310.{JSR310Module, JavaTimeModule}
 import com.fasterxml.jackson.module.scala.DefaultScalaModule
 import org.springframework.context.annotation.{Bean, Configuration}
 
@@ -32,6 +33,7 @@ class JsonConfiguration {
     val mapper = new ObjectMapper
     mapper.registerModule(DefaultScalaModule)
     mapper.registerModule(EnumModule)
+    mapper.registerModule(new JavaTimeModule)
     mapper
   }
 }

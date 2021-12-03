@@ -40,6 +40,16 @@ tasks.withType<Test> {
     useJUnitPlatform()
 }
 
+tasks.withType<JacocoReport> {
+    classDirectories.setFrom(
+        fileTree(rootProject.projectDir)
+            .include("**/build/classes/kotlin/main/ca/rmen/poetassistant/**")
+    )
+    sourceDirectories.setFrom(files(File("${rootProject.projectDir}/modules").listFiles()?.map {
+        File("$it/src/main/kotlin")
+    }))
+}
+
 subprojects {
     repositories {
         mavenCentral()

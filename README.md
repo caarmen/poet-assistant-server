@@ -23,3 +23,5 @@ The app contains the following modules:
 * Other:
   - `doc`: Generates documentation
   - `app`: Contains the application class
+
+There's also [scala](https://github.com/caarmen/poet-assistant-server/tree/scala) branch with the project written in Scala. It may not be as up-to-date as the main branch.

@@ -20,8 +20,13 @@
 package ca.rmen.poetassistant.model
 
 import ca.rmen.poetassistant.model
+import com.fasterxml.jackson.annotation.JsonValue
+import scala.annotation.meta.getter
 
-enum PartOfSpeech(modelName: String) :
+
+// The `JsonValue` annotation doesn't work:
+// https://github.com/FasterXML/jackson-module-scala/issues/532
+enum PartOfSpeech(@(JsonValue @getter) val modelName: String) :
 
   case NOUN extends PartOfSpeech("noun")
   case ADJECTIVE extends PartOfSpeech("adjective")

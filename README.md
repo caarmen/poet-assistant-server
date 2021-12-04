@@ -5,6 +5,9 @@ This server contains a read-only embedded database with dictionaries for rhymes,
 Refer to the [documentation](https://caarmen.github.io/poet-assistant-server)
 for the list of endpoints and how to use them.
 
+## Test it out
+The app is available on heroku: https://poet-assistant-rest.herokuapp.com/
+
 ## Architecture
 The app contains the following modules:
 

@@ -19,18 +19,18 @@
 
 package ca.rmen.poetassistant.service
 
-import ca.rmen.poetassistant.model.SyllableRhymesModel
-import ca.rmen.poetassistant.model.WordRhymesModel
 import ca.rmen.poetassistant.repository.rhymes.RhymerRepository
+import ca.rmen.poetassistant.service.model.SyllableRhymesServiceModel
+import ca.rmen.poetassistant.service.model.WordRhymesServiceModel
 import org.springframework.stereotype.Service
 
 @Service
 class RhymeService(private val repository: RhymerRepository) {
-    fun findRhymes(word: String): List<WordRhymesModel> =
+    fun findRhymes(word: String): List<WordRhymesServiceModel> =
         repository.findAllByWord(word).map { wordVariant ->
-            WordRhymesModel(
+            WordRhymesServiceModel(
                 variantNumber = wordVariant.variantNumber,
-                stressRhymes = SyllableRhymesModel(
+                stressRhymes = SyllableRhymesServiceModel(
                     syllables = wordVariant.stressSyllables,
                     rhymes = repository.findByStressSyllablesAndWordNotOrderByWord(
                         wordVariant.stressSyllables,

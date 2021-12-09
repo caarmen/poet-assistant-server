@@ -19,7 +19,8 @@
 
 package ca.rmen.poetassistant.api
 
-import ca.rmen.poetassistant.model.WotdModel
+import ca.rmen.poetassistant.api.model.WotdApiModel
+import ca.rmen.poetassistant.api.model.mapping.toApi
 import ca.rmen.poetassistant.service.WotdService
 import org.springframework.format.annotation.DateTimeFormat
 import org.springframework.validation.annotation.Validated
@@ -50,5 +51,6 @@ class WotdController(private val service: WotdService) {
         @Positive
         @Max(366)
         size: Int
-    ): List<WotdModel> = service.findWotdEntries(before ?: LocalDate.now(), size)
+    ): List<WotdApiModel> = service.findWotdEntries(before ?: LocalDate.now(), size)
+        .map { it.toApi }
 }

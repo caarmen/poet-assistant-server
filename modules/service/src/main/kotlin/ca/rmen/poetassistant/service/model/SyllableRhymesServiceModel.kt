@@ -17,15 +17,13 @@
  * along with Poet Assistant.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package ca.rmen.poetassistant.model
+package ca.rmen.poetassistant.service.model
 
 import com.fasterxml.jackson.annotation.JsonProperty
 
-data class ThesaurusEntryModel(
-    @JsonProperty("part_of_speech")
-    val partOfSpeech: PartOfSpeech,
-    @JsonProperty("synonyms")
-    val synonyms: List<String>,
-    @JsonProperty("antonyms")
-    val antonyms: List<String>
+data class SyllableRhymesServiceModel(
+    @JsonProperty("syllables")
+    val syllables: String,
+    @JsonProperty("rhymes")
+    val rhymes: List<String>
 )

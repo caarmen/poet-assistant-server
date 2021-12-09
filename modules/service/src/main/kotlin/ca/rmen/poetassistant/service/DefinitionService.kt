@@ -19,18 +19,18 @@
 
 package ca.rmen.poetassistant.service
 
-import ca.rmen.poetassistant.model.DefinitionModel
-import ca.rmen.poetassistant.model.PartOfSpeech
 import ca.rmen.poetassistant.repository.definitions.DefinitionRepository
+import ca.rmen.poetassistant.service.model.DefinitionServiceModel
+import ca.rmen.poetassistant.service.model.PartOfSpeechService
 import org.springframework.stereotype.Service
 
 @Service
 class DefinitionService(private val repository: DefinitionRepository) {
 
-    fun findDefinitions(word: String): List<DefinitionModel> =
+    fun findDefinitions(word: String): List<DefinitionServiceModel> =
         repository.findAllByWord(word)
             .map {
-                DefinitionModel(
+                DefinitionServiceModel(
                     partOfSpeech = it.partOfSpeech.toPartOfSpeech,
                     definition = it.definition
                 )
@@ -38,10 +38,10 @@ class DefinitionService(private val repository: DefinitionRepository) {
 
     private val String.toPartOfSpeech
         get() = when (this) {
-            "a" -> PartOfSpeech.ADJECTIVE
-            "n" -> PartOfSpeech.NOUN
-            "r" -> PartOfSpeech.ADVERB
-            "v" -> PartOfSpeech.VERB
-            else -> PartOfSpeech.UNKNOWN
+            "a" -> PartOfSpeechService.ADJECTIVE
+            "n" -> PartOfSpeechService.NOUN
+            "r" -> PartOfSpeechService.ADVERB
+            "v" -> PartOfSpeechService.VERB
+            else -> PartOfSpeechService.UNKNOWN
         }
 }

@@ -20,8 +20,8 @@
 package ca.rmen.poetassistant
 
 import ca.rmen.poetassistant.api.DefinitionController
-import ca.rmen.poetassistant.model.DefinitionModel
-import ca.rmen.poetassistant.model.PartOfSpeech
+import ca.rmen.poetassistant.api.model.DefinitionApiModel
+import ca.rmen.poetassistant.api.model.PartOfSpeechApi
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Test
 import org.springframework.beans.factory.annotation.Autowired
@@ -37,20 +37,20 @@ class DefinitionServiceTest {
     fun testDefinitions() {
         val actualDefinitions = controller.getDefinitions("happy")
         val expectedDefinitions = listOf(
-            DefinitionModel(
-                partOfSpeech = PartOfSpeech.ADJECTIVE,
+            DefinitionApiModel(
+                partOfSpeech = PartOfSpeechApi.ADJECTIVE,
                 definition = "eagerly disposed to act or to be of service"
             ),
-            DefinitionModel(
-                partOfSpeech = PartOfSpeech.ADJECTIVE,
+            DefinitionApiModel(
+                partOfSpeech = PartOfSpeechApi.ADJECTIVE,
                 definition = "enjoying or showing or marked by joy or pleasure"
             ),
-            DefinitionModel(
-                partOfSpeech = PartOfSpeech.ADJECTIVE,
+            DefinitionApiModel(
+                partOfSpeech = PartOfSpeechApi.ADJECTIVE,
                 definition = "marked by good fortune"
             ),
-            DefinitionModel(
-                partOfSpeech = PartOfSpeech.ADJECTIVE,
+            DefinitionApiModel(
+                partOfSpeech = PartOfSpeechApi.ADJECTIVE,
                 definition = "well expressed and to the point"
             )
         )

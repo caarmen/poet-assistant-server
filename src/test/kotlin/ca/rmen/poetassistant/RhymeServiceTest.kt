@@ -20,8 +20,8 @@
 package ca.rmen.poetassistant
 
 import ca.rmen.poetassistant.api.RhymeController
-import ca.rmen.poetassistant.model.SyllableRhymesModel
-import ca.rmen.poetassistant.model.WordRhymesModel
+import ca.rmen.poetassistant.api.model.SyllableRhymesApiModel
+import ca.rmen.poetassistant.api.model.WordRhymesApiModel
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Test
 import org.springframework.beans.factory.annotation.Autowired
@@ -37,8 +37,8 @@ class RhymeServiceTest {
     fun testRhymes() {
         val actualRhymes = controller.getRhymes("happy")
         val expectedRhymes = listOf(
-            WordRhymesModel(
-                variantNumber = 0, stressRhymes = SyllableRhymesModel(
+            WordRhymesApiModel(
+                variantNumber = 0, stressRhymes = SyllableRhymesApiModel(
                     syllables = "AEPIY",
                     rhymes = listOf(
                         "cappy",

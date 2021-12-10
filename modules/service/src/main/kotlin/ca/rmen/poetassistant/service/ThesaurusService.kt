@@ -19,17 +19,17 @@
 
 package ca.rmen.poetassistant.service
 
-import ca.rmen.poetassistant.model.PartOfSpeech
-import ca.rmen.poetassistant.model.ThesaurusEntryModel
 import ca.rmen.poetassistant.repository.thesaurus.ThesaurusRepository
+import ca.rmen.poetassistant.service.model.PartOfSpeechService
+import ca.rmen.poetassistant.service.model.ThesaurusEntryServiceModel
 import org.springframework.stereotype.Service
 
 @Service
 class ThesaurusService(private val repository: ThesaurusRepository) {
-    fun findThesaurusEntries(word: String): List<ThesaurusEntryModel> =
+    fun findThesaurusEntries(word: String): List<ThesaurusEntryServiceModel> =
         repository.findAllByWord(word)
             .map {
-                ThesaurusEntryModel(
+                ThesaurusEntryServiceModel(
                     partOfSpeech = it.wordType.toPartOfSpeech,
                     synonyms = it.synonyms.toWordList(),
                     antonyms = it.antonyms.toWordList()
@@ -48,10 +48,10 @@ class ThesaurusService(private val repository: ThesaurusRepository) {
 
     private val String.toPartOfSpeech
         get() = when (this) {
-            "ADJ" -> PartOfSpeech.ADJECTIVE
-            "NOUN" -> PartOfSpeech.NOUN
-            "ADV" -> PartOfSpeech.ADVERB
-            "VERB" -> PartOfSpeech.VERB
-            else -> PartOfSpeech.UNKNOWN
+            "ADJ" -> PartOfSpeechService.ADJECTIVE
+            "NOUN" -> PartOfSpeechService.NOUN
+            "ADV" -> PartOfSpeechService.ADVERB
+            "VERB" -> PartOfSpeechService.VERB
+            else -> PartOfSpeechService.UNKNOWN
         }
 }

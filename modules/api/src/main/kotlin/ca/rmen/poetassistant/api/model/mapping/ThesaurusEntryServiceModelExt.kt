@@ -17,14 +17,14 @@
  * along with Poet Assistant.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package ca.rmen.poetassistant.model
+package ca.rmen.poetassistant.api.model.mapping
 
-import com.fasterxml.jackson.annotation.JsonValue
+import ca.rmen.poetassistant.api.model.ThesaurusEntryApiModel
+import ca.rmen.poetassistant.service.model.ThesaurusEntryServiceModel
 
-enum class PartOfSpeech(@JsonValue val modelName: String) {
-    NOUN("noun"),
-    ADJECTIVE("adjective"),
-    ADVERB("adverb"),
-    VERB("verb"),
-    UNKNOWN("unknown")
-}
+val ThesaurusEntryServiceModel.toApi: ThesaurusEntryApiModel
+    get() = ThesaurusEntryApiModel(
+        partOfSpeech = partOfSpeech.toApi,
+        synonyms = synonyms,
+        antonyms = antonyms
+    )

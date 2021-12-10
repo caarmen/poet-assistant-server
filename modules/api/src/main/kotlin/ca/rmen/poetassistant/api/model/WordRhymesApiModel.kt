@@ -17,19 +17,19 @@
  * along with Poet Assistant.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package ca.rmen.poetassistant.model
+package ca.rmen.poetassistant.api.model
 
 import com.fasterxml.jackson.annotation.JsonProperty
 
-data class WordRhymesModel(
+data class WordRhymesApiModel(
     @JsonProperty("variant_number")
     val variantNumber: Int,
     @JsonProperty("stress_rhymes")
-    val stressRhymes: SyllableRhymesModel? = null,
+    val stressRhymes: SyllableRhymesApiModel? = null,
     @JsonProperty("last_three_syllable_rhymes")
-    val lastThreeSyllableRhymes: SyllableRhymesModel? = null,
+    val lastThreeSyllableRhymes: SyllableRhymesApiModel? = null,
     @JsonProperty("last_two_syllable_rhymes")
-    val lastTwoSyllableRhymes: SyllableRhymesModel? = null,
+    val lastTwoSyllableRhymes: SyllableRhymesApiModel? = null,
     @JsonProperty("last_syllable_rhymes")
-    val lastSyllableRhymes: SyllableRhymesModel? = null
+    val lastSyllableRhymes: SyllableRhymesApiModel? = null
 )

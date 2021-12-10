@@ -17,13 +17,14 @@
  * along with Poet Assistant.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package ca.rmen.poetassistant.model
+package ca.rmen.poetassistant.service.model
 
 import com.fasterxml.jackson.annotation.JsonProperty
+import java.time.LocalDate
 
-data class SyllableRhymesModel(
-    @JsonProperty("syllables")
-    val syllables: String,
-    @JsonProperty("rhymes")
-    val rhymes: List<String>
+data class WotdServiceModel(
+    @JsonProperty("date")
+    val date: LocalDate,
+    @JsonProperty("word")
+    val word: String
 )

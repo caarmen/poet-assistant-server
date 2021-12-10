@@ -20,8 +20,8 @@
 package ca.rmen.poetassistant
 
 import ca.rmen.poetassistant.api.ThesaurusController
-import ca.rmen.poetassistant.model.PartOfSpeech
-import ca.rmen.poetassistant.model.ThesaurusEntryModel
+import ca.rmen.poetassistant.api.model.PartOfSpeechApi
+import ca.rmen.poetassistant.api.model.ThesaurusEntryApiModel
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Test
 import org.springframework.beans.factory.annotation.Autowired
@@ -37,13 +37,13 @@ class ThesaurusServiceTest {
     fun testThesaurusEntriesOnlySynonyms() {
         val actualThesaurusEntries = controller.getThesaurusEntries("nightmare")
         val expectedThesaurusEntries = listOf(
-            ThesaurusEntryModel(
-                partOfSpeech = PartOfSpeech.NOUN,
+            ThesaurusEntryApiModel(
+                partOfSpeech = PartOfSpeechApi.NOUN,
                 synonyms = listOf("incubus", "situation"),
                 antonyms = emptyList()
             ),
-            ThesaurusEntryModel(
-                partOfSpeech = PartOfSpeech.NOUN,
+            ThesaurusEntryApiModel(
+                partOfSpeech = PartOfSpeechApi.NOUN,
                 synonyms = listOf("dream", "dreaming"),
                 antonyms = emptyList()
             )
@@ -55,13 +55,13 @@ class ThesaurusServiceTest {
     fun testThesaurusEntriesMixedSynonymsAndAntonyms() {
         val actualThesaurusEntries = controller.getThesaurusEntries("unstructured")
         val expectedThesaurusEntries = listOf(
-            ThesaurusEntryModel(
-                partOfSpeech = PartOfSpeech.ADJECTIVE,
+            ThesaurusEntryApiModel(
+                partOfSpeech = PartOfSpeechApi.ADJECTIVE,
                 synonyms = listOf("ambiguous", "unorganised", "unorganized", "unregulated"),
                 antonyms = listOf("structured")
             ),
-            ThesaurusEntryModel(
-                partOfSpeech = PartOfSpeech.ADJECTIVE,
+            ThesaurusEntryApiModel(
+                partOfSpeech = PartOfSpeechApi.ADJECTIVE,
                 synonyms = listOf("amorphous", "inorganic"),
                 antonyms = emptyList()
             )

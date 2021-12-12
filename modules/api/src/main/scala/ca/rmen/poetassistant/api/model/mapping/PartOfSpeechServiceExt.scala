@@ -24,7 +24,7 @@ import ca.rmen.poetassistant.service.model.PartOfSpeechService
 
 object PartOfSpeechServiceExt {
   extension (x: PartOfSpeechService) {
-    def toPartOfSpeechApi(): PartOfSpeechApi = {
+    def toPartOfSpeechApi = {
       x match {
         case PartOfSpeechService.VERB => PartOfSpeechApi.VERB
         case PartOfSpeechService.NOUN => PartOfSpeechApi.NOUN

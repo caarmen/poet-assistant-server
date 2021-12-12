@@ -24,8 +24,8 @@ import ca.rmen.poetassistant.api.model.mapping.PartOfSpeechServiceExt._
 import ca.rmen.poetassistant.service.model.ThesaurusEntryServiceModel
 
 object ThesaurusEntryServiceModelExt {
-  extension (x: ThesaurusEntryServiceModel) def toThesaurusEntryApiModel(): ThesaurusEntryApiModel = ThesaurusEntryApiModel(
-    partOfSpeech = x.partOfSpeech.toPartOfSpeechApi(),
+  extension (x: ThesaurusEntryServiceModel) def toThesaurusEntryApiModel = ThesaurusEntryApiModel(
+    partOfSpeech = x.partOfSpeech.toPartOfSpeechApi,
     synonyms = x.synonyms,
     antonyms = x.antonyms
   )

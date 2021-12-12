@@ -19,16 +19,16 @@
 
 package ca.rmen.poetassistant.api.model.mapping
 
-import ca.rmen.poetassistant.api.model.mapping.SyllableRhymesServiceModelExt._
 import ca.rmen.poetassistant.api.model.WordRhymesApiModel
+import ca.rmen.poetassistant.api.model.mapping.SyllableRhymesServiceModelExt.*
 import ca.rmen.poetassistant.service.model.WordRhymesServiceModel
 
 object WordRhymesServiceModelExt {
-  extension (x: WordRhymesServiceModel) def toWordRhymesApiModel(): WordRhymesApiModel = WordRhymesApiModel(
+  extension (x: WordRhymesServiceModel) def toWordRhymesApiModel = WordRhymesApiModel(
     variantNumber = x.variantNumber,
-    stressRhymes = x.stressRhymes.toOptionSyllableRhymesApiModel(),
-    lastThreeSyllableRhymes = x.lastThreeSyllableRhymes.toOptionSyllableRhymesApiModel(),
-    lastTwoSyllableRhymes = x.lastTwoSyllableRhymes.toOptionSyllableRhymesApiModel(),
-    lastSyllableRhymes = x.lastSyllableRhymes.toOptionSyllableRhymesApiModel()
+    stressRhymes = x.stressRhymes.toOptionSyllableRhymesApiModel,
+    lastThreeSyllableRhymes = x.lastThreeSyllableRhymes.toOptionSyllableRhymesApiModel,
+    lastTwoSyllableRhymes = x.lastTwoSyllableRhymes.toOptionSyllableRhymesApiModel,
+    lastSyllableRhymes = x.lastSyllableRhymes.toOptionSyllableRhymesApiModel
   )
 }

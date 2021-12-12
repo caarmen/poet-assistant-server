@@ -23,7 +23,7 @@ import ca.rmen.poetassistant.api.model.WotdApiModel
 import ca.rmen.poetassistant.service.model.WotdServiceModel
 
 object WotdServiceModelExt {
-  extension (x: WotdServiceModel) def toWotdApiModel(): WotdApiModel = WotdApiModel(
+  extension (x: WotdServiceModel) def toWotdApiModel = WotdApiModel(
     date = x.date,
     word = x.word
   )

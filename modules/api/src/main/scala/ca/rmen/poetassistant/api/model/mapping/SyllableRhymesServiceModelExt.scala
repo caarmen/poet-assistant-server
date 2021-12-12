@@ -23,11 +23,11 @@ import ca.rmen.poetassistant.api.model.SyllableRhymesApiModel
 import ca.rmen.poetassistant.service.model.SyllableRhymesServiceModel
 
 object SyllableRhymesServiceModelExt {
-  extension (x: SyllableRhymesServiceModel) def toSyllableRhymesApiModel(): SyllableRhymesApiModel = SyllableRhymesApiModel(
+  extension (x: SyllableRhymesServiceModel) def toSyllableRhymesApiModel = SyllableRhymesApiModel(
     syllables = x.syllables,
     rhymes = x.rhymes
   )
-  extension (x: Option[SyllableRhymesServiceModel]) def toOptionSyllableRhymesApiModel(): Option[SyllableRhymesApiModel] = {
-    x.map(_.toSyllableRhymesApiModel())
+  extension (x: Option[SyllableRhymesServiceModel]) def toOptionSyllableRhymesApiModel: Option[SyllableRhymesApiModel] = {
+    x.map(_.toSyllableRhymesApiModel)
   }
 }

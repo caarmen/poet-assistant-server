@@ -24,9 +24,9 @@ import ca.rmen.poetassistant.api.model.mapping.PartOfSpeechServiceExt._
 import ca.rmen.poetassistant.service.model.DefinitionServiceModel
 
 object DefinitionServiceModelExt {
-  extension (x: DefinitionServiceModel) def toDefinitionApiModel(): DefinitionApiModel = {
+  extension (x: DefinitionServiceModel) def toDefinitionApiModel = {
     DefinitionApiModel(
-      partOfSpeech = x.partOfSpeech.toPartOfSpeechApi(),
+      partOfSpeech = x.partOfSpeech.toPartOfSpeechApi,
       definition = x.definition
     )
   }

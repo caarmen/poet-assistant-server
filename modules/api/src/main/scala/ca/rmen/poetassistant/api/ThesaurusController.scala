@@ -35,7 +35,7 @@ class ThesaurusController(private val service: ThesaurusService) {
   @GetMapping(path = Array(ThesaurusController.SERVICE))
   def getThesaurusEntries(@RequestParam(ThesaurusController.QUERY_PARAM_WORD) @NotBlank word: String): java.util.List[ThesaurusEntryApiModel] =
     service.findThesaurusEntries(word.toLowerCase())
-      .map(_.toThesaurusEntryApiModel())
+      .map(_.toThesaurusEntryApiModel)
       .validateResultNotEmpty(word).asJava
 }
 

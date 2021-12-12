@@ -46,7 +46,7 @@ class WotdController(private val service: WotdService) {
                size: Int
              ):
   List[WotdApiModel] = service.findWotdEntries(before.orElse(LocalDate.now), size)
-    .map(_.toWotdApiModel())
+    .map(_.toWotdApiModel)
 }
 
 object WotdController {

@@ -37,7 +37,7 @@ class DefinitionController(private val service: DefinitionService) {
                      @NotBlank word: String
                     ): List[DefinitionApiModel] =
     service.findDefinitions(word.toLowerCase())
-      .map(_.toDefinitionApiModel())
+      .map(_.toDefinitionApiModel)
       .validateResultNotEmpty(word)
 }
 

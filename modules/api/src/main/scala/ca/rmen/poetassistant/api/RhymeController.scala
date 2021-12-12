@@ -35,7 +35,7 @@ class RhymeController(private val service: RhymeService) {
   @GetMapping(path = Array(RhymeController.SERVICE))
   def getRhymes(@RequestParam(RhymeController.QUERY_PARAM_WORD) @NotBlank word: String): List[WordRhymesApiModel] =
     service.findRhymes(word.toLowerCase())
-      .map(_.toWordRhymesApiModel())
+      .map(_.toWordRhymesApiModel)
       .validateResultNotEmpty(word)
   // TODO for now we only return words which match stress syllables
   // We should also return words which match the last one, two, or three syllables

@@ -17,18 +17,12 @@
  * along with Poet Assistant.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package ca.rmen.poetassistant.model
+package ca.rmen.poetassistant.api.model
 
+import ca.rmen.poetassistant.api.model.PartOfSpeechApi
 import com.fasterxml.jackson.annotation.JsonProperty
 
-case class WordRhymesModel(@JsonProperty("variant_number")
-                           variantNumber: Int,
-                           @JsonProperty("stress_rhymes")
-                           stressRhymes: Option[SyllableRhymesModel] = null,
-                           @JsonProperty("last_three_syllable_rhymes")
-                           lastThreeSyllableRhymes: Option[SyllableRhymesModel] = null,
-                           @JsonProperty("last_two_syllable_rhymes")
-                           lastTwoSyllableRhymes: Option[SyllableRhymesModel] = null,
-                           @JsonProperty("last_syllable_rhymes")
-                           lastSyllableRhymes: Option[SyllableRhymesModel] = null)
-
+case class DefinitionApiModel(@JsonProperty("part_of_speech")
+                           partOfSpeech: PartOfSpeechApi,
+                           @JsonProperty("definition")
+                           definition: String)

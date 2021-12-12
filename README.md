@@ -13,7 +13,6 @@ The app contains the following modules:
 * Bottom:
   - `repository`: Accesses the database and exposes functions to retrieve Entities
 * Top:
-  - `model`: Provides the data classes (POJOs) which are serialized from/to json in requests/responses
   - `api`: Defines the REST endpoints
 * Middle:
   - `service`:  Contains the business logic required to map Entities to Model objects

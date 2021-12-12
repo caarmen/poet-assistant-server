@@ -17,24 +17,18 @@
  * along with Poet Assistant.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package ca.rmen.poetassistant.model
-
-import ca.rmen.poetassistant.model
-import com.fasterxml.jackson.annotation.JsonValue
-
-import scala.annotation.meta.getter
+package ca.rmen.poetassistant.api.model
 
 
 // The `JsonValue` annotation doesn't work:
 // https://github.com/FasterXML/jackson-module-scala/issues/532
-enum PartOfSpeech(val modelName: String):
+enum PartOfSpeechApi(val modelName: String):
 
-  case NOUN extends PartOfSpeech("noun")
-  case ADJECTIVE extends PartOfSpeech("adjective")
-  case ADVERB extends PartOfSpeech("adverb")
-  case VERB extends PartOfSpeech("verb")
-  case UNKNOWN extends PartOfSpeech("unknown")
+  case NOUN extends PartOfSpeechApi("noun")
+  case ADJECTIVE extends PartOfSpeechApi("adjective")
+  case ADVERB extends PartOfSpeechApi("adverb")
+  case VERB extends PartOfSpeechApi("verb")
+  case UNKNOWN extends PartOfSpeechApi("unknown")
 
   override def toString: String = modelName
-end PartOfSpeech
-
+end PartOfSpeechApi

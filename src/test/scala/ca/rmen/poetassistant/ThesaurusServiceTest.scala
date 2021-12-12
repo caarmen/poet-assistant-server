@@ -20,7 +20,7 @@
 package ca.rmen.poetassistant
 
 import ca.rmen.poetassistant.api.ThesaurusController
-import ca.rmen.poetassistant.model.{PartOfSpeech, ThesaurusEntryModel}
+import ca.rmen.poetassistant.api.model.{PartOfSpeechApi, ThesaurusEntryApiModel}
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Test
 import org.springframework.beans.factory.annotation.Autowired
@@ -38,13 +38,13 @@ class ThesaurusServiceTest {
   def testThesaurusEntriesOnlySynonyms() = {
     val actualThesaurusEntries = controller.getThesaurusEntries("nightmare").asScala.toList
     val expectedThesaurusEntries = List(
-      ThesaurusEntryModel(
-        partOfSpeech = PartOfSpeech.NOUN,
+      ThesaurusEntryApiModel(
+        partOfSpeech = PartOfSpeechApi.NOUN,
         synonyms = List("incubus", "situation"),
         antonyms = List()
       ),
-      ThesaurusEntryModel(
-        partOfSpeech = PartOfSpeech.NOUN,
+      ThesaurusEntryApiModel(
+        partOfSpeech = PartOfSpeechApi.NOUN,
         synonyms = List("dream", "dreaming"),
         antonyms = List()
       )
@@ -56,13 +56,13 @@ class ThesaurusServiceTest {
   def testThesaurusEntriesMixedSynonymsAndAntonyms() = {
     val actualThesaurusEntries = controller.getThesaurusEntries("unstructured").asScala.toList
     val expectedThesaurusEntries = List(
-      ThesaurusEntryModel(
-        partOfSpeech = PartOfSpeech.ADJECTIVE,
+      ThesaurusEntryApiModel(
+        partOfSpeech = PartOfSpeechApi.ADJECTIVE,
         synonyms = List("ambiguous", "unorganised", "unorganized", "unregulated"),
         antonyms = List("structured")
       ),
-      ThesaurusEntryModel(
-        partOfSpeech = PartOfSpeech.ADJECTIVE,
+      ThesaurusEntryApiModel(
+        partOfSpeech = PartOfSpeechApi.ADJECTIVE,
         synonyms = List("amorphous", "inorganic"),
         antonyms = List()
       )

@@ -17,11 +17,11 @@
  * along with Poet Assistant.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package ca.rmen.poetassistant.model
+package ca.rmen.poetassistant.api.model
 
 import com.fasterxml.jackson.annotation.JsonProperty
 
-case class SyllableRhymesModel(@JsonProperty("syllables")
+case class SyllableRhymesApiModel(@JsonProperty("syllables")
                                syllables: String,
                                @JsonProperty("rhymes")
                                rhymes: List[String])

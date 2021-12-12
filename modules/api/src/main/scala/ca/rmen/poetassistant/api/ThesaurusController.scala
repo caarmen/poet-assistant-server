@@ -20,20 +20,23 @@
 package ca.rmen.poetassistant.api
 
 import ca.rmen.poetassistant.api.ResponseValidator.validateResultNotEmpty
-import ca.rmen.poetassistant.model.ThesaurusEntryModel
+import ca.rmen.poetassistant.api.model.ThesaurusEntryApiModel
+import ca.rmen.poetassistant.api.model.mapping.ThesaurusEntryServiceModelExt._
 import ca.rmen.poetassistant.service.ThesaurusService
 import org.springframework.validation.annotation.Validated
 import org.springframework.web.bind.annotation.{GetMapping, RequestParam, RestController}
-import scala.collection.JavaConverters._
 
 import javax.validation.constraints.NotBlank
+import scala.collection.JavaConverters.*
 
 @RestController
 @Validated
 class ThesaurusController(private val service: ThesaurusService) {
   @GetMapping(path = Array(ThesaurusController.SERVICE))
-  def getThesaurusEntries(@RequestParam(ThesaurusController.QUERY_PARAM_WORD) @NotBlank word: String): java.util.List[ThesaurusEntryModel] =
-    service.findThesaurusEntries(word.toLowerCase()).validateResultNotEmpty(word).asJava
+  def getThesaurusEntries(@RequestParam(ThesaurusController.QUERY_PARAM_WORD) @NotBlank word: String): java.util.List[ThesaurusEntryApiModel] =
+    service.findThesaurusEntries(word.toLowerCase())
+      .map(_.toThesaurusEntryApiModel())
+      .validateResultNotEmpty(word).asJava
 }
 
 object ThesaurusController {

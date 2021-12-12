@@ -19,19 +19,19 @@
 
 package ca.rmen.poetassistant.service
 
-import ca.rmen.poetassistant.model.{SyllableRhymesModel, WordRhymesModel}
 import ca.rmen.poetassistant.repository.rhymes.{RhymerEntity, RhymerRepository}
+import ca.rmen.poetassistant.service.model.{SyllableRhymesServiceModel, WordRhymesServiceModel}
 import org.springframework.stereotype.Service
 
-import scala.collection.JavaConverters._
+import scala.collection.JavaConverters.*
 
 @Service
 class RhymeService(repository: RhymerRepository) {
-  def findRhymes(word: String): List[WordRhymesModel] =
+  def findRhymes(word: String): List[WordRhymesServiceModel] =
     repository.findAllByWord(word).asScala.toList.map((wordVariant: RhymerEntity) =>
-      WordRhymesModel(
+      WordRhymesServiceModel(
         variantNumber = wordVariant.variantNumber,
-        stressRhymes = Option(SyllableRhymesModel(
+        stressRhymes = Option(SyllableRhymesServiceModel(
           syllables = wordVariant.stressSyllables,
           rhymes = repository.findByStressSyllablesAndWordNotOrderByWord(
             wordVariant.stressSyllables,

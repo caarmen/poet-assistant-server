@@ -19,25 +19,25 @@
 
 package ca.rmen.poetassistant.service
 
-import ca.rmen.poetassistant.model.{DefinitionModel, PartOfSpeech}
 import ca.rmen.poetassistant.repository.definitions.{DefinitionEntity, DefinitionRepository}
+import ca.rmen.poetassistant.service.model.{DefinitionServiceModel, PartOfSpeechService}
 import org.hibernate.hql.internal.ast.QueryTranslatorImpl.JavaConstantConverter
 import org.springframework.stereotype.Service
 
-import scala.collection.JavaConverters._
+import scala.collection.JavaConverters.*
 
 @Service
 class DefinitionService(repository: DefinitionRepository) {
-  def findDefinitions(word: String): List[DefinitionModel] =
+  def findDefinitions(word: String): List[DefinitionServiceModel] =
     repository.findAllByWord(word).asScala.toList.map((entity: DefinitionEntity) =>
-      DefinitionModel(entity.partOfSpeech.toPartOfSpeech, entity.definition))
+      DefinitionServiceModel(entity.partOfSpeech.toPartOfSpeech, entity.definition))
 
   extension (s: String)
-    def toPartOfSpeech: PartOfSpeech = s match {
-      case "a" => PartOfSpeech.ADJECTIVE
-      case "n" => PartOfSpeech.NOUN
-      case "r" => PartOfSpeech.ADVERB
-      case "v" => PartOfSpeech.VERB
-      case _ => PartOfSpeech.UNKNOWN
+    def toPartOfSpeech: PartOfSpeechService = s match {
+      case "a" => PartOfSpeechService.ADJECTIVE
+      case "n" => PartOfSpeechService.NOUN
+      case "r" => PartOfSpeechService.ADVERB
+      case "v" => PartOfSpeechService.VERB
+      case _ => PartOfSpeechService.UNKNOWN
     }
 }

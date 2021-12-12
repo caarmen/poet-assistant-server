@@ -19,13 +19,13 @@
 
 package ca.rmen.poetassistant.service
 
-import ca.rmen.poetassistant.model.WotdModel
 import ca.rmen.poetassistant.repository.wotd.{StemEntity, StemRepository}
 import ca.rmen.poetassistant.service.WotdService.{MAX_INTERESTING_FREQUENCY, MIN_INTERESTING_FREQUENCY}
+import ca.rmen.poetassistant.service.model.WotdServiceModel
 import org.springframework.stereotype.Service
 
 import java.time.{LocalDate, ZoneOffset}
-import scala.collection.JavaConverters._
+import scala.collection.JavaConverters.*
 import scala.util.Random
 
 @Service
@@ -46,14 +46,13 @@ class WotdService(repository: StemRepository) {
     repository.findByGoogleNgramFrequencyBetween(MIN_INTERESTING_FREQUENCY, MAX_INTERESTING_FREQUENCY).asScala.toList
   }
 
-  def findWotdEntries(before: LocalDate, size: Int): List[WotdModel] =
+  def findWotdEntries(before: LocalDate, size: Int): List[WotdServiceModel] =
     (0 until size).toList.map(resultPosition =>
       val dateForWotd = before.minusDays(resultPosition.toLong)
       val positionForDate = new Random() {
         setSeed(dateForWotd.atStartOfDay(ZoneOffset.UTC).toInstant().toEpochMilli())
       }.nextInt(interestingWords.size)
-
-        WotdModel(
+        WotdServiceModel(
         date = dateForWotd,
         word = interestingWords(positionForDate).word
       )

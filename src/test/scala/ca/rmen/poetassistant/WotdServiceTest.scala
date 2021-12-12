@@ -20,7 +20,7 @@
 package ca.rmen.poetassistant
 
 import ca.rmen.poetassistant.api.WotdController
-import ca.rmen.poetassistant.model.WotdModel
+import ca.rmen.poetassistant.api.model.WotdApiModel
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Test
 import org.springframework.beans.factory.annotation.Autowired
@@ -153,9 +153,9 @@ class WotdServiceTest() {
   def testListWotd() = {
     val date = LocalDate.parse("2021-11-28")
     val expectedWotdList = List(
-      WotdModel(LocalDate.parse("2021-11-28"), "clothesline"),
-      WotdModel(LocalDate.parse("2021-11-27"), "solstice"),
-      WotdModel(LocalDate.parse("2021-11-26"), "methylphenidate")
+      WotdApiModel(LocalDate.parse("2021-11-28"), "clothesline"),
+      WotdApiModel(LocalDate.parse("2021-11-27"), "solstice"),
+      WotdApiModel(LocalDate.parse("2021-11-26"), "methylphenidate")
     )
     val actualWotdList = controller.getWotd(Optional.of(date), 3)
     assertEquals(expectedWotdList, actualWotdList)

@@ -17,13 +17,15 @@
  * along with Poet Assistant.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package ca.rmen.poetassistant.model
+package ca.rmen.poetassistant.api.model
 
+import ca.rmen.poetassistant.api.model.PartOfSpeechApi
 import com.fasterxml.jackson.annotation.JsonProperty
 
-import java.time.LocalDate
+case class ThesaurusEntryApiModel(@JsonProperty("part_of_speech")
+                               partOfSpeech: PartOfSpeechApi,
+                               @JsonProperty("synonyms")
+                               synonyms: List[String],
+                               @JsonProperty("antonyms")
+                               antonyms: List[String])
 
-case class WotdModel(@JsonProperty("date")
-                     date: LocalDate,
-                     @JsonProperty("word")
-                     word: String)

@@ -19,18 +19,19 @@
 
 package ca.rmen.poetassistant.service
 
-import ca.rmen.poetassistant.model.{PartOfSpeech, ThesaurusEntryModel}
 import ca.rmen.poetassistant.repository.thesaurus.{ThesaurusEntity, ThesaurusRepository}
+import ca.rmen.poetassistant.service.model.{PartOfSpeechService, ThesaurusEntryServiceModel}
 import org.springframework.stereotype.Service
-import scala.collection.JavaConverters._
+
+import scala.collection.JavaConverters.*
 
 @Service
 class ThesaurusService(repository: ThesaurusRepository) {
 
-  def findThesaurusEntries(word: String): List[ThesaurusEntryModel] =
+  def findThesaurusEntries(word: String): List[ThesaurusEntryServiceModel] =
     repository.findAllByWord(word).asScala.toList
       .map((entity: ThesaurusEntity) =>
-        ThesaurusEntryModel(
+        ThesaurusEntryServiceModel(
           partOfSpeech = entity.wordType.toPartOfSpeech,
           synonyms = entity.synonyms.toWordList,
           antonyms = entity.antonyms.toWordList
@@ -49,11 +50,11 @@ class ThesaurusService(repository: ThesaurusRepository) {
       .toList
 
   extension (s: String)
-    def toPartOfSpeech: PartOfSpeech = s match {
-      case "ADJ" => PartOfSpeech.ADJECTIVE
-      case "NOUN" => PartOfSpeech.NOUN
-      case "ADV" => PartOfSpeech.ADVERB
-      case "VERB" => PartOfSpeech.VERB
-      case _ => PartOfSpeech.UNKNOWN
+    def toPartOfSpeech: PartOfSpeechService = s match {
+      case "ADJ" => PartOfSpeechService.ADJECTIVE
+      case "NOUN" => PartOfSpeechService.NOUN
+      case "ADV" => PartOfSpeechService.ADVERB
+      case "VERB" => PartOfSpeechService.VERB
+      case _ => PartOfSpeechService.UNKNOWN
     }
 }

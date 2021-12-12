@@ -12,6 +12,5 @@ dependencies {
     implementation("com.fasterxml.jackson.module:jackson-module-scala_3:$scalaJsonVersion")
     implementation("com.github.pjfanning:jackson-module-scala3-enum_3:$scalaJsonEnumVersion")
     implementation("com.fasterxml.jackson.datatype:jackson-datatype-jsr310:$scalaJsonVersion")
-    implementation(project(":modules:model"))
     implementation(project(":modules:service"))
 }

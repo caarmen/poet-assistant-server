@@ -20,7 +20,8 @@
 package ca.rmen.poetassistant.api
 
 import ca.rmen.poetassistant.api.ResponseValidator.validateResultNotEmpty
-import ca.rmen.poetassistant.model.DefinitionModel
+import ca.rmen.poetassistant.api.model.DefinitionApiModel
+import ca.rmen.poetassistant.api.model.mapping.DefinitionServiceModelExt._
 import ca.rmen.poetassistant.service.DefinitionService
 import org.springframework.validation.annotation.Validated
 import org.springframework.web.bind.annotation.{GetMapping, RequestParam, RestController}
@@ -34,8 +35,10 @@ class DefinitionController(private val service: DefinitionService) {
   @GetMapping(path = Array(DefinitionController.SERVICE))
   def getDefinitions(@RequestParam(DefinitionController.QUERY_PARAM_WORD)
                      @NotBlank word: String
-                    ): List[DefinitionModel] =
-    service.findDefinitions(word.toLowerCase()).validateResultNotEmpty(word)
+                    ): List[DefinitionApiModel] =
+    service.findDefinitions(word.toLowerCase())
+      .map(_.toDefinitionApiModel())
+      .validateResultNotEmpty(word)
 }
 
 object DefinitionController {

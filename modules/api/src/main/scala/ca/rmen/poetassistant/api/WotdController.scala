@@ -20,7 +20,7 @@
 package ca.rmen.poetassistant.api
 
 import ca.rmen.poetassistant.api.model.WotdApiModel
-import ca.rmen.poetassistant.api.model.mapping.WotdServiceModelExt._
+import ca.rmen.poetassistant.api.model.mapping.ServiceModelExt._
 import ca.rmen.poetassistant.service.WotdService
 import org.springframework.format.annotation.DateTimeFormat
 import org.springframework.validation.annotation.Validated
@@ -46,7 +46,7 @@ class WotdController(private val service: WotdService) {
                size: Int
              ):
   List[WotdApiModel] = service.findWotdEntries(before.orElse(LocalDate.now), size)
-    .map(_.toWotdApiModel)
+    .map(_.toApi)
 }
 
 object WotdController {

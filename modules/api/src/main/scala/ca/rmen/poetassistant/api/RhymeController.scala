@@ -21,7 +21,7 @@ package ca.rmen.poetassistant.api
 
 import ca.rmen.poetassistant.api.ResponseValidator.validateResultNotEmpty
 import ca.rmen.poetassistant.api.model.WordRhymesApiModel
-import ca.rmen.poetassistant.api.model.mapping.WordRhymesServiceModelExt._
+import ca.rmen.poetassistant.api.model.mapping.ServiceModelExt._
 import ca.rmen.poetassistant.service.RhymeService
 import org.springframework.validation.annotation.Validated
 import org.springframework.web.bind.annotation.{GetMapping, RequestParam, RestController}
@@ -35,7 +35,7 @@ class RhymeController(private val service: RhymeService) {
   @GetMapping(path = Array(RhymeController.SERVICE))
   def getRhymes(@RequestParam(RhymeController.QUERY_PARAM_WORD) @NotBlank word: String): List[WordRhymesApiModel] =
     service.findRhymes(word.toLowerCase())
-      .map(_.toWordRhymesApiModel)
+      .map(_.toApi)
       .validateResultNotEmpty(word)
   // TODO for now we only return words which match stress syllables
   // We should also return words which match the last one, two, or three syllables

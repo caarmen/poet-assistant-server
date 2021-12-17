@@ -22,11 +22,10 @@ package ca.rmen.poetassistant.api.model.mapping;
 import ca.rmen.poetassistant.api.model.DefinitionApiModel;
 import ca.rmen.poetassistant.service.model.DefinitionServiceModel;
 
-
 public class DefinitionServiceModelExt {
 
     public static DefinitionApiModel toApi(DefinitionServiceModel serviceModel) {
-        return new DefinitionApiModel(PartOfSpeechServiceExtKt.getToApi(serviceModel.partOfSpeech()),
+        return new DefinitionApiModel(PartOfSpeechServiceExt.toApi(serviceModel.partOfSpeech()),
                 serviceModel.definition());
     }
 }

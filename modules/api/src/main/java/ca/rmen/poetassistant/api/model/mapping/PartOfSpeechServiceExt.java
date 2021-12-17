@@ -17,14 +17,19 @@
  * along with Poet Assistant.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package ca.rmen.poetassistant.api.model
+package ca.rmen.poetassistant.api.model.mapping;
 
-import com.fasterxml.jackson.annotation.JsonValue
+import ca.rmen.poetassistant.api.model.PartOfSpeechApi;
+import ca.rmen.poetassistant.service.model.PartOfSpeechService;
 
-enum class PartOfSpeechApi(@JsonValue val modelName: String) {
-    NOUN("noun"),
-    ADJECTIVE("adjective"),
-    ADVERB("adverb"),
-    VERB("verb"),
-    UNKNOWN("unknown")
+public class PartOfSpeechServiceExt {
+    public static PartOfSpeechApi toApi(PartOfSpeechService partOfSpeechService) {
+        return switch (partOfSpeechService) {
+            case ADJECTIVE -> PartOfSpeechApi.ADJECTIVE;
+            case NOUN -> PartOfSpeechApi.NOUN;
+            case ADVERB -> PartOfSpeechApi.ADVERB;
+            case VERB -> PartOfSpeechApi.VERB;
+            case UNKNOWN -> PartOfSpeechApi.UNKNOWN;
+        };
+    }
 }

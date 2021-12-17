@@ -20,11 +20,12 @@
 package ca.rmen.poetassistant.api.model.mapping
 
 import ca.rmen.poetassistant.api.model.ThesaurusEntryApiModel
+import ca.rmen.poetassistant.api.model.mapping.PartOfSpeechServiceExt.toApi
 import ca.rmen.poetassistant.service.model.ThesaurusEntryServiceModel
 
 val ThesaurusEntryServiceModel.toApi: ThesaurusEntryApiModel
     get() = ThesaurusEntryApiModel(
-        partOfSpeech = partOfSpeech.toApi,
+        partOfSpeech = toApi(partOfSpeech),
         synonyms = synonyms,
         antonyms = antonyms
     )

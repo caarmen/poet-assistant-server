@@ -17,23 +17,28 @@
  * along with Poet Assistant.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package ca.rmen.poetassistant.repository.wotd
+package ca.rmen.poetassistant.service;
 
-import javax.persistence.Column
-import javax.persistence.Entity
-import javax.persistence.Id
-import javax.persistence.Table
+import java.util.concurrent.atomic.AtomicReference;
+import java.util.function.Supplier;
 
-@Entity
-@Table(name = "stems")
-class StemEntity {
-    @Id
-    @Column(insertable = false, updatable = false)
-    val word: String = ""
+// TODO eee if we can use the Lazy annotation from spring to reduce this boilerplate
+public class LazyField<T> implements Supplier<T> {
+    private final AtomicReference<T> value = new AtomicReference<>(null);
+    private final Supplier<T> supplier;
 
-    @Column(insertable = false, updatable = false)
-    val stem: String = ""
+    public LazyField(Supplier<T> supplier) {
+        this.supplier = supplier;
+    }
 
-    @Column(name = "google_ngram_frequency", insertable = false, updatable = false)
-    val googleNgramFrequency: Int = 0
+    @Override
+    public T get() {
+        if (value.get() == null) {
+            value.compareAndSet(
+                    null,
+                    supplier.get()
+            );
+        }
+        return value.get();
+    }
 }

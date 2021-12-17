@@ -17,13 +17,16 @@
  * along with Poet Assistant.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package ca.rmen.poetassistant.api.model.mapping
+package ca.rmen.poetassistant.service.model;
 
-import ca.rmen.poetassistant.api.model.WotdApiModel
-import ca.rmen.poetassistant.service.model.WotdServiceModel
+import com.fasterxml.jackson.annotation.JsonProperty;
 
-val WotdServiceModel.toApi: WotdApiModel
-    get() = WotdApiModel(
-        date = date,
-        word = word
-    )
+import java.time.LocalDate;
+
+public record WotdServiceModel(
+        @JsonProperty("date")
+        LocalDate date,
+        @JsonProperty("word")
+        String word
+) {
+}

@@ -17,10 +17,23 @@
  * along with Poet Assistant.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package ca.rmen.poetassistant.repository.wotd
+package ca.rmen.poetassistant.repository.wotd;
 
-import org.springframework.data.repository.CrudRepository
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
 
-interface StemRepository : CrudRepository<StemEntity, String> {
-    fun findByGoogleNgramFrequencyBetween(minGoogleNgramFrequency: Int, maxGoogleNgramFrequency: Int): List<StemEntity>
+@Entity
+@Table(name = "stems")
+public class StemEntity {
+    @Id
+    @Column(insertable = false, updatable = false)
+    public String word;
+
+    @Column(insertable = false, updatable = false)
+    public String stem;
+
+    @Column(name = "google_ngram_frequency", insertable = false, updatable = false)
+    public int googleNgramFrequency;
 }

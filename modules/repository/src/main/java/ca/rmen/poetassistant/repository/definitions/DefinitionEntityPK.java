@@ -17,14 +17,14 @@
  * along with Poet Assistant.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package ca.rmen.poetassistant.repository.definitions
+package ca.rmen.poetassistant.repository.definitions;
 
-import java.io.Serializable
-import javax.persistence.Embeddable
+import javax.persistence.Embeddable;
+import java.io.Serializable;
 
 @Embeddable
-data class DefinitionEntityPK(
-    val word: String = "",
-    val partOfSpeech: String = "",
-    val definition: String = ""
-) : Serializable
+public class DefinitionEntityPK implements Serializable {
+    public String word;
+    public String partOfSpeech;
+    public String definition;
+}

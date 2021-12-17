@@ -17,10 +17,16 @@
  * along with Poet Assistant.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package ca.rmen.poetassistant.repository.definitions
+package ca.rmen.poetassistant.api.model.mapping;
 
-import org.springframework.data.repository.CrudRepository
+import ca.rmen.poetassistant.api.model.DefinitionApiModel;
+import ca.rmen.poetassistant.service.model.DefinitionServiceModel;
 
-interface DefinitionRepository : CrudRepository<DefinitionEntity, DefinitionEntity> {
-    fun findAllByWord(word: String): List<DefinitionEntity>
+
+public class DefinitionServiceModelExt {
+
+    public static DefinitionApiModel toApi(DefinitionServiceModel serviceModel) {
+        return new DefinitionApiModel(PartOfSpeechServiceExtKt.getToApi(serviceModel.partOfSpeech()),
+                serviceModel.definition());
+    }
 }

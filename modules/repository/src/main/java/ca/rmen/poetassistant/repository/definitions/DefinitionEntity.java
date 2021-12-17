@@ -17,12 +17,12 @@
  * along with Poet Assistant.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package ca.rmen.poetassistant.repository.definitions
+package ca.rmen.poetassistant.repository.definitions;
 
-import javax.persistence.Column
-import javax.persistence.EmbeddedId
-import javax.persistence.Entity
-import javax.persistence.Table
+import javax.persistence.Column;
+import javax.persistence.EmbeddedId;
+import javax.persistence.Entity;
+import javax.persistence.Table;
 
 /**
  * Our embedded database doesn't have an id column.
@@ -31,13 +31,13 @@ import javax.persistence.Table
  */
 @Entity
 @Table(name = "dictionary")
-data class DefinitionEntity(
-    @EmbeddedId
-    private val id: DefinitionEntityPK = DefinitionEntityPK(),
-    @Column(insertable = false, updatable = false)
-    val word: String = "",
-    @Column(insertable = false, updatable = false)
-    val partOfSpeech: String = "",
-    @Column(insertable = false, updatable = false)
-    val definition: String = ""
-)
+public class DefinitionEntity{
+        @EmbeddedId
+        private DefinitionEntityPK id;
+        @Column(insertable = false, updatable = false)
+        public String word;
+        @Column(insertable = false, updatable = false)
+        public String partOfSpeech;
+        @Column(insertable = false, updatable = false)
+        public String definition;
+}

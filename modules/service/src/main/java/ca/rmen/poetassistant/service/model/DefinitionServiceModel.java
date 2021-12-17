@@ -17,13 +17,14 @@
  * along with Poet Assistant.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package ca.rmen.poetassistant.service.model
+package ca.rmen.poetassistant.service.model;
 
-import com.fasterxml.jackson.annotation.JsonProperty
+import com.fasterxml.jackson.annotation.JsonProperty;
 
-data class DefinitionServiceModel(
-    @JsonProperty("part_of_speech")
-    val partOfSpeech: PartOfSpeechService,
-    @JsonProperty("definition")
-    val definition: String
-)
+public record DefinitionServiceModel(
+        @JsonProperty("part_of_speech")
+        PartOfSpeechService partOfSpeech,
+        @JsonProperty("definition")
+        String definition
+) {
+}

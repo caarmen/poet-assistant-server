@@ -17,13 +17,12 @@
  * along with Poet Assistant.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package ca.rmen.poetassistant.api.model
+package ca.rmen.poetassistant.repository.definitions;
 
-import com.fasterxml.jackson.annotation.JsonProperty
+import org.springframework.data.repository.CrudRepository;
 
-data class DefinitionApiModel(
-    @JsonProperty("part_of_speech")
-    val partOfSpeech: PartOfSpeechApi,
-    @JsonProperty("definition")
-    val definition: String
-)
+import java.util.List;
+
+public interface DefinitionRepository extends CrudRepository<DefinitionEntity, DefinitionEntity> {
+    List<DefinitionEntity> findAllByWord(String word);
+}

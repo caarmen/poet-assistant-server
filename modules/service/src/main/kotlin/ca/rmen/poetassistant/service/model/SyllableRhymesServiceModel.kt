@@ -19,11 +19,7 @@
 
 package ca.rmen.poetassistant.service.model
 
-import com.fasterxml.jackson.annotation.JsonProperty
-
 data class SyllableRhymesServiceModel(
-    @JsonProperty("syllables")
     val syllables: String,
-    @JsonProperty("rhymes")
     val rhymes: List<String>
 )

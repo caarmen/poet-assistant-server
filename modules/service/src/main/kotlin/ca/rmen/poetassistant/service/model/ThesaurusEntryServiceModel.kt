@@ -19,13 +19,8 @@
 
 package ca.rmen.poetassistant.service.model
 
-import com.fasterxml.jackson.annotation.JsonProperty
-
 data class ThesaurusEntryServiceModel(
-    @JsonProperty("part_of_speech")
     val partOfSpeech: PartOfSpeechService,
-    @JsonProperty("synonyms")
     val synonyms: List<String>,
-    @JsonProperty("antonyms")
     val antonyms: List<String>
 )

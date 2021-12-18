@@ -19,11 +19,7 @@
 
 package ca.rmen.poetassistant.service.model
 
-import com.fasterxml.jackson.annotation.JsonProperty
-
 data class DefinitionServiceModel(
-    @JsonProperty("part_of_speech")
     val partOfSpeech: PartOfSpeechService,
-    @JsonProperty("definition")
     val definition: String
 )

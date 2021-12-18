@@ -19,12 +19,9 @@
 
 package ca.rmen.poetassistant.service.model
 
-import com.fasterxml.jackson.annotation.JsonProperty
 import java.time.LocalDate
 
 data class WotdServiceModel(
-    @JsonProperty("date")
     val date: LocalDate,
-    @JsonProperty("word")
     val word: String
 )

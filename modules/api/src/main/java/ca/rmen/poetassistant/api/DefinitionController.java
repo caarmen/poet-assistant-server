@@ -45,7 +45,7 @@ public class DefinitionController {
 
     @GetMapping(SERVICE)
     public List<DefinitionApiModel> getDefinitions(@RequestParam(QUERY_PARAM_WORD) @NotBlank String word) {
-        return ResponseValidator.INSTANCE.validateResultNotEmpty
+        return ResponseValidator.validateResultNotEmpty
                 (service.findDefinitions(word.toLowerCase(Locale.ROOT))
                         .stream()
                         .map(DefinitionServiceModelExt::toApi)

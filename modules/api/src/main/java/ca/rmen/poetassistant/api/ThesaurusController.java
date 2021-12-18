@@ -45,7 +45,7 @@ public class ThesaurusController {
 
     @GetMapping(SERVICE)
     public List<ThesaurusEntryApiModel> getThesaurusEntries(@RequestParam(QUERY_PARAM_WORD) @NotBlank String word) {
-        return ResponseValidator.INSTANCE.validateResultNotEmpty(
+        return ResponseValidator.validateResultNotEmpty(
                 service.findThesaurusEntries(word.toLowerCase(Locale.ROOT))
                         .stream()
                         .map(ThesaurusEntryServiceModelExt::toApi)

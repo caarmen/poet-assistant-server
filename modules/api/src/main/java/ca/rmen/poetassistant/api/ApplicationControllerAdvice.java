@@ -17,17 +17,18 @@
  * along with Poet Assistant.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package ca.rmen.poetassistant.api
+package ca.rmen.poetassistant.api;
 
-import com.fasterxml.jackson.annotation.JsonProperty
-import org.springframework.http.HttpStatus
-import org.springframework.web.bind.annotation.ExceptionHandler
-import org.springframework.web.bind.annotation.ResponseStatus
-import org.springframework.web.bind.annotation.RestControllerAdvice
-import javax.validation.ConstraintViolationException
+import com.fasterxml.jackson.annotation.JsonProperty;
+import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.ExceptionHandler;
+import org.springframework.web.bind.annotation.ResponseStatus;
+import org.springframework.web.bind.annotation.RestControllerAdvice;
+
+import javax.validation.ConstraintViolationException;
 
 @RestControllerAdvice
-object ApplicationControllerAdvice {
+public class ApplicationControllerAdvice {
 
     // Would like to not have to define this data class for the response body for constraint violations.
     // Would like to not have to define the message format at all for ConstraintViolationException.
@@ -44,14 +45,13 @@ object ApplicationControllerAdvice {
     // I didn't find a way to have a 400 status, with an automatically nice concise body.
     // So I create the body myself.  :shrug:
 
-    data class ConstraintViolation(
-        @JsonProperty("message")
-        val message: String
-    )
+    public static record ConstraintViolation(@JsonProperty("message") String message) {
+    }
 
-    @ExceptionHandler(ConstraintViolationException::class)
+    @ExceptionHandler(ConstraintViolationException.class)
     @ResponseStatus(HttpStatus.BAD_REQUEST)
-    fun onConstraintViolationException(e: ConstraintViolationException) = ConstraintViolation(e.localizedMessage)
-
+    public static ConstraintViolation onConstraintViolationException(ConstraintViolationException e) {
+        return new ConstraintViolation(e.getLocalizedMessage());
+    }
 }
 

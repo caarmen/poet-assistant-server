@@ -44,7 +44,7 @@ public class RhymeController {
 
     @GetMapping(SERVICE)
     public List<WordRhymesApiModel> getRhymes(@RequestParam(QUERY_PARAM_WORD) @NotBlank String word) {
-        return ResponseValidator.INSTANCE.validateResultNotEmpty(
+        return ResponseValidator.validateResultNotEmpty(
                 service.findRhymes(word.toLowerCase(Locale.ROOT))
                         .stream()
                         .map(WordRhymesServiceModelExt::toApi)

@@ -17,21 +17,25 @@
  * along with Poet Assistant.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package ca.rmen.poetassistant.api
+package ca.rmen.poetassistant.api;
 
-import org.springframework.http.HttpStatus
-import org.springframework.web.bind.annotation.ResponseStatus
+import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.ResponseStatus;
 
-object ResponseValidator {
+import java.util.List;
+import java.util.NoSuchElementException;
 
-    fun <T> List<T>.validateResultNotEmpty(word: String): List<T> {
-        if (isEmpty()) {
-            throw EmptyResultException(word)
-        }
-        return this
+public class ResponseValidator {
+
+    public static <T> List<T> validateResultNotEmpty(List<T> list, String word) {
+        if (list.isEmpty()) throw new EmptyResultException(word);
+        return list;
     }
 
     @ResponseStatus(HttpStatus.NOT_FOUND)
-    class EmptyResultException(word: String) : NoSuchElementException("No results found for $word")
+    public static class EmptyResultException extends NoSuchElementException {
+        public EmptyResultException(String word) {
+            super(String.format("No results found for %s", word));
+        }
+    }
 }
-

@@ -17,15 +17,17 @@
  * along with Poet Assistant.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package ca.rmen.poetassistant.api
+package ca.rmen.poetassistant.api;
 
-import org.springframework.web.bind.annotation.GetMapping
-import org.springframework.web.bind.annotation.RestController
-import org.springframework.web.servlet.view.RedirectView
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.servlet.view.RedirectView;
 
 @RestController
-class AppController() {
+public class AppController {
 
     @GetMapping("/")
-    fun getRoot() = RedirectView("/swagger-ui.html")
+    public RedirectView getRoot() {
+        return new RedirectView("/swagger-ui.html");
+    }
 }

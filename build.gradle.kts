@@ -1,17 +1,14 @@
-import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 import org.springframework.boot.gradle.plugin.SpringBootPlugin
 
 plugins {
     id("org.springframework.boot") version springBootVersion
     id("io.spring.dependency-management") version springDependencyManagemntVersion
-    kotlin("jvm") version kotlinVersion
-    kotlin("plugin.spring") version kotlinVersion
+    id("java")
     jacoco
 }
 
 group = "ca.rmen"
 version = "0.0.1-SNAPSHOT"
-java.sourceCompatibility = JavaVersion.VERSION_17
 
 repositories {
     mavenCentral()
@@ -29,12 +26,6 @@ dependencies {
 springBoot {
     mainClass.set("ca.rmen.poetassistant.PoetAssistantApplication")
 }
-tasks.withType<KotlinCompile> {
-    kotlinOptions {
-        freeCompilerArgs = listOf("-Xjsr305=strict")
-        jvmTarget = "11"
-    }
-}
 
 tasks.withType<Test> {
     useJUnitPlatform()
@@ -43,10 +34,10 @@ tasks.withType<Test> {
 tasks.withType<JacocoReport> {
     classDirectories.setFrom(
         fileTree(rootProject.projectDir)
-            .include("**/build/classes/kotlin/main/ca/rmen/poetassistant/**")
+            .include("**/build/classes/java/main/ca/rmen/poetassistant/**")
     )
     sourceDirectories.setFrom(files(File("${rootProject.projectDir}/modules").listFiles()?.map {
-        File("$it/src/main/kotlin")
+        File("$it/src/main/java")
     }))
 }
 
@@ -54,7 +45,7 @@ subprojects {
     repositories {
         mavenCentral()
     }
-    apply(plugin = "org.jetbrains.kotlin.jvm")
+    apply(plugin = "java-library")
     apply(plugin = "io.spring.dependency-management")
     dependencyManagement {
         imports {

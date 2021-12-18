@@ -5,7 +5,6 @@ plugins {
     id("com.github.johnrengelman.processes") version johnrengelmanProcessesVerision
     id("org.springdoc.openapi-gradle-plugin") version openApiGradlePluginVersion
     id("org.hidetake.swagger.generator") version swaggerGeneratorVersion
-    kotlin("plugin.spring")
 }
 
 
@@ -15,7 +14,6 @@ bootJar.enabled = false
 dependencies {
     implementation(project(":modules:api"))
     implementation(project(":modules:app"))
-    implementation("org.springdoc:springdoc-openapi-kotlin:$springDocVersion")
     implementation("org.springdoc:springdoc-openapi-ui:$springDocVersion")
 
     swaggerCodegen("io.swagger.codegen.v3:swagger-codegen-cli:$swaggerCodeGenVersion")

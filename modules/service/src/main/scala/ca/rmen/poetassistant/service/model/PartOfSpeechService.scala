@@ -21,13 +21,5 @@ package ca.rmen.poetassistant.service.model
 
 // The `JsonValue` annotation doesn't work:
 // https://github.com/FasterXML/jackson-module-scala/issues/532
-enum PartOfSpeechService(val modelName: String):
-
-  case NOUN extends PartOfSpeechService("noun")
-  case ADJECTIVE extends PartOfSpeechService("adjective")
-  case ADVERB extends PartOfSpeechService("adverb")
-  case VERB extends PartOfSpeechService("verb")
-  case UNKNOWN extends PartOfSpeechService("unknown")
-
-  override def toString: String = modelName
-end PartOfSpeechService
+enum PartOfSpeechService:
+  case NOUN, ADJECTIVE, ADVERB, VERB, UNKNOWN

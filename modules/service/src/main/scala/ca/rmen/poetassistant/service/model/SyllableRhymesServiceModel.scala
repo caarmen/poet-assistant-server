@@ -19,9 +19,5 @@
 
 package ca.rmen.poetassistant.service.model
 
-import com.fasterxml.jackson.annotation.JsonProperty
-
-case class SyllableRhymesServiceModel(@JsonProperty("syllables")
-                               syllables: String,
-                               @JsonProperty("rhymes")
-                               rhymes: List[String])
+case class SyllableRhymesServiceModel(syllables: String,
+                                      rhymes: List[String])

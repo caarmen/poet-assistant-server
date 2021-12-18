@@ -17,13 +17,13 @@
  * along with Poet Assistant.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package ca.rmen.poetassistant.repository.rhymes
+package ca.rmen.poetassistant.repository.rhymes;
 
-import java.io.Serializable
-import javax.persistence.Embeddable
+import javax.persistence.Embeddable;
+import java.io.Serializable;
 
 @Embeddable
-data class RhymerEntityPK(
-    val word: String = "",
-    val variantNumber: Int = 0,
-) : Serializable
+public class RhymerEntityPK implements Serializable {
+    public String word;
+    public int variantNumber;
+}

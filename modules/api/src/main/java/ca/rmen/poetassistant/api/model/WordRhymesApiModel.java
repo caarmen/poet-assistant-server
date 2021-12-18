@@ -17,16 +17,22 @@
  * along with Poet Assistant.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package ca.rmen.poetassistant.api.model.mapping
+package ca.rmen.poetassistant.api.model;
 
-import ca.rmen.poetassistant.api.model.WordRhymesApiModel
-import ca.rmen.poetassistant.service.model.WordRhymesServiceModel
+import com.fasterxml.jackson.annotation.JsonProperty;
 
-val WordRhymesServiceModel.toApi: WordRhymesApiModel
-    get() = WordRhymesApiModel(
-        variantNumber = variantNumber,
-        stressRhymes = stressRhymes?.toApi,
-        lastThreeSyllableRhymes = lastThreeSyllableRhymes?.toApi,
-        lastTwoSyllableRhymes = lastTwoSyllableRhymes?.toApi,
-        lastSyllableRhymes = lastSyllableRhymes?.toApi
-    )
+import java.util.Optional;
+
+public record WordRhymesApiModel(
+        @JsonProperty("variant_number")
+        int variantNumber,
+        @JsonProperty("stress_rhymes")
+        Optional<SyllableRhymesApiModel> stressRhymes,
+        @JsonProperty("last_three_syllable_rhymes")
+        Optional<SyllableRhymesApiModel> lastThreeSyllableRhymes,
+        @JsonProperty("last_two_syllable_rhymes")
+        Optional<SyllableRhymesApiModel> lastTwoSyllableRhymes,
+        @JsonProperty("last_syllable_rhymes")
+        Optional<SyllableRhymesApiModel> lastSyllableRhymes
+) {
+}

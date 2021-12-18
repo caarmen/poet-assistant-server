@@ -17,15 +17,15 @@
  * along with Poet Assistant.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package ca.rmen.poetassistant.repository.rhymes
+package ca.rmen.poetassistant.service.model;
 
-import org.springframework.data.repository.CrudRepository
+import java.util.Optional;
 
-interface RhymerRepository : CrudRepository<RhymerEntity, RhymerEntityPK> {
-    fun findAllByWord(word: String): List<RhymerEntity>
-
-    // These long method names are possible thanks to jpa:
-    // https://docs.spring.io/spring-data/jpa/docs/current/reference/html/#jpa.query-methods.query-creation
-    fun findByStressSyllablesAndWordNotOrderByWord(stressSyllables: String, word: String): List<RhymerEntity>
-
+public record WordRhymesServiceModel(
+        int variantNumber,
+        Optional<SyllableRhymesServiceModel> stressRhymes,
+        Optional<SyllableRhymesServiceModel> lastThreeSyllableRhymes,
+        Optional<SyllableRhymesServiceModel> lastTwoSyllableRhymes,
+        Optional<SyllableRhymesServiceModel> lastSyllableRhymes
+) {
 }

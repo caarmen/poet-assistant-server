@@ -17,13 +17,16 @@
  * along with Poet Assistant.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package ca.rmen.poetassistant.service.model
+package ca.rmen.poetassistant.api.model;
 
-import com.fasterxml.jackson.annotation.JsonProperty
+import com.fasterxml.jackson.annotation.JsonProperty;
 
-data class SyllableRhymesServiceModel(
-    @JsonProperty("syllables")
-    val syllables: String,
-    @JsonProperty("rhymes")
-    val rhymes: List<String>
-)
+import java.util.List;
+
+public record SyllableRhymesApiModel(
+        @JsonProperty("syllables")
+        String syllables,
+        @JsonProperty("rhymes")
+        List<String> rhymes
+) {
+}

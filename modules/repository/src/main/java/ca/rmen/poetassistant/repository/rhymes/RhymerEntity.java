@@ -17,28 +17,29 @@
  * along with Poet Assistant.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package ca.rmen.poetassistant.repository.rhymes
+package ca.rmen.poetassistant.repository.rhymes;
 
-import javax.persistence.Column
-import javax.persistence.EmbeddedId
-import javax.persistence.Entity
-import javax.persistence.Table
+import javax.persistence.Column;
+import javax.persistence.EmbeddedId;
+import javax.persistence.Entity;
+import javax.persistence.Table;
 
 @Entity
 @Table(name = "word_variants")
-data class RhymerEntity(
+public class RhymerEntity {
     @EmbeddedId
-    private val id: RhymerEntityPK = RhymerEntityPK(),
+    private RhymerEntityPK id;
+
     @Column(insertable = false, updatable = false)
-    val word: String = "",
+    public String word;
     @Column(insertable = false, updatable = false)
-    val variantNumber: Int = 0,
+    public int variantNumber;
     @Column(insertable = false, updatable = false)
-    val stressSyllables: String = "",
+    public String stressSyllables;
     @Column(insertable = false, updatable = false)
-    val lastSyllable: String = "",
+    public String lastSyllable;
     @Column(insertable = false, updatable = false)
-    val lastTwoSyllables: String = "",
+    public String lastTwoSyllables;
     @Column(insertable = false, updatable = false)
-    val lastThreeSyllables: String = "",
-)
+    public String lastThreeSyllables;
+}

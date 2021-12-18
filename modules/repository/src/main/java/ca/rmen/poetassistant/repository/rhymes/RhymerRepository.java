@@ -17,19 +17,16 @@
  * along with Poet Assistant.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package ca.rmen.poetassistant.api.model
+package ca.rmen.poetassistant.repository.rhymes;
 
-import com.fasterxml.jackson.annotation.JsonProperty
+import org.springframework.data.repository.CrudRepository;
 
-data class WordRhymesApiModel(
-    @JsonProperty("variant_number")
-    val variantNumber: Int,
-    @JsonProperty("stress_rhymes")
-    val stressRhymes: SyllableRhymesApiModel? = null,
-    @JsonProperty("last_three_syllable_rhymes")
-    val lastThreeSyllableRhymes: SyllableRhymesApiModel? = null,
-    @JsonProperty("last_two_syllable_rhymes")
-    val lastTwoSyllableRhymes: SyllableRhymesApiModel? = null,
-    @JsonProperty("last_syllable_rhymes")
-    val lastSyllableRhymes: SyllableRhymesApiModel? = null
-)
+import java.util.List;
+
+public interface RhymerRepository extends CrudRepository<RhymerEntity, RhymerEntityPK> {
+    List<RhymerEntity> findAllByWord(String word);
+
+    // These long method names are possible thanks to jpa:
+    // https://docs.spring.io/spring-data/jpa/docs/current/reference/html/#jpa.query-methods.query-creation
+    List<RhymerEntity> findByStressSyllablesAndWordNotOrderByWord(String stressSyllables, String word);
+}

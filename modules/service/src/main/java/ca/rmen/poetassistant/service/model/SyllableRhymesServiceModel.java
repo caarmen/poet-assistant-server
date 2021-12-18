@@ -17,13 +17,12 @@
  * along with Poet Assistant.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package ca.rmen.poetassistant.api.model.mapping
+package ca.rmen.poetassistant.service.model;
 
-import ca.rmen.poetassistant.api.model.SyllableRhymesApiModel
-import ca.rmen.poetassistant.service.model.SyllableRhymesServiceModel
+import java.util.List;
 
-val SyllableRhymesServiceModel.toApi: SyllableRhymesApiModel
-    get() = SyllableRhymesApiModel(
-        syllables = syllables,
-        rhymes = rhymes
-    )
+public record SyllableRhymesServiceModel(
+        String syllables,
+        List<String> rhymes
+) {
+}

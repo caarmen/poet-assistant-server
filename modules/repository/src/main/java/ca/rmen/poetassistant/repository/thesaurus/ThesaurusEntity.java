@@ -17,10 +17,29 @@
  * along with Poet Assistant.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package ca.rmen.poetassistant.repository.thesaurus
+package ca.rmen.poetassistant.repository.thesaurus;
 
-import org.springframework.data.repository.CrudRepository
+import javax.persistence.Column;
+import javax.persistence.EmbeddedId;
+import javax.persistence.Entity;
+import javax.persistence.Table;
 
-interface ThesaurusRepository : CrudRepository<ThesaurusEntity, ThesaurusEntityPK> {
-    fun findAllByWord(word: String): List<ThesaurusEntity>
+/**
+ * Our embedded database doesn't have an id column.
+ * So, we have to use all its attributes as the primary key
+ */
+@Entity
+@Table(name = "thesaurus")
+public class ThesaurusEntity {
+    @EmbeddedId
+    private ThesaurusEntityPK id;
+
+    @Column(insertable = false, updatable = false)
+    public String word;
+    @Column(insertable = false, updatable = false)
+    public String wordType;
+    @Column(insertable = false, updatable = false)
+    public String synonyms;
+    @Column(insertable = false, updatable = false)
+    public String antonyms;
 }

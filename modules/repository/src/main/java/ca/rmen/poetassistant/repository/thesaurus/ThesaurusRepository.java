@@ -17,15 +17,12 @@
  * along with Poet Assistant.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package ca.rmen.poetassistant.repository.thesaurus
+package ca.rmen.poetassistant.repository.thesaurus;
 
-import java.io.Serializable
-import javax.persistence.Embeddable
+import org.springframework.data.repository.CrudRepository;
 
-@Embeddable
-data class ThesaurusEntityPK(
-    val word: String = "",
-    val wordType: String = "",
-    val synonyms: String = "",
-    val antonyms: String = ""
-) : Serializable
+import java.util.List;
+
+public interface ThesaurusRepository extends CrudRepository<ThesaurusEntity, ThesaurusEntityPK> {
+    List<ThesaurusEntity> findAllByWord(String word);
+}

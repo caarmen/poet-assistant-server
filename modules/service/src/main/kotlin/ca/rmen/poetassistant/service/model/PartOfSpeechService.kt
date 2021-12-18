@@ -19,12 +19,10 @@
 
 package ca.rmen.poetassistant.service.model
 
-import com.fasterxml.jackson.annotation.JsonValue
-
-enum class PartOfSpeechService(@JsonValue val modelName: String) {
-    NOUN("noun"),
-    ADJECTIVE("adjective"),
-    ADVERB("adverb"),
-    VERB("verb"),
-    UNKNOWN("unknown")
+enum class PartOfSpeechService {
+    NOUN,
+    ADJECTIVE,
+    ADVERB,
+    VERB,
+    UNKNOWN
 }

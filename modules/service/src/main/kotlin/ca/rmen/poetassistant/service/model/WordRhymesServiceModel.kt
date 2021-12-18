@@ -19,17 +19,10 @@
 
 package ca.rmen.poetassistant.service.model
 
-import com.fasterxml.jackson.annotation.JsonProperty
-
 data class WordRhymesServiceModel(
-    @JsonProperty("variant_number")
     val variantNumber: Int,
-    @JsonProperty("stress_rhymes")
     val stressRhymes: SyllableRhymesServiceModel? = null,
-    @JsonProperty("last_three_syllable_rhymes")
     val lastThreeSyllableRhymes: SyllableRhymesServiceModel? = null,
-    @JsonProperty("last_two_syllable_rhymes")
     val lastTwoSyllableRhymes: SyllableRhymesServiceModel? = null,
-    @JsonProperty("last_syllable_rhymes")
     val lastSyllableRhymes: SyllableRhymesServiceModel? = null
 )

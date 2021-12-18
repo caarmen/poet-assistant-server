@@ -27,7 +27,7 @@ dependencies {
     testImplementation("org.springframework.restdocs:spring-restdocs-mockmvc")
 }
 springBoot {
-    mainClass.set("ca.rmen.poetassistant.PoetAssistantApplicationKt")
+    mainClass.set("ca.rmen.poetassistant.PoetAssistantApplication")
 }
 tasks.withType<KotlinCompile> {
     kotlinOptions {

@@ -17,14 +17,15 @@
  * along with Poet Assistant.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package ca.rmen.poetassistant
+package ca.rmen.poetassistant;
 
-import org.springframework.boot.autoconfigure.SpringBootApplication
-import org.springframework.boot.runApplication
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-class PoetAssistantApplication
+public class PoetAssistantApplication {
 
-fun main(args: Array<String>) {
-    runApplication<PoetAssistantApplication>(*args)
+    public static void main(String[] args) {
+        SpringApplication.run(PoetAssistantApplication.class, args);
+    }
 }

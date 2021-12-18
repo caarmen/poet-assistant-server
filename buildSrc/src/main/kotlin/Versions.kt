@@ -1,6 +1,6 @@
 const val asciiDoctorVersion = "3.3.2"
 const val johnrengelmanProcessesVerision = "0.5.0"
-const val kotlinVersion = "1.6.0"
+const val lombokGradlePluginVersion = "6.3.0"
 const val openApiGradlePluginVersion = "1.3.3"
 const val springBootVersion = "2.6.0"
 const val springDependencyManagemntVersion = "1.0.11.RELEASE"

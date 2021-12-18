@@ -1,5 +1,6 @@
 plugins {
     id("org.springframework.boot") apply false
+    id("io.freefair.lombok") version lombokGradlePluginVersion
 }
 
 dependencies {

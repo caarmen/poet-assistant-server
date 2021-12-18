@@ -22,6 +22,7 @@ package ca.rmen.poetassistant.api;
 import ca.rmen.poetassistant.api.model.ThesaurusEntryApiModel;
 import ca.rmen.poetassistant.api.model.mapping.ThesaurusEntryServiceModelExt;
 import ca.rmen.poetassistant.service.ThesaurusService;
+import lombok.experimental.ExtensionMethod;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -33,6 +34,7 @@ import java.util.Locale;
 
 @RestController
 @Validated
+@ExtensionMethod({ResponseValidator.class})
 public class ThesaurusController {
 
     public static final String SERVICE = "/thesaurus";
@@ -45,12 +47,10 @@ public class ThesaurusController {
 
     @GetMapping(SERVICE)
     public List<ThesaurusEntryApiModel> getThesaurusEntries(@RequestParam(QUERY_PARAM_WORD) @NotBlank String word) {
-        return ResponseValidator.validateResultNotEmpty(
-                service.findThesaurusEntries(word.toLowerCase(Locale.ROOT))
-                        .stream()
-                        .map(ThesaurusEntryServiceModelExt::toApi)
-                        .toList(),
-                word
-        );
+        return service.findThesaurusEntries(word.toLowerCase(Locale.ROOT))
+                .stream()
+                .map(ThesaurusEntryServiceModelExt::toApi)
+                .toList()
+                .validateResultNotEmpty(word);
     }
 }

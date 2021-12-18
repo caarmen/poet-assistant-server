@@ -22,6 +22,7 @@ package ca.rmen.poetassistant.api;
 import ca.rmen.poetassistant.api.model.WordRhymesApiModel;
 import ca.rmen.poetassistant.api.model.mapping.WordRhymesServiceModelExt;
 import ca.rmen.poetassistant.service.RhymeService;
+import lombok.experimental.ExtensionMethod;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -33,6 +34,7 @@ import java.util.Locale;
 
 @RestController
 @Validated
+@ExtensionMethod({ResponseValidator.class})
 public class RhymeController {
     public static final String SERVICE = "/rhymes";
     public static final String QUERY_PARAM_WORD = "word";
@@ -44,12 +46,11 @@ public class RhymeController {
 
     @GetMapping(SERVICE)
     public List<WordRhymesApiModel> getRhymes(@RequestParam(QUERY_PARAM_WORD) @NotBlank String word) {
-        return ResponseValidator.validateResultNotEmpty(
-                service.findRhymes(word.toLowerCase(Locale.ROOT))
-                        .stream()
-                        .map(WordRhymesServiceModelExt::toApi)
-                        .toList(),
-                word);
+        return service.findRhymes(word.toLowerCase(Locale.ROOT))
+                .stream()
+                .map(WordRhymesServiceModelExt::toApi)
+                .toList()
+                .validateResultNotEmpty(word);
 
         // TODO for now we only return words which match stress syllables
         // We should also return words which match the last one, two, or three syllables

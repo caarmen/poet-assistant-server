@@ -19,12 +19,8 @@
 
 package ca.rmen.poetassistant.service.model;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
-
 public record DefinitionServiceModel(
-        @JsonProperty("part_of_speech")
         PartOfSpeechService partOfSpeech,
-        @JsonProperty("definition")
         String definition
 ) {
 }

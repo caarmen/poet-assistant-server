@@ -19,14 +19,10 @@
 
 package ca.rmen.poetassistant.service.model;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
-
 import java.time.LocalDate;
 
 public record WotdServiceModel(
-        @JsonProperty("date")
         LocalDate date,
-        @JsonProperty("word")
         String word
 ) {
 }

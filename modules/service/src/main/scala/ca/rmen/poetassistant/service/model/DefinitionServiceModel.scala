@@ -19,9 +19,5 @@
 
 package ca.rmen.poetassistant.service.model
 
-import com.fasterxml.jackson.annotation.JsonProperty
-
-case class DefinitionServiceModel(@JsonProperty("part_of_speech")
-                           partOfSpeech: PartOfSpeechService,
-                           @JsonProperty("definition")
-                           definition: String)
+case class DefinitionServiceModel(partOfSpeech: PartOfSpeechService,
+                                  definition: String)

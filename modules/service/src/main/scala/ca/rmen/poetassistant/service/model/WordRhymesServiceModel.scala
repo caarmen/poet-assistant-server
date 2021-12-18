@@ -19,15 +19,8 @@
 
 package ca.rmen.poetassistant.service.model
 
-import com.fasterxml.jackson.annotation.JsonProperty
-
-case class WordRhymesServiceModel(@JsonProperty("variant_number")
-                           variantNumber: Int,
-                           @JsonProperty("stress_rhymes")
-                           stressRhymes: Option[SyllableRhymesServiceModel] = Option.empty,
-                           @JsonProperty("last_three_syllable_rhymes")
-                           lastThreeSyllableRhymes: Option[SyllableRhymesServiceModel] = Option.empty,
-                           @JsonProperty("last_two_syllable_rhymes")
-                           lastTwoSyllableRhymes: Option[SyllableRhymesServiceModel] = Option.empty,
-                           @JsonProperty("last_syllable_rhymes")
-                           lastSyllableRhymes: Option[SyllableRhymesServiceModel] = Option.empty)
+case class WordRhymesServiceModel(variantNumber: Int,
+                                  stressRhymes: Option[SyllableRhymesServiceModel] = Option.empty,
+                                  lastThreeSyllableRhymes: Option[SyllableRhymesServiceModel] = Option.empty,
+                                  lastTwoSyllableRhymes: Option[SyllableRhymesServiceModel] = Option.empty,
+                                  lastSyllableRhymes: Option[SyllableRhymesServiceModel] = Option.empty)

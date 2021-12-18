@@ -17,15 +17,17 @@
  * along with Poet Assistant.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package ca.rmen.poetassistant.api.model.mapping
+package ca.rmen.poetassistant.api.model.mapping;
 
-import ca.rmen.poetassistant.api.model.ThesaurusEntryApiModel
-import ca.rmen.poetassistant.api.model.mapping.PartOfSpeechServiceExt.toApi
-import ca.rmen.poetassistant.service.model.ThesaurusEntryServiceModel
+import ca.rmen.poetassistant.api.model.ThesaurusEntryApiModel;
+import ca.rmen.poetassistant.service.model.ThesaurusEntryServiceModel;
 
-val ThesaurusEntryServiceModel.toApi: ThesaurusEntryApiModel
-    get() = ThesaurusEntryApiModel(
-        partOfSpeech = toApi(partOfSpeech),
-        synonyms = synonyms,
-        antonyms = antonyms
-    )
+public class ThesaurusEntryServiceModelExt {
+    public static ThesaurusEntryApiModel toApi(ThesaurusEntryServiceModel serviceModel) {
+        return new ThesaurusEntryApiModel(
+                PartOfSpeechServiceExt.toApi(serviceModel.partOfSpeech()),
+                serviceModel.synonyms(),
+                serviceModel.antonyms()
+        );
+    }
+}

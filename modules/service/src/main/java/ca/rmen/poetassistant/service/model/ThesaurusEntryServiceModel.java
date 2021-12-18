@@ -17,15 +17,13 @@
  * along with Poet Assistant.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package ca.rmen.poetassistant.api.model
+package ca.rmen.poetassistant.service.model;
 
-import com.fasterxml.jackson.annotation.JsonProperty
+import java.util.List;
 
-data class ThesaurusEntryApiModel(
-    @JsonProperty("part_of_speech")
-    val partOfSpeech: PartOfSpeechApi,
-    @JsonProperty("synonyms")
-    val synonyms: List<String>,
-    @JsonProperty("antonyms")
-    val antonyms: List<String>
-)
+public record ThesaurusEntryServiceModel(
+        PartOfSpeechService partOfSpeech,
+        List<String> synonyms,
+        List<String> antonyms
+) {
+}

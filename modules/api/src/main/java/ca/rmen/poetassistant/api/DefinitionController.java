@@ -22,6 +22,7 @@ package ca.rmen.poetassistant.api;
 import ca.rmen.poetassistant.api.model.DefinitionApiModel;
 import ca.rmen.poetassistant.api.model.mapping.DefinitionServiceModelExt;
 import ca.rmen.poetassistant.service.DefinitionService;
+import lombok.experimental.ExtensionMethod;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -33,6 +34,7 @@ import java.util.Locale;
 
 @RestController
 @Validated
+@ExtensionMethod({ResponseValidator.class})
 public class DefinitionController {
 
     public static final String SERVICE = "/definitions";
@@ -45,10 +47,10 @@ public class DefinitionController {
 
     @GetMapping(SERVICE)
     public List<DefinitionApiModel> getDefinitions(@RequestParam(QUERY_PARAM_WORD) @NotBlank String word) {
-        return ResponseValidator.validateResultNotEmpty
-                (service.findDefinitions(word.toLowerCase(Locale.ROOT))
-                        .stream()
-                        .map(DefinitionServiceModelExt::toApi)
-                        .toList(), word);
+        return service.findDefinitions(word.toLowerCase(Locale.ROOT))
+                .stream()
+                .map(DefinitionServiceModelExt::toApi)
+                .toList()
+                .validateResultNotEmpty(word);
     }
 }

@@ -23,8 +23,10 @@ The app contains the following modules:
   - `doc`: Generates documentation
   - `app`: Contains the application class
 
+## Tech stack
+
 The main branch is implemented in Kotlin with Spring Boot and Gradle.
 
-There are other branches of this project, using other languages. They may not be as up-to-date as the main branch:
-* [Scala](https://github.com/caarmen/poet-assistant-server/tree/scala)
-* [Java](https://github.com/caarmen/poet-assistant-server/tree/java)
+There are other branches of this project, using other implementations. They may not be as up-to-date as the main branch:
+* [Scala (Spring Boot, Gradle)](https://github.com/caarmen/poet-assistant-server/tree/scala)
+* [Java (Spring Boot, Gradle)](https://github.com/caarmen/poet-assistant-server/tree/java)

@@ -19,17 +19,19 @@
 
 package ca.rmen.poetassistant.api.model
 
-import ca.rmen.poetassistant.api.model.SyllableRhymesApiModel
-import com.fasterxml.jackson.annotation.JsonProperty
+import com.fasterxml.jackson.annotation.{JsonInclude, JsonProperty}
 
 case class WordRhymesApiModel(@JsonProperty("variant_number")
-                           variantNumber: Int,
-                           @JsonProperty("stress_rhymes")
-                           stressRhymes: Option[SyllableRhymesApiModel] = Option.empty,
-                           @JsonProperty("last_three_syllable_rhymes")
-                           lastThreeSyllableRhymes: Option[SyllableRhymesApiModel] = Option.empty,
-                           @JsonProperty("last_two_syllable_rhymes")
-                           lastTwoSyllableRhymes: Option[SyllableRhymesApiModel] = Option.empty,
-                           @JsonProperty("last_syllable_rhymes")
-                           lastSyllableRhymes: Option[SyllableRhymesApiModel] = Option.empty)
+                              variantNumber: Int,
+                              @JsonProperty("stress_rhymes")
+                              stressRhymes: Option[SyllableRhymesApiModel] = Option.empty,
+                              @JsonProperty("last_three_syllable_rhymes")
+                              @JsonInclude(JsonInclude.Include.NON_ABSENT)
+                              lastThreeSyllableRhymes: Option[SyllableRhymesApiModel] = Option.empty,
+                              @JsonProperty("last_two_syllable_rhymes")
+                              @JsonInclude(JsonInclude.Include.NON_ABSENT)
+                              lastTwoSyllableRhymes: Option[SyllableRhymesApiModel] = Option.empty,
+                              @JsonProperty("last_syllable_rhymes")
+                              @JsonInclude(JsonInclude.Include.NON_ABSENT)
+                              lastSyllableRhymes: Option[SyllableRhymesApiModel] = Option.empty)
 

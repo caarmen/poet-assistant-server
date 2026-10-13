@@ -1,4 +1,5 @@
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
+import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 import org.springframework.boot.gradle.plugin.SpringBootPlugin
 
 plugins {
@@ -11,7 +12,7 @@ plugins {
 
 group = "ca.rmen"
 version = "0.0.1-SNAPSHOT"
-java.sourceCompatibility = JavaVersion.VERSION_11
+java.sourceCompatibility = JavaVersion.VERSION_21
 
 repositories {
     mavenCentral()
@@ -30,12 +31,11 @@ springBoot {
     mainClass.set("ca.rmen.poetassistant.PoetAssistantApplicationKt")
 }
 tasks.withType<KotlinCompile> {
-    kotlinOptions {
-        freeCompilerArgs = listOf("-Xjsr305=strict")
-        jvmTarget = "11"
+    compilerOptions {
+        freeCompilerArgs.add("-Xjsr305=strict")
+        jvmTarget.set(JvmTarget.JVM_21)
     }
 }
-
 tasks.withType<Test> {
     useJUnitPlatform()
 }
@@ -63,3 +63,6 @@ subprojects {
     }
 }
 
+kotlin {
+    jvmToolchain(21)
+}

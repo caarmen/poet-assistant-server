@@ -1,5 +1,5 @@
 plugins {
-    id("org.springframework.boot") apply false
+    alias(libs.plugins.spring.boot) apply false
 }
 
 dependencies {

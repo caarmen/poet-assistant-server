@@ -1,17 +1,16 @@
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
+import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 import org.springframework.boot.gradle.plugin.SpringBootPlugin
 
 plugins {
-    id("org.springframework.boot") version springBootVersion
-    id("io.spring.dependency-management") version springDependencyManagemntVersion
-    kotlin("jvm") version kotlinVersion
-    kotlin("plugin.spring") version kotlinVersion
+    alias(libs.plugins.spring.boot)
+    alias(libs.plugins.jvm)
     jacoco
 }
 
 group = "ca.rmen"
 version = "0.0.1-SNAPSHOT"
-java.sourceCompatibility = JavaVersion.VERSION_11
+java.sourceCompatibility = JavaVersion.VERSION_21
 
 repositories {
     mavenCentral()
@@ -22,20 +21,16 @@ dependencies {
     File("modules").listFiles()?.forEach {
         implementation(project(":modules:${it.name}"))
     }
+    implementation(platform(SpringBootPlugin.BOM_COORDINATES))
 
+    testImplementation("org.springframework.boot:spring-boot-starter-restdocs")
     testImplementation("org.springframework.boot:spring-boot-starter-test")
+    testImplementation("org.springframework.boot:spring-boot-starter-webmvc-test")
     testImplementation("org.springframework.restdocs:spring-restdocs-mockmvc")
 }
 springBoot {
     mainClass.set("ca.rmen.poetassistant.PoetAssistantApplicationKt")
 }
-tasks.withType<KotlinCompile> {
-    kotlinOptions {
-        freeCompilerArgs = listOf("-Xjsr305=strict")
-        jvmTarget = "11"
-    }
-}
-
 tasks.withType<Test> {
     useJUnitPlatform()
 }
@@ -55,11 +50,21 @@ subprojects {
         mavenCentral()
     }
     apply(plugin = "org.jetbrains.kotlin.jvm")
-    apply(plugin = "io.spring.dependency-management")
-    dependencyManagement {
-        imports {
-            mavenBom(SpringBootPlugin.BOM_COORDINATES)
+    tasks.withType<KotlinCompile> {
+        compilerOptions {
+            freeCompilerArgs.add("-Xjsr305=strict")
+            jvmTarget.set(JvmTarget.JVM_21)
+            javaParameters.set(true)
         }
+    }
+    dependencies {
+        "implementation"(platform(SpringBootPlugin.BOM_COORDINATES))
+        // https://www.baeldung.com/spring-boot-actuators
+        // https://docs.spring.io/spring-boot/api/rest/actuator/index.html
+        implementation("org.springframework.boot:spring-boot-starter-actuator")
     }
 }
 
+kotlin {
+    jvmToolchain(21)
+}

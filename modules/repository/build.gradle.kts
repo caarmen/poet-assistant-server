@@ -1,5 +1,5 @@
 plugins {
-    id("org.springframework.boot") apply false
+    alias(libs.plugins.spring.boot) apply false
 }
 
 dependencies {
@@ -7,6 +7,6 @@ dependencies {
     api("org.springframework.boot:spring-boot-starter-data-jpa")
     implementation("org.springframework.boot:spring-boot-starter-jdbc")
 
-    implementation("com.github.gwenn:sqlite-dialect:$sqliteDialectVersion")
-    implementation("org.xerial:sqlite-jdbc:$sqliteJdbcVersion")
+    implementation("org.hibernate.orm:hibernate-community-dialects")
+    implementation(libs.sqlite.jdbc)
 }

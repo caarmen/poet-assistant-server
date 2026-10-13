@@ -1,32 +1,31 @@
 import org.asciidoctor.gradle.jvm.AsciidoctorTask
 plugins {
-    id("org.springframework.boot") apply false
-    id("org.asciidoctor.jvm.convert") version asciiDoctorVersion
-    id("com.github.johnrengelman.processes") version johnrengelmanProcessesVerision
-    id("org.springdoc.openapi-gradle-plugin") version openApiGradlePluginVersion
-    id("org.hidetake.swagger.generator") version swaggerGeneratorVersion
-    kotlin("plugin.spring")
+    alias(libs.plugins.spring)
+    alias(libs.plugins.ascii.doctor)
+    alias(libs.plugins.spring.boot) apply false
+    alias(libs.plugins.open.api)
+    alias(libs.plugins.swagger.generator)
 }
 
 
-val bootJar: org.springframework.boot.gradle.tasks.bundling.BootJar by tasks
-bootJar.enabled = false
+tasks.named<org.springframework.boot.gradle.tasks.bundling.BootJar>("bootJar") {
+    enabled = false
+}
 
 dependencies {
     implementation(project(":modules:api"))
     implementation(project(":modules:app"))
-    implementation("org.springdoc:springdoc-openapi-kotlin:$springDocVersion")
-    implementation("org.springdoc:springdoc-openapi-ui:$springDocVersion")
+    implementation("org.springdoc:springdoc-openapi-starter-webmvc-ui:3.1.1")
 
-    swaggerCodegen("io.swagger.codegen.v3:swagger-codegen-cli:$swaggerCodeGenVersion")
+    swaggerCodegen(libs.swagger.codegen)
 }
 
 tasks {
-    "asciidoctor"(AsciidoctorTask::class) {
-        setOutputDir(file("${rootProject.projectDir}/docs"))
-        setSourceDir(file("src/main/asciidoc"))
-        attributes = mapOf("snippets" to file("${rootProject.buildDir}/snippets"))
-    }
+	"asciidoctor"(AsciidoctorTask::class) {
+		setOutputDir(file("${rootProject.projectDir}/docs"))
+		sourceDir(file("src/main/asciidoc"))
+		attributes = mapOf("snippets" to rootProject.layout.buildDirectory.dir("snippets").get().asFile)
+	}
 }
 
 swaggerSources {
@@ -43,6 +42,23 @@ afterEvaluate {
 }
 
 tasks.register("generateDocs") {
-    dependsOn("asciidoctor")
-    dependsOn("generateSwaggerCode")
+	   description = "Generate docs"
+	   dependsOn("asciidoctor")
+	   dependsOn("generateSwaggerCode")
+}
+
+springBoot {
+    mainClass.set("ca.rmen.poetassistant.PoetAssistantApplicationKt")
+}
+
+openApi {
+    apiDocsUrl.set("http://localhost:8080/v3/api-docs")
+    outputDir.set(layout.buildDirectory.dir("openapi"))
+    outputFileName.set("openapi.json")
+}
+
+tasks.withType<org.springframework.boot.gradle.tasks.run.BootRun>().configureEach {
+    val dbFile = rootProject.layout.projectDirectory
+        .file("modules/app/src/main/resources/poet_assistant.db").asFile
+    systemProperty("spring.datasource.url", "jdbc:sqlite:${dbFile.absolutePath}")
 }

@@ -28,8 +28,8 @@ import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.RequestParam
 import org.springframework.web.bind.annotation.RestController
 import java.time.LocalDate
-import javax.validation.constraints.Max
-import javax.validation.constraints.Positive
+import jakarta.validation.constraints.Max
+import jakarta.validation.constraints.Positive
 
 @RestController
 @Validated

@@ -8,8 +8,9 @@ plugins {
 }
 
 
-val bootJar: org.springframework.boot.gradle.tasks.bundling.BootJar by tasks
-bootJar.enabled = false
+tasks.named<org.springframework.boot.gradle.tasks.bundling.BootJar>("bootJar") {
+    enabled = false
+}
 
 dependencies {
     implementation(project(":modules:api"))

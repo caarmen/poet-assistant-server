@@ -4,7 +4,6 @@ import org.springframework.boot.gradle.plugin.SpringBootPlugin
 
 plugins {
     id("org.springframework.boot") version springBootVersion
-    id("io.spring.dependency-management") version springDependencyManagemntVersion
     kotlin("jvm") version kotlinVersion
     kotlin("plugin.spring") version kotlinVersion
     jacoco
@@ -23,6 +22,7 @@ dependencies {
     File("modules").listFiles()?.forEach {
         implementation(project(":modules:${it.name}"))
     }
+    implementation(platform(SpringBootPlugin.BOM_COORDINATES))
 
     testImplementation("org.springframework.boot:spring-boot-starter-restdocs")
     testImplementation("org.springframework.boot:spring-boot-starter-test")
@@ -57,11 +57,8 @@ subprojects {
         mavenCentral()
     }
     apply(plugin = "org.jetbrains.kotlin.jvm")
-    apply(plugin = "io.spring.dependency-management")
-    dependencyManagement {
-        imports {
-            mavenBom(SpringBootPlugin.BOM_COORDINATES)
-        }
+    dependencies {
+        "implementation"(platform(SpringBootPlugin.BOM_COORDINATES))
     }
 }
 

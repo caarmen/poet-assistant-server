@@ -25,9 +25,9 @@ import ca.rmen.poetassistant.api.ThesaurusController
 import ca.rmen.poetassistant.api.WotdController
 import org.junit.jupiter.api.Test
 import org.springframework.beans.factory.annotation.Autowired
-import org.springframework.boot.test.autoconfigure.restdocs.AutoConfigureRestDocs
-import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc
 import org.springframework.boot.test.context.SpringBootTest
+import org.springframework.boot.webmvc.test.autoconfigure.AutoConfigureMockMvc
+import org.springframework.boot.restdocs.test.autoconfigure.AutoConfigureRestDocs
 import org.springframework.restdocs.mockmvc.MockMvcRestDocumentation.document
 import org.springframework.restdocs.operation.preprocess.Preprocessors.preprocessResponse
 import org.springframework.restdocs.operation.preprocess.Preprocessors.prettyPrint

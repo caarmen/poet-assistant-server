@@ -24,7 +24,9 @@ dependencies {
         implementation(project(":modules:${it.name}"))
     }
 
+    testImplementation("org.springframework.boot:spring-boot-starter-restdocs")
     testImplementation("org.springframework.boot:spring-boot-starter-test")
+    testImplementation("org.springframework.boot:spring-boot-starter-webmvc-test")
     testImplementation("org.springframework.restdocs:spring-restdocs-mockmvc")
 }
 springBoot {

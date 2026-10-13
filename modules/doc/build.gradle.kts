@@ -20,11 +20,11 @@ dependencies {
 }
 
 tasks {
-    "asciidoctor"(AsciidoctorTask::class) {
-        setOutputDir(file("${rootProject.projectDir}/docs"))
-        setSourceDir(file("src/main/asciidoc"))
-        attributes = mapOf("snippets" to file("${rootProject.buildDir}/snippets"))
-    }
+	"asciidoctor"(AsciidoctorTask::class) {
+		setOutputDir(file("${rootProject.projectDir}/docs"))
+		sourceDir(file("src/main/asciidoc"))
+		attributes = mapOf("snippets" to rootProject.layout.buildDirectory.dir("snippets").get().asFile)
+	}
 }
 
 swaggerSources {
@@ -41,8 +41,9 @@ afterEvaluate {
 }
 
 tasks.register("generateDocs") {
-    dependsOn("asciidoctor")
-    dependsOn("generateSwaggerCode")
+	   description = "Generate docs"
+	   dependsOn("asciidoctor")
+	   dependsOn("generateSwaggerCode")
 }
 
 springBoot {

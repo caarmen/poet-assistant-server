@@ -15,8 +15,7 @@ bootJar.enabled = false
 dependencies {
     implementation(project(":modules:api"))
     implementation(project(":modules:app"))
-    implementation("org.springdoc:springdoc-openapi-kotlin:$springDocVersion")
-    implementation("org.springdoc:springdoc-openapi-ui:$springDocVersion")
+    implementation("org.springdoc:springdoc-openapi-starter-webmvc-ui:3.1.1")
 
     swaggerCodegen("io.swagger.codegen.v3:swagger-codegen-cli:$swaggerCodeGenVersion")
 }

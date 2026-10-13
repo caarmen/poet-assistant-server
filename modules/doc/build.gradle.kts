@@ -15,8 +15,7 @@ bootJar.enabled = false
 dependencies {
     implementation(project(":modules:api"))
     implementation(project(":modules:app"))
-    implementation("org.springdoc:springdoc-openapi-kotlin:$springDocVersion")
-    implementation("org.springdoc:springdoc-openapi-ui:$springDocVersion")
+    implementation("org.springdoc:springdoc-openapi-starter-webmvc-ui:3.0.0")
 
     swaggerCodegen("io.swagger.codegen.v3:swagger-codegen-cli:$swaggerCodeGenVersion")
 }
@@ -45,4 +44,20 @@ afterEvaluate {
 tasks.register("generateDocs") {
     dependsOn("asciidoctor")
     dependsOn("generateSwaggerCode")
+}
+
+springBoot {
+    mainClass.set("ca.rmen.poetassistant.PoetAssistantApplicationKt")
+}
+
+openApi {
+    apiDocsUrl.set("http://localhost:8080/v3/api-docs")
+    outputDir.set(layout.buildDirectory.dir("openapi"))
+    outputFileName.set("openapi.json")
+}
+
+tasks.withType<org.springframework.boot.gradle.tasks.run.BootRun>().configureEach {
+    val dbFile = rootProject.layout.projectDirectory
+        .file("modules/app/src/main/resources/poet_assistant.db").asFile
+    systemProperty("spring.datasource.url", "jdbc:sqlite:${dbFile.absolutePath}")
 }

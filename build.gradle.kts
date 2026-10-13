@@ -3,9 +3,8 @@ import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 import org.springframework.boot.gradle.plugin.SpringBootPlugin
 
 plugins {
-    id("org.springframework.boot") version springBootVersion
-    kotlin("jvm") version kotlinVersion
-    kotlin("plugin.spring") version kotlinVersion
+    alias(libs.plugins.spring.boot)
+    alias(libs.plugins.jvm)
     jacoco
 }
 

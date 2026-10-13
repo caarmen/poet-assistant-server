@@ -1,6 +1,6 @@
 plugins {
-    id("org.springframework.boot") apply false
-    kotlin("plugin.spring")
+    alias(libs.plugins.spring)
+    alias(libs.plugins.spring.boot) apply false
 }
 
 dependencies {

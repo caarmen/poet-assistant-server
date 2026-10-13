@@ -1,10 +1,10 @@
 import org.asciidoctor.gradle.jvm.AsciidoctorTask
 plugins {
-    id("org.springframework.boot") apply false
-    id("org.asciidoctor.jvm.convert") version asciiDoctorVersion
-    id("org.springdoc.openapi-gradle-plugin") version openApiGradlePluginVersion
-    id("org.hidetake.swagger.generator") version swaggerGeneratorVersion
-    kotlin("plugin.spring")
+    alias(libs.plugins.spring)
+    alias(libs.plugins.ascii.doctor)
+    alias(libs.plugins.spring.boot) apply false
+    alias(libs.plugins.open.api)
+    alias(libs.plugins.swagger.generator)
 }
 
 
@@ -17,7 +17,7 @@ dependencies {
     implementation(project(":modules:app"))
     implementation("org.springdoc:springdoc-openapi-starter-webmvc-ui:3.1.1")
 
-    swaggerCodegen("io.swagger.codegen.v3:swagger-codegen-cli:$swaggerCodeGenVersion")
+    swaggerCodegen(libs.swagger.codegen)
 }
 
 tasks {

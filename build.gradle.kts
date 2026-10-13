@@ -59,6 +59,9 @@ subprojects {
     }
     dependencies {
         "implementation"(platform(SpringBootPlugin.BOM_COORDINATES))
+        // https://www.baeldung.com/spring-boot-actuators
+        // https://docs.spring.io/spring-boot/api/rest/actuator/index.html
+        implementation("org.springframework.boot:spring-boot-starter-actuator")
     }
 }
 

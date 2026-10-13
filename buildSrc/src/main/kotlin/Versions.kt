@@ -1,5 +1,4 @@
 const val asciiDoctorVersion = "4.0.5"
-const val johnrengelmanProcessesVerision = "0.5.0"
 const val kotlinVersion = "2.4.21"
 const val openApiGradlePluginVersion = "1.9.0"
 const val springBootVersion = "4.1.1"

@@ -2,7 +2,6 @@ import org.asciidoctor.gradle.jvm.AsciidoctorTask
 plugins {
     id("org.springframework.boot") apply false
     id("org.asciidoctor.jvm.convert") version asciiDoctorVersion
-    id("com.github.johnrengelman.processes") version johnrengelmanProcessesVerision
     id("org.springdoc.openapi-gradle-plugin") version openApiGradlePluginVersion
     id("org.hidetake.swagger.generator") version swaggerGeneratorVersion
     kotlin("plugin.spring")

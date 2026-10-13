@@ -31,12 +31,6 @@ dependencies {
 springBoot {
     mainClass.set("ca.rmen.poetassistant.PoetAssistantApplicationKt")
 }
-tasks.withType<KotlinCompile> {
-    compilerOptions {
-        freeCompilerArgs.add("-Xjsr305=strict")
-        jvmTarget.set(JvmTarget.JVM_21)
-    }
-}
 tasks.withType<Test> {
     useJUnitPlatform()
 }
@@ -56,6 +50,13 @@ subprojects {
         mavenCentral()
     }
     apply(plugin = "org.jetbrains.kotlin.jvm")
+    tasks.withType<KotlinCompile> {
+        compilerOptions {
+            freeCompilerArgs.add("-Xjsr305=strict")
+            jvmTarget.set(JvmTarget.JVM_21)
+            javaParameters.set(true)
+        }
+    }
     dependencies {
         "implementation"(platform(SpringBootPlugin.BOM_COORDINATES))
     }
